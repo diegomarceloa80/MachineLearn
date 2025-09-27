@@ -2,12 +2,12 @@
 title: "PRIMER REPORTE EN QUARTO"
 author: "Diego Altamirano" 
 date: "2025-09-26"
-#format:
-#  html:
-#    embed-resources: true
+format:
+  html:
+    embed-resources: true
 ---
 
-# Titulo 1
+# Introduccion a Altair
 
 
 ## Importar el dataset

@@ -1,6 +1,7 @@
-.venv/
+.venv_2025SEM02_YT_ML/
 index_files/
 .quarto/
 _site/
 /.quarto/
+
 **/*.quarto_ipynb
