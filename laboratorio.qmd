@@ -36,4 +36,13 @@ alt.Chart(dataset).mark_bar().encode(
 
 ```
 
- 
+```{python}
+alt.Chart(dataset).mark_point(filled=True).encode(
+    x="sexo",
+    y="tipo",
+    color="tipo",
+    tooltip=["sexo","tipo"]
+).interactive()
+```
+
+
