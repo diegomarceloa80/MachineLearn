@@ -1,13 +1,13 @@
 ---
 title: "PRIMER REPORTE EN QUARTO"
-author: "Yachay Tech University" 
+author: "Diego Marcelo Altamirano Plazarte" 
 date: "2025-09-26"
 format:
   html:
     embed-resources: true
 ---
 
-# Titulo 1
+# Primer taller de Quarto
 
 ## Importar el dataset
 
