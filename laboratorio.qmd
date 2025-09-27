@@ -14,6 +14,8 @@ format:
 #### Contiene información de las personas con discapacidad beneficiarias de viviendas de interés social totalmente subvencionadas.
 # importar las librerías
 
+Gráfico de barras:
+Este gráfico muestra el promedio de la variable x_discapacidad por provincia. Permite comparar visualmente qué provincias tienen mayor o menor promedio de personas con discapacidad beneficiarias.
 ```{python}
 import pandas as pd
 import altair as alt
@@ -36,6 +38,8 @@ alt.Chart(dataset).mark_bar().encode(
 
 ```
 
+Gráfico de dispersión (puntos):
+Representa la relación entre la edad de los beneficiarios y la provincia, diferenciando por sexo. Ayuda a identificar la distribución de edades en cada provincia y posibles diferencias entre hombres y mujeres.
 ```{python}
 alt.Chart(dataset).mark_point(filled=True).encode(
     x='edad:Q',           # Columna numérica en el eje X
@@ -45,7 +49,8 @@ alt.Chart(dataset).mark_point(filled=True).encode(
 ).interactive()
 ```
 
-
+Gráfico de líneas:
+Muestra la edad promedio de los beneficiarios por provincia. Es útil para observar tendencias y comparar cómo varía la edad promedio entre diferentes provincias.
 
 ```{python}
 alt.Chart(dataset).mark_line(point=True).encode(
