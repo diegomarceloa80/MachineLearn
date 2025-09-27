@@ -38,10 +38,10 @@ alt.Chart(dataset).mark_bar().encode(
 
 ```{python}
 alt.Chart(dataset).mark_point(filled=True).encode(
-    x="sexo",
-    y="tipo",
-    color="tipo",
-    tooltip=["sexo","tipo"]
+    x='edad:Q',           # Columna numérica en el eje X
+    y='provincia:N',      # Columna categórica en el eje Y
+    color='sexo:N',       # Color por sexo
+    tooltip=['provincia', 'edad', 'sexo']  # Información al pasar el mouse
 ).interactive()
 ```
 
