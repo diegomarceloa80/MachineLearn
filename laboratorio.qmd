@@ -16,11 +16,12 @@ format:
 
 ```{python}
 import pandas as pd
+import altair as alt
+from vega_datasets import data
 
 dataset = pd.read_csv('conadis_2021.csv', encoding='latin1')
 
 ```
-
 
 ```{python}
 # print info of dataset
@@ -30,7 +31,9 @@ print(dataset.head())
 
 ```
 
+ 
 ```{python}
+import altair as alt
 alt.Chart(dataset).mark_bar().encode(
     alt.X('x_discapacidad',sort='-y'),
     alt.Y('mean(provincia)',title='Average Province'),
@@ -39,3 +42,6 @@ alt.Chart(dataset).mark_bar().encode(
     width=400,
     height=400
 )
+```
+
+
