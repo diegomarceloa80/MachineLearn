@@ -33,20 +33,7 @@ alt.Chart(dataset).mark_bar().encode(
     height=400
 )
 
-alt.Chart(dataset).mark_point(filled=True).encode(
-    x="sexo",
-    y="tipo",
-    color="tipo",
-    tooltip=["sexo","tipo"]
-).interactive()
 
-alt.Chart(dataset).mark_line(point=True).encode(
-    alt.X('x_discapacidad'),
-    alt.Y('mean(edad)'),
-    alt.Color('edad')
-).properties(
-    width=600
-).interactive()
 ```
 
  
