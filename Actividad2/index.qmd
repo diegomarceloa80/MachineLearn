@@ -1,14 +1,13 @@
 ---
 title: "PRIMER REPORTE EN QUARTO"
-author: "Diego Marcelo Altamirano" 
-date: "09-25-2025"
+author: "Yachay Tech University" 
+date: "2025-09-26"
 format:
   html:
     embed-resources: true
-
 ---
 
-# Titulo del reporte
+# Titulo 1
 
 ## Importar el dataset
 
@@ -46,10 +45,8 @@ alt.Chart(cars).mark_point(filled=True).encode(
 
 ```
 
-
 ### Subtitulo 3
 
-- lista
-    - elemento 1
-    - elemento 2
-
+-   lista
+    -   elemento 1
+    -   elemento 2
