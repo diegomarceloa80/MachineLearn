@@ -38,10 +38,10 @@ alt.Chart(dataset).mark_bar().encode(
 
 ```{python}
 alt.Chart(dataset).mark_point(filled=True).encode(
-    x="tipo",
-    y="sexo",
-    color="sexo",
-    tooltip=["tipo","sexo"]
+    x="sexo",
+    y="tipo",
+    color="tipo",
+    tooltip=["sexo","tipo"]
 ).interactive()
 ```
 
@@ -49,10 +49,12 @@ alt.Chart(dataset).mark_point(filled=True).encode(
 
 ```{python}
 alt.Chart(dataset).mark_line(point=True).encode(
-    alt.X('x_discapacidad'),
-    alt.Y('mean(edad)'),
-    alt.Color('edad')
+    x='provincia:N',         # Columna categórica (eje X)
+    y='mean(edad):Q',        # Columna numérica agregada (eje Y)
+    tooltip=['provincia', 'mean(edad)']
 ).properties(
-    width=600
-).interactive()
+    width=600,
+    height=400,
+    title='Edad promedio por provincia'
+)
 ```
