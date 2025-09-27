@@ -21,27 +21,18 @@ from vega_datasets import data
 
 dataset = pd.read_csv('conadis_2021.csv', encoding='latin1')
 
-```
-
-```{python}
-# print info of dataset
-# ...existing code...
 print(dataset.info())
 print(dataset.head())
 
-```
-
- 
-```{python}
-import altair as alt
 alt.Chart(dataset).mark_bar().encode(
-    alt.X('x_discapacidad',sort='-y'),
-    alt.Y('mean(provincia)',title='Average Province'),
-    tooltip=['x_discapacidad','mean(provincia)']
+    alt.X('provincia',sort='-y'),
+    alt.Y('mean(x_discapacidad)',title='Average Province'),
+    tooltip=['provincia','mean(x_discapacidad)']
 ).properties(
     width=400,
     height=400
 )
+
 ```
 
-
+ 
