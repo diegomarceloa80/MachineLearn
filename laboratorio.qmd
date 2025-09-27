@@ -1,0 +1,41 @@
+---
+title: "PRIMER REPORTE EN QUARTO"
+author: "Diego Altamirano" 
+date: "2025-09-26"
+format:
+  html:
+    embed-resources: true
+---
+
+# Laboratorio 1
+## Importar librerías y dataset
+### Vivienda de Interés Social
+#### Consejo Nacional para la Igualdad de Discapacidades
+#### Contiene información de las personas con discapacidad beneficiarias de viviendas de interés social totalmente subvencionadas.
+# importar las librerías
+
+```{python}
+import pandas as pd
+
+dataset = pd.read_csv('conadis_2021.csv', encoding='latin1')
+
+```
+
+
+```{python}
+# print info of dataset
+# ...existing code...
+print(dataset.info())
+print(dataset.head())
+
+```
+
+```{python}
+alt.Chart(dataset).mark_bar().encode(
+    alt.X('x_discapacidad',sort='-y'),
+    alt.Y('mean(provincia)',title='Average Province'),
+    tooltip=['x_discapacidad','mean(provincia)']
+).properties(
+    width=400,
+    height=400
+)

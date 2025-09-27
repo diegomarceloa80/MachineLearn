@@ -10,6 +10,8 @@ website:
         text: Home
       - href: eda.qmd
         text: EDA
+      - href: laboratorio.qmd
+        text: Laboratorio
 format:
   html:
     theme: cosmo
