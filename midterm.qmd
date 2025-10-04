@@ -116,6 +116,13 @@ plt.show()
 
 # Parte 2 Clasificación Logística
 
+## Líneas activas por tecnología
+Agencia de Regulación y Control de las Telecomunicaciones ARCOTEL
+
+Contiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.
+
+### El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 258 registros (un registro por operador y por mes entre 2009 y 2021)
+
 ```{python}
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -130,22 +137,37 @@ import seaborn as sns
 
 ```{python}
 # Cargar el dataset
-data = pd.read_csv("arcotel.csv")
+data_clasi = pd.read_csv("arcotel.csv")
 ```
 
+```{python}
+# explacion data info
+print(data_clasi.info())
+```
+### Definición del Problema de Clasificación Binaria
+El objetivo es predecir si un mes dado (registrado por un operador) está dominado por la tecnología de Cuarta Generación (4G).
 
+Variable Objetivo (Y): Dominio 4G (Binaria).
+
+Clase 1 (Positivo): LTE (líneas 4G) supera la suma de líneas 3G (UMTS+HSPA+).
+
+Clase 0 (Negativo): LTE es igual o menor a la suma de líneas 3G o si el dominio es de tecnologías más antiguas (GSMA).
+
+Variables Predictoras (X): Las líneas activas en tecnologías más antiguas y el operador.
+
+cdma (Legado), gsma (2G), umts (3G), hspa+ (3G/3.5G), y nombre (Operador).
 ```{python}
 # 1. Creación de la Variable Objetivo Binaria (Y)
 # Clase 1 si LTE > (UMTS + HSPA+), Clase 0 en caso contrario
-data['Total_3G'] = data['umts'] + data['hspa+']
-data['Dominio_4G'] = (data['lte'] > data['Total_3G']).astype(int)
+data_clasi['Total_3G'] = data_clasi['umts'] + data_clasi['hspa+']
+data_clasi['Dominio_4G'] = (data_clasi['lte'] > data_clasi['Total_3G']).astype(int)
 
 # 2. Definición de Variables (X y Y)
 features = ['cdma', 'gsma', 'umts', 'hspa+', 'nombre']
 target = 'Dominio_4G'
 
-X = data[features]
-y = data[target]
+X = data_clasi[features]
+y = data_clasi[target]
 
 # 3. Separación de conjuntos de entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
@@ -176,7 +198,6 @@ y_pred = model_pipeline.predict(X_test)
 y_proba = model_pipeline.predict_proba(X_test)[:, 1]
 ```
 
-
 ```{python}
 # Cálculo de Métricas
 accuracy = accuracy_score(y_test, y_pred)
@@ -190,6 +211,17 @@ print(f"Precision: {precision:.4f}")
 print(f"Recall: {recall:.4f}")
 print(f"F1 Score: {f1:.4f}")
 
+```
+
+#### Métricas de Evaluación del Modelo
+Métrica	Valor	Interpretación
+Accuracy (Exactitud)	0.8205	El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos).
+Precision (Precisión)	0.7727	Cuando el modelo predijo "Dominio 4G", acertó el 77.27% de las veces.
+Recall (Sensibilidad)	0.8500	El modelo identificó correctamente el 85.00% de todos los meses donde realmente hubo Dominio 4G.
+F1 Score	0.8095	Media armónica entre Precisión y Recall (buen equilibrio de la clasificación).
+Área bajo la Curva ROC (AUC)	0.8653	El modelo tiene una buena capacidad para distinguir entre las dos clases.
+
+```{python}
 # Visualización de la Matriz de Confusión
 plt.figure(figsize=(6, 5))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,
@@ -199,7 +231,17 @@ plt.xlabel('Predicción')
 plt.ylabel('Valor Real')
 plt.title('Matriz de Confusión (Regresión Logística)')
 plt.show()
+```
+#### Matriz de Confusión
+Verdaderos Positivos (TP): 17 (Meses donde se predijo Dominio 4G y fue correcto).
 
+Verdaderos Negativos (TN): 47 (Meses donde se predijo No Dominio 4G y fue correcto).
+
+Falsos Positivos (FP): 5 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).
+
+Falsos Negativos (FN): 3 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).
+
+```{python}
 # Visualización de la Curva ROC
 fpr, tpr, thresholds = roc_curve(y_test, y_proba)
 roc_auc = auc(fpr, tpr)
@@ -213,3 +255,5 @@ plt.title('Curva Característica Operativa del Receptor (ROC)')
 plt.legend(loc="lower right")
 plt.show()
 ```
+#### Curva ROC
+El valor de AUC=0.8653 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.
