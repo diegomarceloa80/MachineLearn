@@ -1,0 +1,95 @@
+# 1. Import libraries
+```{python}
+# 1. Import libraries
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, ConfusionMatrixDisplay
+```
+# 2. Load dataset
+```{python}
+data = load_breast_cancer()
+data
+X = data.data
+y = data.target # 0 = malignant, 1 = benign
+```
+# 3. Split dataset
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
+```
+# 4. Create and train model
+```{python}
+model = LogisticRegression(max_iter=1000)
+model.fit(X_train, y_train) 
+
+```
+# Predictions
+```{python} 
+y_pred = model.predict(X_test)
+```
+# 5. Evaluate model
+```{python}
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
+
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred) 
+```
+
+# con Pipelines
+# import libraries
+```{python}
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+```
+# carga de datos
+```{python}
+data = load_breast_cancer()
+data
+X = data.data
+y = data.target # 0 = malignant, 1 = benign
+```
+# 3. Split dataset
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
+```
+# 4. pipeline
+```{python}
+pipeline = Pipeline([
+    ("scaler", StandardScaler()),
+    ("log_reg", LogisticRegression(max_iter=1000))
+])
+
+```
+# train model
+```{python} 
+pipeline.fit(X_train, y_train)
+```
+# Predictions
+```{python} 
+y_pred_pipeline = pipeline.predict(X_test)
+```
+
+# 5. Evaluate model
+```{python}
+accuracy = accuracy_score(y_test, y_pred_pipeline)
+precision = precision_score(y_test, y_pred_pipeline)
+recall = recall_score(y_test, y_pred_pipeline)
+f1 = f1_score(y_test, y_pred_pipeline)
+
+print(f"Accuracy: {accuracy}")
+print(f"Precision: {precision}")
+print(f"Recall: {recall}")
+print(f"F1 Score: {f1}")
+
+ConfusionMatrixDisplay.from_predictions(y_test, y_pred_pipeline) 
+```

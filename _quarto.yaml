@@ -12,6 +12,10 @@ website:
         text: EDA
       - href: laboratorio.qmd
         text: Laboratorio
+      - href: clasificacion.qmd
+        text: Clasificación
+      - href: midterm.qmd
+        text: Midterm
 format:
   html:
     theme: cosmo

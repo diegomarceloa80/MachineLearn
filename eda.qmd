@@ -38,7 +38,7 @@ movies.head()
 Now, let’s examine the shape (number of rows and columns) of the dataset:
 
 ```{python}
-movies.shape
+movies.shape # (rows, columns)
 ```
 
 This tells us how many entries (rows) and features (columns) are present in the dataset.

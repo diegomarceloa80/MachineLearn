@@ -1,0 +1,112 @@
+# Midterm Project
+## Author: Diego Altamirano P.
+## Date: 2025-10-04
+
+# 1 Modelo de Regresión lineal  con Scikit-Learn
+# importar librerías
+```{python}
+from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
+import pandas as pd
+```
+# 2. cargar dataset csv
+```{python}
+data = pd.read_csv("iige005_san-gabriel.csv", encoding="latin1")
+data.head()
+```
+# explorar dataset
+```{python}
+print(data.info())
+```
+
+```{python}
+print(data.describe())
+```
+
+```{python}
+cols_to_numeric = data.columns[3:]
+data[cols_to_numeric] = data[cols_to_numeric].apply(pd.to_numeric, errors='coerce')
+```
+
+```{python}
+print(data.info())
+```
+
+```{python}
+data = data.iloc[:, 3:]
+```
+
+```{python}
+data = data.drop(columns=["WD(most)", "Max_time"], errors="ignore")
+```
+# eliminar filas con valores nulos
+```{python}
+data = data.dropna()
+```
+# 3. Split dataset
+```{python}
+X = data.drop(columns=["Rainfall"])  # Variables predictoras
+y = data["Rainfall"]  # Variable objetivo  
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train.shape, X_test.shape, y_train.shape, y_test.shape
+```
+
+# pipeline regression lineal
+```{python}
+
+pipeline = Pipeline([
+    ("scaler", StandardScaler()),
+    ("lin_reg", LinearRegression())
+])
+
+```
+# 4. Train model
+```{python}
+pipeline.fit(X_train, y_train)  
+```
+# 5. Make predictions
+```{python}
+y_pred = pipeline.predict(X_test)   
+```
+
+# 6. Evaluate model
+```{python}
+mse = mean_squared_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+mse, r2
+print(f"MSE: {mse}")
+print(f"R²: {r2}")
+```
+# 7. Visualize results
+```{python}
+import matplotlib.pyplot as plt
+
+plt.scatter(y_test, y_pred)
+plt.xlabel("Actual")
+plt.ylabel("Predicted")
+plt.title("Actual vs Predicted")
+plt.show()
+``` 
+
+# grafica de histogramas
+```{python}
+plt.hist(y_test - y_pred, bins=30)
+plt.xlabel("Error")
+plt.ylabel("Frecuencia")
+plt.title("Histograma de Errores")
+plt.show()  
+```
+# grafico de headmap
+```{python}
+import seaborn as sns
+
+plt.figure(figsize=(10, 6))
+sns.heatmap(data.corr(), annot=True, fmt=".2f", cmap="coolwarm")
+plt.title("Mapa de Calor de Correlaciones")
+plt.show()  
+```
