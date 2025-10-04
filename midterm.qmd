@@ -2,6 +2,9 @@
 ## Author: Diego Altamirano P.
 ## Date: 2025-10-04
 
+### Registro de las Estaciones Metereológicas Instituto de Investigación Geológico y Energético IIGE
+El data set contiene datos de las estaciones meteorológicas del Instituto de Investigación Geológico y Energético (IIGE) de Ecuador. El conjunto de datos incluye diversas variables climáticas y meteorológicas registradas en diferentes estaciones a lo largo del tiempo. Estas variables pueden incluir temperatura, humedad, precipitación, velocidad del viento, entre otras.
+
 # 1 Modelo de Regresión lineal  con Scikit-Learn
 # importar librerías
 ```{python}
@@ -19,9 +22,9 @@ import pandas as pd
 data = pd.read_csv("iige005_san-gabriel.csv", encoding="latin1")
 data.head()
 ```
-# explorar dataset
+# obtener información general del DataFrame
 ```{python}
-print(data.info())
+print(data.info()) 
 ```
 
 ```{python}
