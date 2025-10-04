@@ -22,26 +22,26 @@ import pandas as pd
 data = pd.read_csv("iige005_san-gabriel.csv", encoding="latin1")
 data.head()
 ```
-# obtener información general del DataFrame
+### obtener información general del DataFrame
 ```{python}
 print(data.info()) 
 ```
-
+### Describir el dataset
 ```{python}
 print(data.describe())
 ```
-
+### Para el estudio requerimos que las características sean numéricas realizamos una transformación.
 ```{python}
 cols_to_numeric = data.columns[3:]
 data[cols_to_numeric] = data[cols_to_numeric].apply(pd.to_numeric, errors='coerce')
 ```
-
+### Comprabos la transformación 
 ```{python}
 print(data.info())
 ```
-
+### descartamos las columnas que no aportan en el análisis 
 ```{python}
-data = data.iloc[:, 3:]
+data = data.iloc[:, 3:] #    
 ```
 
 ```{python}
@@ -74,13 +74,13 @@ pipeline.fit(X_train, y_train)
 ```
 # 5. Make predictions
 ```{python}
-y_pred = pipeline.predict(X_test)   
+y_pred_regresion = pipeline.predict(X_test)   
 ```
 
 # 6. Evaluate model
 ```{python}
-mse = mean_squared_error(y_test, y_pred)
-r2 = r2_score(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred_regresion)
+r2 = r2_score(y_test, y_pred_regresion)
 mse, r2
 print(f"MSE: {mse}")
 print(f"R²: {r2}")
@@ -89,7 +89,7 @@ print(f"R²: {r2}")
 ```{python}
 import matplotlib.pyplot as plt
 
-plt.scatter(y_test, y_pred)
+plt.scatter(y_test, y_pred_regresion)
 plt.xlabel("Actual")
 plt.ylabel("Predicted")
 plt.title("Actual vs Predicted")
@@ -98,7 +98,7 @@ plt.show()
 
 # grafica de histogramas
 ```{python}
-plt.hist(y_test - y_pred, bins=30)
+plt.hist(y_test - y_pred_regresion, bins=30)
 plt.xlabel("Error")
 plt.ylabel("Frecuencia")
 plt.title("Histograma de Errores")
@@ -112,4 +112,104 @@ plt.figure(figsize=(10, 6))
 sns.heatmap(data.corr(), annot=True, fmt=".2f", cmap="coolwarm")
 plt.title("Mapa de Calor de Correlaciones")
 plt.show()  
+```
+
+# Parte 2 Clasificación Logística
+
+```{python}
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc
+import matplotlib.pyplot as plt
+import seaborn as sns
+```
+
+```{python}
+# Cargar el dataset
+data = pd.read_csv("arcotel.csv")
+```
+
+
+```{python}
+# 1. Creación de la Variable Objetivo Binaria (Y)
+# Clase 1 si LTE > (UMTS + HSPA+), Clase 0 en caso contrario
+data['Total_3G'] = data['umts'] + data['hspa+']
+data['Dominio_4G'] = (data['lte'] > data['Total_3G']).astype(int)
+
+# 2. Definición de Variables (X y Y)
+features = ['cdma', 'gsma', 'umts', 'hspa+', 'nombre']
+target = 'Dominio_4G'
+
+X = data[features]
+y = data[target]
+
+# 3. Separación de conjuntos de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+
+# 4. Definición de preprocesamiento para variables numéricas y categóricas
+numerical_features = ['cdma', 'gsma', 'umts', 'hspa+']
+categorical_features = ['nombre']
+
+# Pipeline de preprocesamiento: Escalado (StandardScaler) para numéricas y One-Hot Encoding para categóricas
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', StandardScaler(), numerical_features),
+        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)
+    ],
+    remainder='passthrough'
+)
+
+# 5. Creación y entrenamiento del Pipeline (Preprocesamiento + Modelo)
+model_pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression(solver='liblinear', random_state=42, class_weight='balanced')) # Usamos class_weight='balanced' para mitigar el desbalance entre 3G y 4G.
+])
+
+model_pipeline.fit(X_train, y_train)
+
+# Predicciones
+y_pred = model_pipeline.predict(X_test)
+y_proba = model_pipeline.predict_proba(X_test)[:, 1]
+```
+
+
+```{python}
+# Cálculo de Métricas
+accuracy = accuracy_score(y_test, y_pred)
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+f1 = f1_score(y_test, y_pred)
+cm = confusion_matrix(y_test, y_pred)
+
+print(f"Accuracy: {accuracy:.4f}")
+print(f"Precision: {precision:.4f}")
+print(f"Recall: {recall:.4f}")
+print(f"F1 Score: {f1:.4f}")
+
+# Visualización de la Matriz de Confusión
+plt.figure(figsize=(6, 5))
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,
+            xticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'],
+            yticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'])
+plt.xlabel('Predicción')
+plt.ylabel('Valor Real')
+plt.title('Matriz de Confusión (Regresión Logística)')
+plt.show()
+
+# Visualización de la Curva ROC
+fpr, tpr, thresholds = roc_curve(y_test, y_proba)
+roc_auc = auc(fpr, tpr)
+
+plt.figure(figsize=(6, 5))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Curva ROC (área = {roc_auc:.4f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlabel('Tasa de Falsos Positivos (FPR)')
+plt.ylabel('Tasa de Verdaderos Positivos (TPR)')
+plt.title('Curva Característica Operativa del Receptor (ROC)')
+plt.legend(loc="lower right")
+plt.show()
 ```
