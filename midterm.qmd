@@ -144,6 +144,10 @@ data_clasi = pd.read_csv("arcotel.csv")
 # explacion data info
 print(data_clasi.info())
 ```
+
+```{python}
+print(data_clasi.describe())
+```
 ### Definición del Problema de Clasificación Binaria
 El objetivo es predecir si un mes dado (registrado por un operador) está dominado por la tecnología de Cuarta Generación (4G).
 
