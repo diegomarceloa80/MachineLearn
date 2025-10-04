@@ -3967,7 +3967,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <ul class="collapse">
   <li><a href="#líneas-activas-por-tecnología" id="toc-líneas-activas-por-tecnología" class="nav-link" data-scroll-target="#líneas-activas-por-tecnología">Líneas activas por tecnología</a>
   <ul class="collapse">
-  <li><a href="#el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-258-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" id="toc-el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-258-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" class="nav-link" data-scroll-target="#el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-258-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021">El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 258 registros (un registro por operador y por mes entre 2009 y 2021)</a></li>
+  <li><a href="#el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" id="toc-el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" class="nav-link" data-scroll-target="#el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021">El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)</a></li>
   <li><a href="#definición-del-problema-de-clasificación-binaria" id="toc-definición-del-problema-de-clasificación-binaria" class="nav-link" data-scroll-target="#definición-del-problema-de-clasificación-binaria">Definición del Problema de Clasificación Binaria</a></li>
   </ul></li>
   </ul></li>
@@ -4011,7 +4011,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </section>
 <section id="importar-librerías" class="level1">
 <h1>importar librerías</h1>
-<div id="bb720115" class="cell" data-execution_count="1">
+<div id="ee7a8fdb" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
@@ -4027,17 +4027,17 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </section>
 <section id="cargar-dataset-csv" class="level1">
 <h1>2. cargar dataset csv</h1>
-<div id="48991290" class="cell" data-execution_count="2">
+<div id="9f61b378" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&quot;iige005_san-gabriel.csv&quot;</span>, encoding<span class="op">=</span><span class="st">&quot;latin1&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_11632\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_23260\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
   data = pd.read_csv(&quot;iige005_san-gabriel.csv&quot;, encoding=&quot;latin1&quot;)</code></pre>
 </div>
-<div class="cell-output cell-output-display" data-execution_count="26">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -4179,7 +4179,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </div>
 <section id="obtener-información-general-del-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="obtener-información-general-del-dataframe">obtener información general del DataFrame</h3>
-<div id="d526812f" class="cell" data-execution_count="3">
+<div id="cb636aa9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4216,7 +4216,7 @@ None</code></pre>
 </section>
 <section id="describir-el-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="describir-el-dataset">Describir el dataset</h3>
-<div id="18d8094e" class="cell" data-execution_count="4">
+<div id="425a8a06" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4236,7 +4236,7 @@ max    198273.000000        2.0</code></pre>
 </section>
 <section id="para-el-estudio-requerimos-que-las-características-sean-numéricas-realizamos-una-transformación." class="level3">
 <h3 class="anchored" data-anchor-id="para-el-estudio-requerimos-que-las-características-sean-numéricas-realizamos-una-transformación.">Para el estudio requerimos que las características sean numéricas realizamos una transformación.</h3>
-<div id="feb4392a" class="cell" data-execution_count="5">
+<div id="b85ec333" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cols_to_numeric <span class="op">=</span> data.columns[<span class="dv">3</span>:]</span>
@@ -4246,7 +4246,7 @@ max    198273.000000        2.0</code></pre>
 </section>
 <section id="comprabos-la-transformación" class="level3">
 <h3 class="anchored" data-anchor-id="comprabos-la-transformación">Comprabos la transformación</h3>
-<div id="1528c7a7" class="cell" data-execution_count="6">
+<div id="468e3452" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4283,13 +4283,13 @@ None</code></pre>
 </section>
 <section id="descartamos-las-columnas-que-no-aportan-en-el-análisis" class="level3">
 <h3 class="anchored" data-anchor-id="descartamos-las-columnas-que-no-aportan-en-el-análisis">descartamos las columnas que no aportan en el análisis</h3>
-<div id="1d1ddec2" class="cell" data-execution_count="7">
+<div id="a814418a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.iloc[:, <span class="dv">3</span>:] <span class="co">#    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="7a4e3e11" class="cell" data-execution_count="8">
+<div id="f97d18f9" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">&quot;WD(most)&quot;</span>, <span class="st">&quot;Max_time&quot;</span>], errors<span class="op">=</span><span class="st">&quot;ignore&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4299,7 +4299,7 @@ None</code></pre>
 </section>
 <section id="eliminar-filas-con-valores-nulos" class="level1">
 <h1>eliminar filas con valores nulos</h1>
-<div id="d80c5324" class="cell" data-execution_count="9">
+<div id="253ff545" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4308,7 +4308,7 @@ None</code></pre>
 </section>
 <section id="split-dataset" class="level1">
 <h1>3. Split dataset</h1>
-<div id="a71a6848" class="cell" data-execution_count="10">
+<div id="23bc985f" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">&quot;Rainfall&quot;</span>])  <span class="co"># Variables predictoras</span></span>
@@ -4316,14 +4316,14 @@ None</code></pre>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>X_train.shape, X_test.shape, y_train.shape, y_test.shape</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="34">
+<div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>((151243, 12), (37811, 12), (151243,), (37811,))</code></pre>
 </div>
 </div>
 </section>
 <section id="pipeline-regression-lineal" class="level1">
 <h1>pipeline regression lineal</h1>
-<div id="97fa39f3" class="cell" data-execution_count="11">
+<div id="53ea0abf" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline([</span>
@@ -4335,13 +4335,13 @@ None</code></pre>
 </section>
 <section id="train-model" class="level1">
 <h1>4. Train model</h1>
-<div id="fc42506b" class="cell" data-execution_count="12">
+<div id="6c86b34d" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(X_train, y_train)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
-<div class="cell-output cell-output-display" data-execution_count="36">
-<style>#sk-container-id-2 {
+<div class="cell-output cell-output-display" data-execution_count="12">
+<style>#sk-container-id-1 {
 
 --sklearn-color-text: #000;
 --sklearn-color-text-muted: #666;
@@ -4369,13 +4369,13 @@ None</code></pre>
 --sklearn-color-icon: #878787;
 }
 }
-#sk-container-id-2 {
+#sk-container-id-1 {
 color: var(--sklearn-color-text);
 }
-#sk-container-id-2 pre {
+#sk-container-id-1 pre {
 padding: 0;
 }
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-1 input.sk-hidden--visually {
 border: 0;
 clip: rect(1px 1px 1px 1px);
 clip: rect(1px, 1px, 1px, 1px);
@@ -4386,19 +4386,19 @@ padding: 0;
 position: absolute;
 width: 1px;
 }
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-1 div.sk-dashed-wrapped {
 border: 1px dashed var(--sklearn-color-line);
 margin: 0 0.4em 0.5em 0.4em;
 box-sizing: border-box;
 padding-bottom: 0.4em;
 background-color: var(--sklearn-color-background);
 }
-#sk-container-id-2 div.sk-container {
+#sk-container-id-1 div.sk-container {
 
 display: inline-block !important;
 position: relative;
 }
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-1 div.sk-text-repr-fallback {
 display: none;
 }
 div.sk-parallel-item,
@@ -4411,36 +4411,36 @@ background-repeat: no-repeat;
 background-position: center center;
 }
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-1 div.sk-parallel-item::after {
 content: "";
 width: 100%;
 border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
 flex-grow: 1;
 }
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-1 div.sk-parallel {
 display: flex;
 align-items: stretch;
 justify-content: center;
 background-color: var(--sklearn-color-background);
 position: relative;
 }
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-1 div.sk-parallel-item {
 display: flex;
 flex-direction: column;
 }
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-1 div.sk-parallel-item:first-child::after {
 align-self: flex-end;
 width: 50%;
 }
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-1 div.sk-parallel-item:last-child::after {
 align-self: flex-start;
 width: 50%;
 }
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-1 div.sk-parallel-item:only-child::after {
 width: 0;
 }
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-1 div.sk-serial {
 display: flex;
 flex-direction: column;
 align-items: center;
@@ -4450,12 +4450,12 @@ padding-left: 1em;
 }
 
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-1 div.sk-toggleable {
 
 background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-1 label.sk-toggleable__label {
 cursor: pointer;
 display: flex;
 width: 100%;
@@ -4467,97 +4467,97 @@ align-items: start;
 justify-content: space-between;
 gap: 0.5em;
 }
-#sk-container-id-2 label.sk-toggleable__label .caption {
+#sk-container-id-1 label.sk-toggleable__label .caption {
 font-size: 0.6rem;
 font-weight: lighter;
 color: var(--sklearn-color-text-muted);
 }
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:before {
 
 content: "▸";
 float: left;
 margin-right: 0.25em;
 color: var(--sklearn-color-icon);
 }
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {
 color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 div.sk-toggleable__content {
+#sk-container-id-1 div.sk-toggleable__content {
 display: none;
 text-align: left;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-1 div.sk-toggleable__content.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-1 div.sk-toggleable__content pre {
 margin: 0.2em;
 border-radius: 0.25em;
 color: var(--sklearn-color-text);
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-1 div.sk-toggleable__content.fitted pre {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {
 
 display: block;
 width: 100%;
 overflow: visible;
 }
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
 content: "▾";
 }
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
 
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-1 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-1 div.sk-label label.sk-toggleable__label,
+#sk-container-id-1 div.sk-label label {
 
 color: var(--sklearn-color-text-on-default-background);
 }
 
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-1 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
 color: var(--sklearn-color-text);
 background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-1 div.sk-label label {
 font-family: monospace;
 font-weight: bold;
 display: inline-block;
 line-height: 1.2em;
 }
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-1 div.sk-label-container {
 text-align: center;
 }
 
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-1 div.sk-estimator {
 font-family: monospace;
 border: 1px dotted var(--sklearn-color-border-box);
 border-radius: 0.25em;
@@ -4566,16 +4566,16 @@ margin-bottom: 0.5em;
 
 background-color: var(--sklearn-color-unfitted-level-0);
 }
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-1 div.sk-estimator.fitted {
 
 background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-1 div.sk-estimator:hover {
 
 background-color: var(--sklearn-color-unfitted-level-2);
 }
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-1 div.sk-estimator.fitted:hover {
 
 background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -4653,7 +4653,7 @@ display: block;
 }
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-1 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -4668,21 +4668,21 @@ display: block;
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-1 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-1 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-1 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
@@ -4750,7 +4750,7 @@ display: block;
     height: 14px;
     cursor: pointer;
 }
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()), (&#39;lin_reg&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
+</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[(&#39;scaler&#39;, StandardScaler()), (&#39;lin_reg&#39;, LinearRegression())])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>Pipeline</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.pipeline.Pipeline.html">?<span>Documentation for Pipeline</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted" data-param-prefix>
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -4782,7 +4782,7 @@ display: block;
 
             </details>
         </div>
-    </div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="scaler__">
+    </div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>StandardScaler</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.preprocessing.StandardScaler.html">?<span>Documentation for StandardScaler</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="scaler__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -4809,7 +4809,7 @@ display: block;
 
             </details>
         </div>
-    </div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="lin_reg__">
+    </div></div></div><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>LinearRegression</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.7/modules/generated/sklearn.linear_model.LinearRegression.html">?<span>Documentation for LinearRegression</span></a></div></label><div class="sk-toggleable__content fitted" data-param-prefix="lin_reg__">
         <div class="estimator-table">
             <details>
                 <summary>Parameters</summary>
@@ -4894,7 +4894,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="make-predictions" class="level1">
 <h1>5. Make predictions</h1>
-<div id="127a2088" class="cell" data-execution_count="13">
+<div id="988f6882" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_pred_regresion <span class="op">=</span> pipeline.predict(X_test)   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4903,7 +4903,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="evaluate-model" class="level1">
 <h1>6. Evaluate model</h1>
-<div id="421632c3" class="cell" data-execution_count="14">
+<div id="2ada5999" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred_regresion)</span>
@@ -4920,7 +4920,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="visualize-results" class="level1">
 <h1>7. Visualize results</h1>
-<div id="2b00332d" class="cell" data-execution_count="15">
+<div id="8d20347d" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -4942,7 +4942,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafica-de-histogramas" class="level1">
 <h1>grafica de histogramas</h1>
-<div id="f369d02e" class="cell" data-execution_count="16">
+<div id="956bb6e5" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test <span class="op">-</span> y_pred_regresion, bins<span class="op">=</span><span class="dv">30</span>)</span>
@@ -4962,7 +4962,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafico-de-headmap" class="level1">
 <h1>grafico de headmap</h1>
-<div id="ec53293e" class="cell" data-execution_count="17">
+<div id="07d6c81a" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -4987,9 +4987,9 @@ R²: 0.0008894319825145658</code></pre>
 <h2 class="anchored" data-anchor-id="líneas-activas-por-tecnología">Líneas activas por tecnología</h2>
 <p>Agencia de Regulación y Control de las Telecomunicaciones ARCOTEL</p>
 <p>Contiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.</p>
-<section id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-258-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" class="level3">
-<h3 class="anchored" data-anchor-id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-258-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021">El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 258 registros (un registro por operador y por mes entre 2009 y 2021)</h3>
-<div id="bc074ab2" class="cell" data-execution_count="18">
+<section id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" class="level3">
+<h3 class="anchored" data-anchor-id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021">El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)</h3>
+<div id="a02197e1" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -5003,14 +5003,14 @@ R²: 0.0008894319825145658</code></pre>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="ab51d287" class="cell" data-execution_count="19">
+<div id="eee69025" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el dataset</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>data_clasi <span class="op">=</span> pd.read_csv(<span class="st">&quot;arcotel.csv&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="67c4b1b9" class="cell" data-execution_count="20">
+<div id="13fe45e9" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explacion data info</span></span>
@@ -5034,7 +5034,7 @@ memory usage: 25.2+ KB
 None</code></pre>
 </div>
 </div>
-<div id="c76297f4" class="cell" data-execution_count="21">
+<div id="4757a2ec" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_clasi.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -5060,7 +5060,7 @@ max    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06</co
 <p>Clase 0 (Negativo): LTE es igual o menor a la suma de líneas 3G o si el dominio es de tecnologías más antiguas (GSMA).</p>
 <p>Variables Predictoras (X): Las líneas activas en tecnologías más antiguas y el operador.</p>
 <p>cdma (Legado), gsma (2G), umts (3G), hspa+ (3G/3.5G), y nombre (Operador).</p>
-<div id="062c6e3d" class="cell" data-execution_count="22">
+<div id="153f6428" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Creación de la Variable Objetivo Binaria (Y)</span></span>
@@ -5104,7 +5104,7 @@ max    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06</co
 <span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> model_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="76347356" class="cell" data-execution_count="23">
+<div id="92b46e41" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de Métricas</span></span>
@@ -5128,8 +5128,8 @@ F1 Score: 0.8974</code></pre>
 </div>
 <section id="métricas-de-evaluación-del-modelo" class="level4">
 <h4 class="anchored" data-anchor-id="métricas-de-evaluación-del-modelo">Métricas de Evaluación del Modelo</h4>
-<p>Métrica Valor Interpretación Accuracy (Exactitud) 0.8205 El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos). Precision (Precisión) 0.7727 Cuando el modelo predijo “Dominio 4G”, acertó el 77.27% de las veces. Recall (Sensibilidad) 0.8500 El modelo identificó correctamente el 85.00% de todos los meses donde realmente hubo Dominio 4G. F1 Score 0.8095 Media armónica entre Precisión y Recall (buen equilibrio de la clasificación). Área bajo la Curva ROC (AUC) 0.8653 El modelo tiene una buena capacidad para distinguir entre las dos clases.</p>
-<div id="be096dd5" class="cell" data-execution_count="24">
+<p>Métrica Valor Interpretación Accuracy (Exactitud) 0.9420 El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos). Precision (Precisión) 0.8140 Cuando el modelo predijo “Dominio 4G”. Recall (Sensibilidad) 1.00 El modelo identificó correctamente todos los meses donde realmente hubo Dominio 4G. F1 Score 0.8974 Media armónica entre Precisión y Recall (buen equilibrio de la clasificación). Área bajo la Curva ROC (AUC) 0.9978 El modelo tiene una buena capacidad para distinguir entre las dos clases.</p>
+<div id="f38ac851" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de la Matriz de Confusión</span></span>
@@ -5153,11 +5153,11 @@ F1 Score: 0.8974</code></pre>
 </section>
 <section id="matriz-de-confusión" class="level4">
 <h4 class="anchored" data-anchor-id="matriz-de-confusión">Matriz de Confusión</h4>
-<p>Verdaderos Positivos (TP): 17 (Meses donde se predijo Dominio 4G y fue correcto).</p>
-<p>Verdaderos Negativos (TN): 47 (Meses donde se predijo No Dominio 4G y fue correcto).</p>
-<p>Falsos Positivos (FP): 5 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).</p>
-<p>Falsos Negativos (FN): 3 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).</p>
-<div id="eaaff8df" class="cell" data-execution_count="25">
+<p>Verdaderos Positivos (TP): 95 (Meses donde se predijo Dominio 4G y fue correcto).</p>
+<p>Verdaderos Negativos (TN): 35 (Meses donde se predijo No Dominio 4G y fue correcto).</p>
+<p>Falsos Positivos (FP): 0 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).</p>
+<p>Falsos Negativos (FN): 8 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).</p>
+<div id="ee145301" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de la Curva ROC</span></span>
@@ -5184,7 +5184,7 @@ F1 Score: 0.8974</code></pre>
 </section>
 <section id="curva-roc" class="level4">
 <h4 class="anchored" data-anchor-id="curva-roc">Curva ROC</h4>
-<p>El valor de AUC=0.8653 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.</p>
+<p>El valor de AUC=0.9978 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.</p>
 
 
 </section>

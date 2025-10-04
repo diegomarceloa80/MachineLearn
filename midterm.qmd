@@ -121,7 +121,7 @@ Agencia de Regulación y Control de las Telecomunicaciones ARCOTEL
 
 Contiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.
 
-### El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 258 registros (un registro por operador y por mes entre 2009 y 2021)
+### El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)
 
 ```{python}
 import pandas as pd
@@ -219,11 +219,11 @@ print(f"F1 Score: {f1:.4f}")
 
 #### Métricas de Evaluación del Modelo
 Métrica	Valor	Interpretación
-Accuracy (Exactitud)	0.8205	El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos).
-Precision (Precisión)	0.7727	Cuando el modelo predijo "Dominio 4G", acertó el 77.27% de las veces.
-Recall (Sensibilidad)	0.8500	El modelo identificó correctamente el 85.00% de todos los meses donde realmente hubo Dominio 4G.
-F1 Score	0.8095	Media armónica entre Precisión y Recall (buen equilibrio de la clasificación).
-Área bajo la Curva ROC (AUC)	0.8653	El modelo tiene una buena capacidad para distinguir entre las dos clases.
+Accuracy (Exactitud)	0.9420	El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos).
+Precision (Precisión)	0.8140	Cuando el modelo predijo "Dominio 4G".
+Recall (Sensibilidad)	1.00	El modelo identificó correctamente todos los meses donde realmente hubo Dominio 4G.
+F1 Score	0.8974	Media armónica entre Precisión y Recall (buen equilibrio de la clasificación).
+Área bajo la Curva ROC (AUC)	0.9978	El modelo tiene una buena capacidad para distinguir entre las dos clases.
 
 ```{python}
 # Visualización de la Matriz de Confusión
@@ -237,13 +237,13 @@ plt.title('Matriz de Confusión (Regresión Logística)')
 plt.show()
 ```
 #### Matriz de Confusión
-Verdaderos Positivos (TP): 17 (Meses donde se predijo Dominio 4G y fue correcto).
+Verdaderos Positivos (TP): 95 (Meses donde se predijo Dominio 4G y fue correcto).
 
-Verdaderos Negativos (TN): 47 (Meses donde se predijo No Dominio 4G y fue correcto).
+Verdaderos Negativos (TN): 35 (Meses donde se predijo No Dominio 4G y fue correcto).
 
-Falsos Positivos (FP): 5 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).
+Falsos Positivos (FP): 0 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).
 
-Falsos Negativos (FN): 3 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).
+Falsos Negativos (FN): 8 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).
 
 ```{python}
 # Visualización de la Curva ROC
@@ -260,4 +260,4 @@ plt.legend(loc="lower right")
 plt.show()
 ```
 #### Curva ROC
-El valor de AUC=0.8653 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.
+El valor de AUC=0.9978 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.
