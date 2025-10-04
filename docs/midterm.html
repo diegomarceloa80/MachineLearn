@@ -3940,11 +3940,14 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
    
   <ul>
   <li><a href="#author-diego-altamirano-p." id="toc-author-diego-altamirano-p." class="nav-link active" data-scroll-target="#author-diego-altamirano-p.">Author: Diego Altamirano P.</a></li>
-  <li><a href="#date-2025-10-04" id="toc-date-2025-10-04" class="nav-link" data-scroll-target="#date-2025-10-04">Date: 2025-10-04</a></li>
+  <li><a href="#date-2025-10-04" id="toc-date-2025-10-04" class="nav-link" data-scroll-target="#date-2025-10-04">Date: 2025-10-04</a>
+  <ul class="collapse">
+  <li><a href="#registro-de-las-estaciones-metereológicas-instituto-de-investigación-geológico-y-energético-iige" id="toc-registro-de-las-estaciones-metereológicas-instituto-de-investigación-geológico-y-energético-iige" class="nav-link" data-scroll-target="#registro-de-las-estaciones-metereológicas-instituto-de-investigación-geológico-y-energético-iige">Registro de las Estaciones Metereológicas Instituto de Investigación Geológico y Energético IIGE</a></li>
+  </ul></li>
   <li><a href="#modelo-de-regresión-lineal-con-scikit-learn" id="toc-modelo-de-regresión-lineal-con-scikit-learn" class="nav-link" data-scroll-target="#modelo-de-regresión-lineal-con-scikit-learn">1 Modelo de Regresión lineal con Scikit-Learn</a></li>
   <li><a href="#importar-librerías" id="toc-importar-librerías" class="nav-link" data-scroll-target="#importar-librerías">importar librerías</a></li>
   <li><a href="#cargar-dataset-csv" id="toc-cargar-dataset-csv" class="nav-link" data-scroll-target="#cargar-dataset-csv">2. cargar dataset csv</a></li>
-  <li><a href="#explorar-dataset" id="toc-explorar-dataset" class="nav-link" data-scroll-target="#explorar-dataset">explorar dataset</a></li>
+  <li><a href="#obtener-información-general-del-dataframe" id="toc-obtener-información-general-del-dataframe" class="nav-link" data-scroll-target="#obtener-información-general-del-dataframe">obtener información general del DataFrame</a></li>
   <li><a href="#eliminar-filas-con-valores-nulos" id="toc-eliminar-filas-con-valores-nulos" class="nav-link" data-scroll-target="#eliminar-filas-con-valores-nulos">eliminar filas con valores nulos</a></li>
   <li><a href="#split-dataset" id="toc-split-dataset" class="nav-link" data-scroll-target="#split-dataset">3. Split dataset</a></li>
   <li><a href="#pipeline-regression-lineal" id="toc-pipeline-regression-lineal" class="nav-link" data-scroll-target="#pipeline-regression-lineal">pipeline regression lineal</a></li>
@@ -3984,13 +3987,17 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </section>
 <section id="date-2025-10-04" class="level2">
 <h2 class="anchored" data-anchor-id="date-2025-10-04">Date: 2025-10-04</h2>
+<section id="registro-de-las-estaciones-metereológicas-instituto-de-investigación-geológico-y-energético-iige" class="level3">
+<h3 class="anchored" data-anchor-id="registro-de-las-estaciones-metereológicas-instituto-de-investigación-geológico-y-energético-iige">Registro de las Estaciones Metereológicas Instituto de Investigación Geológico y Energético IIGE</h3>
+<p>El data set contiene datos de las estaciones meteorológicas del Instituto de Investigación Geológico y Energético (IIGE) de Ecuador. El conjunto de datos incluye diversas variables climáticas y meteorológicas registradas en diferentes estaciones a lo largo del tiempo. Estas variables pueden incluir temperatura, humedad, precipitación, velocidad del viento, entre otras.</p>
+</section>
 </section>
 <section id="modelo-de-regresión-lineal-con-scikit-learn" class="level1">
 <h1>1 Modelo de Regresión lineal con Scikit-Learn</h1>
 </section>
 <section id="importar-librerías" class="level1">
 <h1>importar librerías</h1>
-<div id="d2a83450" class="cell" data-execution_count="1">
+<div id="1c02c1b5" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
@@ -4006,14 +4013,14 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </section>
 <section id="cargar-dataset-csv" class="level1">
 <h1>2. cargar dataset csv</h1>
-<div id="99a50633" class="cell" data-execution_count="2">
+<div id="a2438156" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">&quot;iige005_san-gabriel.csv&quot;</span>, encoding<span class="op">=</span><span class="st">&quot;latin1&quot;</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_20112\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_17468\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
   data = pd.read_csv(&quot;iige005_san-gabriel.csv&quot;, encoding=&quot;latin1&quot;)</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -4157,12 +4164,12 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 </div>
 </div>
 </section>
-<section id="explorar-dataset" class="level1">
-<h1>explorar dataset</h1>
-<div id="b49cff90" class="cell" data-execution_count="3">
+<section id="obtener-información-general-del-dataframe" class="level1">
+<h1>obtener información general del DataFrame</h1>
+<div id="c1766ca9" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
@@ -4193,7 +4200,7 @@ memory usage: 26.0+ MB
 None</code></pre>
 </div>
 </div>
-<div id="15a63d4e" class="cell" data-execution_count="4">
+<div id="e91ab845" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4210,14 +4217,14 @@ min         6.000000        2.0
 max    198273.000000        2.0</code></pre>
 </div>
 </div>
-<div id="06990fca" class="cell" data-execution_count="5">
+<div id="e7baf37f" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cols_to_numeric <span class="op">=</span> data.columns[<span class="dv">3</span>:]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data[cols_to_numeric] <span class="op">=</span> data[cols_to_numeric].<span class="bu">apply</span>(pd.to_numeric, errors<span class="op">=</span><span class="st">&#39;coerce&#39;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="50f906fc" class="cell" data-execution_count="6">
+<div id="03ee526a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4251,13 +4258,13 @@ memory usage: 26.0+ MB
 None</code></pre>
 </div>
 </div>
-<div id="d119e272" class="cell" data-execution_count="7">
+<div id="755f9076" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.iloc[:, <span class="dv">3</span>:]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="435ac882" class="cell" data-execution_count="8">
+<div id="f25c5699" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">&quot;WD(most)&quot;</span>, <span class="st">&quot;Max_time&quot;</span>], errors<span class="op">=</span><span class="st">&quot;ignore&quot;</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4266,7 +4273,7 @@ None</code></pre>
 </section>
 <section id="eliminar-filas-con-valores-nulos" class="level1">
 <h1>eliminar filas con valores nulos</h1>
-<div id="f92b40d1" class="cell" data-execution_count="9">
+<div id="b8083a0d" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4275,7 +4282,7 @@ None</code></pre>
 </section>
 <section id="split-dataset" class="level1">
 <h1>3. Split dataset</h1>
-<div id="ce4b6e65" class="cell" data-execution_count="10">
+<div id="31358736" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">&quot;Rainfall&quot;</span>])  <span class="co"># Variables predictoras</span></span>
@@ -4290,7 +4297,7 @@ None</code></pre>
 </section>
 <section id="pipeline-regression-lineal" class="level1">
 <h1>pipeline regression lineal</h1>
-<div id="3f6a9e1e" class="cell" data-execution_count="11">
+<div id="44904e72" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline([</span>
@@ -4302,7 +4309,7 @@ None</code></pre>
 </section>
 <section id="train-model" class="level1">
 <h1>4. Train model</h1>
-<div id="557cb676" class="cell" data-execution_count="12">
+<div id="ccd2c81c" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(X_train, y_train)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4861,7 +4868,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="make-predictions" class="level1">
 <h1>5. Make predictions</h1>
-<div id="4a642788" class="cell" data-execution_count="13">
+<div id="07134ab8" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipeline.predict(X_test)   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -4870,7 +4877,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="evaluate-model" class="level1">
 <h1>6. Evaluate model</h1>
-<div id="84cf52df" class="cell" data-execution_count="14">
+<div id="c772d20e" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred)</span>
@@ -4887,7 +4894,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="visualize-results" class="level1">
 <h1>7. Visualize results</h1>
-<div id="c9730656" class="cell" data-execution_count="15">
+<div id="a0260b0c" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -4909,7 +4916,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafica-de-histogramas" class="level1">
 <h1>grafica de histogramas</h1>
-<div id="b5c60ce0" class="cell" data-execution_count="16">
+<div id="7a8aed6a" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test <span class="op">-</span> y_pred, bins<span class="op">=</span><span class="dv">30</span>)</span>
@@ -4929,7 +4936,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafico-de-headmap" class="level1">
 <h1>grafico de headmap</h1>
-<div id="0e0d91cc" class="cell" data-execution_count="17">
+<div id="f28e3a60" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
