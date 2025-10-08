@@ -1,0 +1,29 @@
+---
+title: "ML Text"
+code-fold: false
+---
+# Cargar librerias 
+```{python}
+import pandas as pd
+import requests
+ 
+# Natural Language Toolkit
+import nltk
+# downloading some additional packages and corpora
+nltk.download('punkt_tab') # necessary for tokenization
+nltk.download('wordnet') # necessary for lemmatization
+nltk.download('stopwords') # necessary for removal of stop words
+nltk.download('averaged_perceptron_tagger_eng') # necessary for POS tagging
+nltk.download('maxent_ne_chunker' ) # necessary for entity extraction
+nltk.download('omw-1.4') # necessary for lemmatization
+nltk.download('words')
+```
+
+# cargar Data
+
+```{python}
+url="https://raw.githubusercontent.com/erickedu85/dataset/master/story.txt"
+r = requests.get(url)
+r.encoding = 'utf-8'
+
+```

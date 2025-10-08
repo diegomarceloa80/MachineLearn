@@ -215,5 +215,12 @@
     "title": "Categorical Encoding",
     "section": "Aplicar el preprocesor",
     "text": "Aplicar el preprocesor\n\nfeatures_transformed = preprocessor.fit_transform(df)\nfeatures_transformed\n\narray([[ 0.        ,  1.        ,  0.        ,  1.        , -1.30910667],\n       [ 0.        ,  0.        ,  1.        ,  0.        ,  0.19121783],\n       [ 1.        ,  0.        ,  0.        ,  2.        ,  1.11788884]])"
+  },
+  {
+    "objectID": "ml_text.html",
+    "href": "ml_text.html",
+    "title": "ML Text",
+    "section": "",
+    "text": "Cargar librerias\n\nimport pandas as pd\nimport requests\n \n# Natural Language Toolkit\nimport nltk\n# downloading some additional packages and corpora\nnltk.download('punkt_tab') # necessary for tokenization\nnltk.download('wordnet') # necessary for lemmatization\nnltk.download('stopwords') # necessary for removal of stop words\nnltk.download('averaged_perceptron_tagger_eng') # necessary for POS tagging\nnltk.download('maxent_ne_chunker' ) # necessary for entity extraction\nnltk.download('omw-1.4') # necessary for lemmatization\nnltk.download('words')\n\n[nltk_data] Downloading package punkt_tab to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package punkt_tab is already up-to-date!\n[nltk_data] Downloading package wordnet to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package wordnet is already up-to-date!\n[nltk_data] Downloading package stopwords to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package stopwords is already up-to-date!\n[nltk_data] Downloading package averaged_perceptron_tagger_eng to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package averaged_perceptron_tagger_eng is already up-to-\n[nltk_data]       date!\n[nltk_data] Downloading package maxent_ne_chunker to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package maxent_ne_chunker is already up-to-date!\n[nltk_data] Downloading package omw-1.4 to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package omw-1.4 is already up-to-date!\n[nltk_data] Downloading package words to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package words is already up-to-date!\n\n\nTrue\n\n\n\n\ncargar Data\n\nurl=\"https://raw.githubusercontent.com/erickedu85/dataset/master/story.txt\"\nr = requests.get(url)\nr.encoding = 'utf-8'"
   }
 ]

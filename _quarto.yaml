@@ -17,9 +17,11 @@ website:
       - href: midterm.qmd
         text: Midterm
       - href: categorical_encoding.qmd
-        text: categorical_encoding
+        text: Categorical Encoding
       - href: categorical_pipeline.qmd
-        text: categorical_pipeline
+        text: Categorical Pipeline
+      - href: ml_text.qmd
+        text: ML Text
 format:
   html:
     theme: cosmo
