@@ -16,6 +16,10 @@ website:
         text: Clasificación
       - href: midterm.qmd
         text: Midterm
+      - href: categorical_encoding.qmd
+        text: categorical_encoding
+      - href: categorical_pipeline.qmd
+        text: categorical_pipeline
 format:
   html:
     theme: cosmo
