@@ -26,7 +26,7 @@ url="https://raw.githubusercontent.com/erickedu85/dataset/master/story.txt"
 r = requests.get(url)
 r.encoding = 'utf-8'
 story = r.text
-story
+#story
 
 ```
 # Tokerización
