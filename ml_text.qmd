@@ -25,5 +25,58 @@ nltk.download('words')
 url="https://raw.githubusercontent.com/erickedu85/dataset/master/story.txt"
 r = requests.get(url)
 r.encoding = 'utf-8'
+story = r.text
+story
+
+```
+# Tokerización
+```{python}
+from nltk import word_tokenize, pos_tag
+
+words = word_tokenize(story)
+words[:20]
+```
+
+# Stemming and Lemmatization
+
+```{python}
+from nltk.stem import PorterStemmer as stemmer
+from nltk.stem import WordNetLemmatizer as lemmatizer
+from nltk.corpus import wordnet # for robust lemmatization
+
+palabra = "change"
+print("PALABRA", palabra)
+
+print("Stemming", stemmer().stem(palabra))
+print("lemmatization", lemmatizer().lemmatize(palabra, pos = wordnet.VERB))
+```
+# Part of speech - pos tag
+```{python}
+from nltk import pos_tag
+pos = pos_tag(words)
+pos[:20]
+```
+
+# Stop Words
+
+```{python}
+from nltk.corpus import stopwords as stop
+
+stopwords = stop.words("english")
+stopwords   
+
+```
+# Stop words in Story
+
+```{python}
+tokens = nltk.word_tokenize(story.lower())
+#tokens[:20]
+# esta limpieza depende del contexto de su problemática
+#limpieza de numeros 
+lettertokens = [word for word in tokens if word.isalpha ()]
+
+# remove stopwords
+without_stopwords = [word for word in lettertokens if word not in stopwords]
+without_stopwords [:20]
 
 ```
