@@ -4,24 +4,51 @@ project:
 
 website:
   title: "Machine Learning"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - href: eda.qmd
-        text: EDA
-      - href: laboratorio.qmd
-        text: Laboratorio
-      - href: clasificacion.qmd
-        text: Clasificación
-      - href: midterm.qmd
-        text: Midterm
-      - href: categorical_encoding.qmd
-        text: Categorical Encoding
-      - href: categorical_pipeline.qmd
-        text: Categorical Pipeline
-      - href: ml_text.qmd
-        text: ML Text
+sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: "Welcome"
+        href: index.qmd
+      - section: "Introduction to ML"
+        contents:
+          - altair.qmd
+          - eda.qmd
+      - section: "Classification"
+        href: clasificacion.qmd
+        contents:
+          - categorical_encoding.qmd
+          - categorical_pipeline.qmd
+      - section: "Natural Language Processing (NLP)"
+        contents:
+          - ml_text.qmd
+          - bagofwords.qmd
+          - tfidf.qmd
+      - section: "Laboratorios"
+        contents:
+          - laboratorio.qmd
+ # navbar:
+#  left:
+#      - href: index.qmd
+#        text: Home
+#      - href: eda.qmd
+#        text: EDA
+#      - href: laboratorio.qmd
+#        text: Laboratorio
+#      - href: clasificacion.qmd
+#        text: Clasificación
+#      - href: midterm.qmd
+#        text: Midterm
+#      - href: categorical_encoding.qmd
+#        text: Categorical Encoding
+#      - href: categorical_pipeline.qmd
+#        text: Categorical Pipeline
+#      - href: ml_text.qmd
+#        text: ML Text
+#      - href: bagofwords.qmd
+#        text: bagofwords (BoW)
+#      - href: tfidf.qmd
+#        text: tfidf (TFIDF)
 format:
   html:
     theme: cosmo
