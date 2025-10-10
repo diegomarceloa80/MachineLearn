@@ -55,5 +55,5 @@ format:
     toc: true
     code-fold: true
     fig-align: center
-    df-print: paged
-    embed-resources: true
+#    df-print: paged
+#    embed-resources: true
