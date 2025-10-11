@@ -448,5 +448,148 @@
       "Natural Language Processing (NLP)",
       "NLP Key Concepts"
     ]
+  },
+  {
+    "objectID": "text_classification.html",
+    "href": "text_classification.html",
+    "title": "Text Classification",
+    "section": "",
+    "text": "Importar librerías\n\nimport pandas as pd\nfrom sklearn.datasets import fetch_20newsgroups\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.naive_bayes import MultinomialNB\nfrom sklearn.pipeline import make_pipeline\nfrom sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay\nfrom sklearn.pipeline import Pipeline\nimport matplotlib.pyplot as plt\n# Vectores TF-IDF y Count\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.feature_extraction.text import CountVectorizer\n\nimport nltk\nfrom nltk.corpus import stopwords\nnltk.download('stopwords') # necessary for removal of stop words\nnltk.download('wordnet') # necessary for lemmatization\n\n[nltk_data] Downloading package stopwords to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package stopwords is already up-to-date!\n[nltk_data] Downloading package wordnet to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package wordnet is already up-to-date!\n\n\nTrue\n\n\n\n\nCargar dataset\n\ncategorias = ['comp.graphics', 'comp.sys.mac.hardware', 'rec.sport.baseball', 'talk.politics.misc']\nnewsgroups = fetch_20newsgroups(subset='train', categories=categorias, remove=('headers', 'footers', 'quotes'))\nprint(newsgroups.target_names)\n\n['comp.graphics', 'comp.sys.mac.hardware', 'rec.sport.baseball', 'talk.politics.misc']\n\n\n\n\nFeature y target\n\nX_text = newsgroups.data\ny = newsgroups.target   \n\n\n\ntrain-test split\n\nX_train, X_test, y_train, y_test = train_test_split(X_text, y, test_size=0.2, random_state=42, stratify=y)\n\n\n\nVectorización de texto\n\nstopwords = stopwords.words(\"english\")\n#stopwords.append('blabla')# añadir stopwords personalizadas\n#vectorizer = TfidfVectorizer()  # Cambiar a CountVectorizer() para usar conteo de palabras\nvectorizer = CountVectorizer(stop_words=stopwords)  # Cambiar a CountVectorizer() para usar conteo de palabras\n\n\n\nModelo\n\nmodel = MultinomialNB()\n\n\n\npipeline\n\npipeline = Pipeline([\n    ('vectorizer', vectorizer),  # Cambiar a CountVectorizer() para usar conteo de palabras\n    ('classifier', model)\n])   \n\n\n\nFit del modelo\n\npipeline.fit(X_train, y_train)\n\nPipeline(steps=[('vectorizer',\n                 CountVectorizer(stop_words=['a', 'about', 'above', 'after',\n                                             'again', 'against', 'ain', 'all',\n                                             'am', 'an', 'and', 'any', 'are',\n                                             'aren', \"aren't\", 'as', 'at', 'be',\n                                             'because', 'been', 'before',\n                                             'being', 'below', 'between',\n                                             'both', 'but', 'by', 'can',\n                                             'couldn', \"couldn't\", ...])),\n                ('classifier', MultinomialNB())])In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.Pipeline?Documentation for PipelineiFitted\n        \n            \n                Parameters\n                \n\n\n\n\nsteps \n[('vectorizer', ...), ('classifier', ...)]\n\n\n\ntransform_input \nNone\n\n\n\nmemory \nNone\n\n\n\nverbose \nFalse\n\n\n\n\n            \n        \n    CountVectorizer?Documentation for CountVectorizer\n        \n            \n                Parameters\n                \n\n\n\n\ninput \n'content'\n\n\n\nencoding \n'utf-8'\n\n\n\ndecode_error \n'strict'\n\n\n\nstrip_accents \nNone\n\n\n\nlowercase \nTrue\n\n\n\npreprocessor \nNone\n\n\n\ntokenizer \nNone\n\n\n\nstop_words \n['a', 'about', ...]\n\n\n\ntoken_pattern \n'(?u)\\\\b\\\\w\\\\w+\\\\b'\n\n\n\nngram_range \n(1, ...)\n\n\n\nanalyzer \n'word'\n\n\n\nmax_df \n1.0\n\n\n\nmin_df \n1\n\n\n\nmax_features \nNone\n\n\n\nvocabulary \nNone\n\n\n\nbinary \nFalse\n\n\n\ndtype \n&lt;class 'numpy.int64'&gt;\n\n\n\n\n            \n        \n    MultinomialNB?Documentation for MultinomialNB\n        \n            \n                Parameters\n                \n\n\n\n\nalpha \n1.0\n\n\n\nforce_alpha \nTrue\n\n\n\nfit_prior \nTrue\n\n\n\nclass_prior \nNone\n\n\n\n\n            \n        \n    \n\n\n\n\nPredicciones\n\ny_pred = pipeline.predict(X_test)   \n\n\n\nReporte de clasificación\n\nprint(\"Reporte de clasificación\\n\", classification_report(y_test, y_pred, target_names=newsgroups.target_names))\n\nReporte de clasificación\n                        precision    recall  f1-score   support\n\n        comp.graphics       0.92      0.91      0.91       117\ncomp.sys.mac.hardware       0.91      0.92      0.91       116\n   rec.sport.baseball       0.90      0.90      0.90       119\n   talk.politics.misc       0.89      0.89      0.89        93\n\n             accuracy                           0.91       445\n            macro avg       0.91      0.91      0.90       445\n         weighted avg       0.91      0.91      0.91       445\n\n\n\n\n\nMatriz de confusión\n\nconf_matrix = confusion_matrix(y_test, y_pred)\ndisp = ConfusionMatrixDisplay(confusion_matrix=conf_matrix, display_labels=newsgroups.target_names)\ndisp.plot(cmap=plt.cm.Blues)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Text Classification"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#cargar-dataset-y-explorar",
+    "href": "laboratorio2.html#cargar-dataset-y-explorar",
+    "title": "Laboratorio 2",
+    "section": "Cargar dataset y explorar",
+    "text": "Cargar dataset y explorar\n\nurl = \"https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv\"\n\n# 1. Cargar el dataset\ntry:\n    df = pd.read_csv(url)\n    print(\"Dataset cargado exitosamente.\")\nexcept Exception as e:\n    print(f\"Error al cargar el dataset: {e}\")\n    exit()\n\nDataset cargado exitosamente.",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#logisticregression",
+    "href": "laboratorio2.html#logisticregression",
+    "title": "Laboratorio 2",
+    "section": "LogisticRegression",
+    "text": "LogisticRegression\n\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\n\n# Dividir en conjunto de entrenamiento y prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)\n\n# Entrenar el modelo\nmodel = LogisticRegression()\nmodel.fit(X_train, y_train)\n##  MultinomialNB\nfrom sklearn.naive_bayes import MultinomialNB\nmodel = MultinomialNB()\nmodel.fit(X_train, y_train)  \ny_pred = model.predict(X_test)",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#multinomialnb",
+    "href": "laboratorio2.html#multinomialnb",
+    "title": "Laboratorio 2",
+    "section": "MultinomialNB",
+    "text": "MultinomialNB",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#classification_report",
+    "href": "laboratorio2.html#classification_report",
+    "title": "Laboratorio 2",
+    "section": "classification_report",
+    "text": "classification_report\n\n##  confusion_matrix\nfrom sklearn.metrics import confusion_matrix\nimport seaborn as sns\nimport matplotlib.pyplot as plt\ncm = confusion_matrix(y_test, y_pred)\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues')  \nplt.xlabel('Predicción')\nplt.ylabel('Realidad')\nplt.title('Matriz de Confusión')\nplt.show()  \n##  ConfusionMatrixDisplay\nfrom sklearn.metrics import ConfusionMatrixDisplay\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm)\ndisp.plot()\ndisp.ax_.set_title('Matriz de Confusión')\nplt.show()",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#confusion_matrix",
+    "href": "laboratorio2.html#confusion_matrix",
+    "title": "Laboratorio 2",
+    "section": "confusion_matrix",
+    "text": "confusion_matrix",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#explorar-el-dataset",
+    "href": "laboratorio2.html#explorar-el-dataset",
+    "title": "Laboratorio 2",
+    "section": "Explorar el dataset",
+    "text": "Explorar el dataset\n\ndf.head()\ndf.info()\ndf.describe()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 158873 entries, 0 to 158872\nData columns (total 26 columns):\n #   Column               Non-Null Count   Dtype  \n---  ------               --------------   -----  \n 0   tweetId              158873 non-null  int64  \n 1   tweetUrl             158873 non-null  object \n 2   content              158873 non-null  object \n 3   isReply              158873 non-null  bool   \n 4   replyTo              158011 non-null  object \n 5   createdAt            158873 non-null  object \n 6   authorId             158873 non-null  int64  \n 7   authorName           158871 non-null  object \n 8   authorUsername       158873 non-null  object \n 9   authorVerified       158873 non-null  bool   \n 10  authorFollowers      158873 non-null  int64  \n 11  authorProfilePic     158873 non-null  object \n 12  authorJoinDate       158873 non-null  object \n 13  source               158873 non-null  object \n 14  hashtags             12415 non-null   object \n 15  mentions             158525 non-null  object \n 16  conversationId       158873 non-null  int64  \n 17  inReplyToId          158873 non-null  int64  \n 18  Date                 158873 non-null  object \n 19  time_response        158873 non-null  float64\n 20  account_age_days     158873 non-null  int64  \n 21  mentions_count       158873 non-null  int64  \n 22  hashtags_count       158873 non-null  int64  \n 23  content_length       158873 non-null  int64  \n 24  has_profile_picture  158873 non-null  bool   \n 25  sentiment_polarity   158873 non-null  float64\ndtypes: bool(3), float64(2), int64(9), object(12)\nmemory usage: 28.3+ MB\n\n\n\n\n\n\n\n\n\ntweetId\nauthorId\nauthorFollowers\nconversationId\ninReplyToId\ntime_response\naccount_age_days\nmentions_count\nhashtags_count\ncontent_length\nsentiment_polarity\n\n\n\n\ncount\n1.588730e+05\n1.588730e+05\n1.588730e+05\n1.588730e+05\n1.588730e+05\n158873.000000\n158873.000000\n158873.000000\n158873.0\n158873.000000\n158873.000000\n\n\nmean\n1.893290e+18\n9.769778e+17\n5.416749e+03\n1.892999e+18\n1.893021e+18\n1152.408043\n2290.403247\n1.738175\n0.0\n116.993215\n-0.010103\n\n\nstd\n1.158640e+16\n7.899350e+17\n1.486533e+05\n1.156441e+16\n1.156588e+16\n3303.138599\n1984.348793\n1.011571\n0.0\n82.280424\n0.118703\n\n\nmin\n1.876001e+18\n1.159021e+06\n0.000000e+00\n1.876001e+18\n1.876001e+18\n-0.550000\n-103.000000\n0.000000\n0.0\n15.000000\n-1.000000\n\n\n25%\n1.883151e+18\n9.655167e+08\n7.000000e+00\n1.882806e+18\n1.882806e+18\n122.883333\n459.000000\n1.000000\n0.0\n56.000000\n0.000000\n\n\n50%\n1.887554e+18\n1.296509e+18\n4.700000e+01\n1.886968e+18\n1.887248e+18\n484.550000\n1598.000000\n1.000000\n0.0\n93.000000\n0.000000\n\n\n75%\n1.904391e+18\n1.709072e+18\n1.970000e+02\n1.904064e+18\n1.904068e+18\n1298.716667\n4424.000000\n2.000000\n0.0\n154.000000\n0.000000\n\n\nmax\n1.931136e+18\n1.912695e+18\n4.692371e+06\n1.910025e+18\n1.922146e+18\n138292.933333\n6506.000000\n28.000000\n0.0\n3999.000000\n1.000000",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#explorar-el-dataset-eda",
+    "href": "laboratorio2.html#explorar-el-dataset-eda",
+    "title": "Laboratorio 2",
+    "section": "Explorar el dataset EDA",
+    "text": "Explorar el dataset EDA\n\ndf.head()\ndf.info()\ndf.describe()\n\nprint(\"\\n--- Inspección de Datos ---\")\nprint(f\"Forma del dataset: {df.shape}\")\nprint(f\"Columnas disponibles: {df.columns.tolist()}\")\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 158873 entries, 0 to 158872\nData columns (total 26 columns):\n #   Column               Non-Null Count   Dtype  \n---  ------               --------------   -----  \n 0   tweetId              158873 non-null  int64  \n 1   tweetUrl             158873 non-null  object \n 2   content              158873 non-null  object \n 3   isReply              158873 non-null  bool   \n 4   replyTo              158011 non-null  object \n 5   createdAt            158873 non-null  object \n 6   authorId             158873 non-null  int64  \n 7   authorName           158871 non-null  object \n 8   authorUsername       158873 non-null  object \n 9   authorVerified       158873 non-null  bool   \n 10  authorFollowers      158873 non-null  int64  \n 11  authorProfilePic     158873 non-null  object \n 12  authorJoinDate       158873 non-null  object \n 13  source               158873 non-null  object \n 14  hashtags             12415 non-null   object \n 15  mentions             158525 non-null  object \n 16  conversationId       158873 non-null  int64  \n 17  inReplyToId          158873 non-null  int64  \n 18  Date                 158873 non-null  object \n 19  time_response        158873 non-null  float64\n 20  account_age_days     158873 non-null  int64  \n 21  mentions_count       158873 non-null  int64  \n 22  hashtags_count       158873 non-null  int64  \n 23  content_length       158873 non-null  int64  \n 24  has_profile_picture  158873 non-null  bool   \n 25  sentiment_polarity   158873 non-null  float64\ndtypes: bool(3), float64(2), int64(9), object(12)\nmemory usage: 28.3+ MB\n\n--- Inspección de Datos ---\nForma del dataset: (158873, 26)\nColumnas disponibles: ['tweetId', 'tweetUrl', 'content', 'isReply', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername', 'authorVerified', 'authorFollowers', 'authorProfilePic', 'authorJoinDate', 'source', 'hashtags', 'mentions', 'conversationId', 'inReplyToId', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'has_profile_picture', 'sentiment_polarity']",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#eliminar-features-no-relevantes",
+    "href": "laboratorio2.html#eliminar-features-no-relevantes",
+    "title": "Laboratorio 2",
+    "section": "Eliminar features no relevantes",
+    "text": "Eliminar features no relevantes\n\n# Eliminar columnas irrelevantes\ndf = df.drop(columns=['tweetId', 'tweetUrl', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername',  'authorFollowers', 'source', 'hashtags', 'mentions', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'sentiment_polarity'])\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 158873 entries, 0 to 158872\nData columns (total 8 columns):\n #   Column               Non-Null Count   Dtype \n---  ------               --------------   ----- \n 0   content              158873 non-null  object\n 1   isReply              158873 non-null  bool  \n 2   authorVerified       158873 non-null  bool  \n 3   authorProfilePic     158873 non-null  object\n 4   authorJoinDate       158873 non-null  object\n 5   conversationId       158873 non-null  int64 \n 6   inReplyToId          158873 non-null  int64 \n 7   has_profile_picture  158873 non-null  bool  \ndtypes: bool(3), int64(2), object(3)\nmemory usage: 6.5+ MB\n\n\n\ndef classify_sentiment(text):\n    \"\"\"\n    Calcula el puntaje de polaridad compuesto (compound score)\n    y lo clasifica en Negativo, Neutro o Positivo.\n    \"\"\"\n    if pd.isna(text): # Manejar posibles NaN si no se hizo limpieza previa\n        return 'Neutro'\n\n    # VADER usa el 'compound score' (va de -1 a +1)\n    scores = sid.polarity_scores(text)\n    compound_score = scores['compound']\n\n    # Definir umbrales (estos son los umbrales estándar de VADER)\n    if compound_score &gt;= 0.05:\n        return 'Positivo'\n    elif compound_score &lt;= -0.05:\n        return 'Negativo'\n    else:\n        return 'Neutro' # Incluye scores cercanos a cero",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#seleccionar-la-variable-objetivo",
+    "href": "laboratorio2.html#seleccionar-la-variable-objetivo",
+    "title": "Laboratorio 2",
+    "section": "Seleccionar la variable objetivo",
+    "text": "Seleccionar la variable objetivo\n\n# Clasificar los tweets según su sentimiento\ndf['sentiment'] = df['content'].apply(classify_sentiment) # Crear la variable objetivo basada en el contenido del tweet\n\n# Verificar la distribución de las clases\nprint(df['sentiment'].value_counts())\n\nsentiment\nNeutro      109333\nNegativo     43709\nPositivo      5831\nName: count, dtype: int64",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#preprocesar-variables-categóricas",
+    "href": "laboratorio2.html#preprocesar-variables-categóricas",
+    "title": "Laboratorio 2",
+    "section": "Preprocesar variables categóricas",
+    "text": "Preprocesar variables categóricas\n\nfrom sklearn.preprocessing import OneHotEncoder\n\n# Aplicar OneHotEncoder a las variables categóricas\n#ohe = OneHotEncoder(handle_unknown='ignore')\ncategorical_features = df.select_dtypes(include=['object']).columns.tolist()\n#df_encoded = pd.DataFrame(ohe.fit_transform(df[categorical_features]), columns=ohe.get_feature_names_out(categorical_features))\n#df = pd.concat([df, df_encoded], axis=1).drop(columns=categorical_features)",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#preprocesamiento-del-texto",
+    "href": "laboratorio2.html#preprocesamiento-del-texto",
+    "title": "Laboratorio 2",
+    "section": "Preprocesamiento del texto",
+    "text": "Preprocesamiento del texto\n\n# Extraer el contenido textual\ncorpus = df['content'].astype(str).tolist()\n# Crear el vectorizador (CountVectorizer o TfidfVectorizer)\nstopwords = stopwords.words(\"spanish\")\nvectorizer = TfidfVectorizer(stop_words=stopwords, max_features=2000)\nX_text = vectorizer.fit_transform(corpus)   \ny = df['sentiment']",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "laboratorio2.html#crear-el-pipeline",
+    "href": "laboratorio2.html#crear-el-pipeline",
+    "title": "Laboratorio 2",
+    "section": "Crear el pipeline",
+    "text": "Crear el pipeline\n\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.pipeline import Pipeline\n\n# Definir el preprocesador\npreprocessor = ColumnTransformer(\n    transformers=[\n        ('text', vectorizer, 'content'),\n        ('cat', OneHotEncoder(), categorical_features)\n    ]\n)\n\n# Crear el pipeline\npipeline = Pipeline(steps=[\n    ('preprocessor', preprocessor)\n])      \npipeline.fit(df)\nX = pipeline.transform(df)",
+    "crumbs": [
+      "Laboratorios",
+      "Laboratorio 2"
+    ]
   }
 ]

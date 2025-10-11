@@ -24,9 +24,11 @@ website:
           - ml_text.qmd
           - bagofwords.qmd
           - tfidf.qmd
+          - text_classification.qmd
       - section: "Laboratorios"
         contents:
           - laboratorio.qmd
+          - laboratorio2.qmd
  # navbar:
 #  left:
 #      - href: index.qmd

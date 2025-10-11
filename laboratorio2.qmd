@@ -1,0 +1,195 @@
+---
+title: "Laboratorio 2"
+Authors: "Diego Altamirano Plazarte"
+code-fold: false
+---
+
+# Desarrollo de la Actividad
+# Importar librerías
+```{python}
+import pandas as pd
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import make_pipeline
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+from sklearn.pipeline import Pipeline
+import matplotlib.pyplot as plt
+# Vectores TF-IDF y Count
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import CountVectorizer
+
+import nltk
+from nltk.corpus import stopwords
+from nltk import word_tokenize # tokenizacion
+from nltk import pos_tag #lematizacion
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import wordnet
+import requests
+import io
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+nltk.download('vader_lexicon') # necessary for VADER sentiment analysis
+nltk.download('stopwords') # necessary for removal of stop words
+nltk.download('wordnet') # necessary for lemmatization
+
+lemmatizer = WordNetLemmatizer()
+sid = SentimentIntensityAnalyzer()
+```
+
+# 1.	Explorar el dataset y eliminar los features que no considere relevantes para el análisis.
+## Cargar dataset y explorar
+```{python}
+url = "https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv"
+
+# 1. Cargar el dataset
+try:
+    df = pd.read_csv(url)
+    print("Dataset cargado exitosamente.")
+except Exception as e:
+    print(f"Error al cargar el dataset: {e}")
+    exit()
+```
+## Explorar el dataset EDA
+```{python}
+df.head()
+df.info()
+df.describe()
+
+print("\n--- Inspección de Datos ---")
+print(f"Forma del dataset: {df.shape}")
+print(f"Columnas disponibles: {df.columns.tolist()}")
+
+```	
+
+## Eliminar features no relevantes
+```{python}
+# Eliminar columnas irrelevantes
+df = df.drop(columns=['tweetId', 'tweetUrl', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername',  'authorFollowers', 'source', 'hashtags', 'mentions', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'sentiment_polarity'])
+df.info()
+```
+
+```{python}
+def classify_sentiment(text):
+    """
+    Calcula el puntaje de polaridad compuesto (compound score)
+    y lo clasifica en Negativo, Neutro o Positivo.
+    """
+    if pd.isna(text): # Manejar posibles NaN si no se hizo limpieza previa
+        return 'Neutro'
+
+    # VADER usa el 'compound score' (va de -1 a +1)
+    scores = sid.polarity_scores(text)
+    compound_score = scores['compound']
+
+    # Definir umbrales (estos son los umbrales estándar de VADER)
+    if compound_score >= 0.05:
+        return 'Positivo'
+    elif compound_score <= -0.05:
+        return 'Negativo'
+    else:
+        return 'Neutro' # Incluye scores cercanos a cero
+```
+
+# 2.	Derivar o seleccionar la variable objetivo (target) para una tarea de clasificación.
+
+## Seleccionar la variable objetivo
+```{python}
+# Clasificar los tweets según su sentimiento
+df['sentiment'] = df['content'].apply(classify_sentiment) # Crear la variable objetivo basada en el contenido del tweet
+
+# Verificar la distribución de las clases
+print(df['sentiment'].value_counts())
+```
+
+# 3.	Preprocesar variables categóricas mediante técnicas como OneHotEncoder, OrdinalEncoder u otras que consideren pertinentes.
+## Preprocesar variables categóricas
+```{python}
+from sklearn.preprocessing import OneHotEncoder
+
+# Aplicar OneHotEncoder a las variables categóricas
+#ohe = OneHotEncoder(handle_unknown='ignore')
+categorical_features = df.select_dtypes(include=['object']).columns.tolist()
+#df_encoded = pd.DataFrame(ohe.fit_transform(df[categorical_features]), columns=ohe.get_feature_names_out(categorical_features))
+#df = pd.concat([df, df_encoded], axis=1).drop(columns=categorical_features)
+```
+
+# 4.	Preprocesar el contenido textual del tweet (content) utilizando técnicas de vectorización como CountVectorizer o TfidfVectorizer. Pueden aplicar limpieza de texto, eliminación de stopwords, y lematización si lo consideran relevante, etc.
+## Preprocesamiento del texto
+```{python}
+# Extraer el contenido textual
+corpus = df['content'].astype(str).tolist()
+# Crear el vectorizador (CountVectorizer o TfidfVectorizer)
+stopwords = stopwords.words("spanish")
+vectorizer = TfidfVectorizer(stop_words=stopwords, max_features=2000)
+X_text = vectorizer.fit_transform(corpus)   
+y = df['sentiment']
+```
+
+# 5.	Crear un pipeline de preprocesamiento utilizando ColumnTransformer o estructuras equivalentes para unir variables categóricas, textuales y numéricas (si aplica).
+## Crear el pipeline
+```{python}
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+
+# Definir el preprocesador
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('text', vectorizer, 'content'),
+        ('cat', OneHotEncoder(), categorical_features)
+    ]
+)
+
+# Crear el pipeline
+pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor)
+])      
+pipeline.fit(df)
+X = pipeline.transform(df)
+```
+
+#	6.	Entrenar un modelo de clasificación. Aunque el foco no está en los modelos, deben aplicar al menos uno entre:
+
+## 	LogisticRegression
+
+```{python}
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+
+# Dividir en conjunto de entrenamiento y prueba
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Entrenar el modelo
+model = LogisticRegression()
+model.fit(X_train, y_train)
+##	MultinomialNB
+from sklearn.naive_bayes import MultinomialNB
+model = MultinomialNB()
+model.fit(X_train, y_train)  
+y_pred = model.predict(X_test)   
+```
+
+
+
+# 7.	Evaluar el desempeño del modelo utilizando:
+
+##	classification_report
+
+```{python}
+##	confusion_matrix
+from sklearn.metrics import confusion_matrix
+import seaborn as sns
+import matplotlib.pyplot as plt
+cm = confusion_matrix(y_test, y_pred)
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')  
+plt.xlabel('Predicción')
+plt.ylabel('Realidad')
+plt.title('Matriz de Confusión')
+plt.show()  
+##	ConfusionMatrixDisplay
+from sklearn.metrics import ConfusionMatrixDisplay
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot()
+disp.ax_.set_title('Matriz de Confusión')
+plt.show()
+```
