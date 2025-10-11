@@ -4,7 +4,7 @@ project:
 
 website:
   title: "Machine Learning"
-sidebar:
+  sidebar:
     style: "docked"
     search: true
     contents:

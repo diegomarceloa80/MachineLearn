@@ -59,6 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -74,7 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dc55a5b9e770e841cd82e46aadbfb9b0.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a35d343c8bdbcb87d3b82ed68e48a46c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,12 +110,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./altair.html">Introduction to ML</a></li><li class="breadcrumb-item"><a href="./altair.html">Introducción a Altair</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Introduction to ML</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./altair.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Introducción a Altair</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exploratory Data Analysis (EDA)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./clasificacion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Classification</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./categorical_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./categorical_pipeline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Categorical Pipeline</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Natural Language Processing (NLP)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ml_text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">NLP Key Concepts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./bagofwords.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Bag of Words (BoW)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tfidf.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Term-Frequency - Inverse Document Frequency (TF-IDF)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratorios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./laboratorio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">PRIMER REPORTE EN QUARTO</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -138,7 +268,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./altair.html">Introduction to ML</a></li><li class="breadcrumb-item"><a href="./altair.html">Introducción a Altair</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Introducción a Altair</h1>
 </div>
@@ -161,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Introduccion a Altair</h1>
 <section id="importar-el-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="importar-el-dataset">Importar el dataset</h2>
-<div id="fc959520" class="cell" data-execution_count="1">
+<div id="694fb3c4" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
@@ -190,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="visualización-en-altair">Visualización en Altair</h2>
 <section id="visualización-scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot">Visualización scatterplot</h3>
-<div id="60181906" class="cell" data-execution_count="2">
+<div id="85ddc4bb" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point().encode(</span>
@@ -203,23 +333,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-  #altair-viz-51ce88f135374c7285ddf27d95a89d7f.vega-embed {
+  #altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-51ce88f135374c7285ddf27d95a89d7f.vega-embed details,
-  #altair-viz-51ce88f135374c7285ddf27d95a89d7f.vega-embed details summary {
+  #altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2.vega-embed details,
+  #altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-51ce88f135374c7285ddf27d95a89d7f"></div>
+<div id="altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-51ce88f135374c7285ddf27d95a89d7f") {
-      outputDiv = document.getElementById("altair-viz-51ce88f135374c7285ddf27d95a89d7f");
+    if (outputDiv.id !== "altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2") {
+      outputDiv = document.getElementById("altair-viz-5f639d2b0feb4ae9acb8b6d8d6e17af2");
     }
 
     const paths = {
@@ -274,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualización-scatterplot-con-color" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot-con-color">Visualización scatterplot con color</h3>
-<div id="72ecd39a" class="cell" data-execution_count="3">
+<div id="f19c1faf" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point(filled<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -287,23 +417,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-  #altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f.vega-embed {
+  #altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f.vega-embed details,
-  #altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f.vega-embed details summary {
+  #altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691.vega-embed details,
+  #altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f"></div>
+<div id="altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f") {
-      outputDiv = document.getElementById("altair-viz-e5ae1c8348114e0d97afe0b9ae770d4f");
+    if (outputDiv.id !== "altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691") {
+      outputDiv = document.getElementById("altair-viz-f3ef657bdc9c4c259ae1a7dd7e327691");
     }
 
     const paths = {
@@ -358,7 +488,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="visualización-scatterplot-con-color-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot-con-color-1">Visualización scatterplot con color</h3>
-<div id="eb54f082" class="cell" data-execution_count="4">
+<div id="cef7ba56" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point(filled<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -372,23 +502,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-  #altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2.vega-embed {
+  #altair-viz-a3c27f54e5a5439c898e1612f1d2ee08.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2.vega-embed details,
-  #altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2.vega-embed details summary {
+  #altair-viz-a3c27f54e5a5439c898e1612f1d2ee08.vega-embed details,
+  #altair-viz-a3c27f54e5a5439c898e1612f1d2ee08.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2"></div>
+<div id="altair-viz-a3c27f54e5a5439c898e1612f1d2ee08"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2") {
-      outputDiv = document.getElementById("altair-viz-1c2fa5816eaf4ae8964790a16b4a17d2");
+    if (outputDiv.id !== "altair-viz-a3c27f54e5a5439c898e1612f1d2ee08") {
+      outputDiv = document.getElementById("altair-viz-a3c27f54e5a5439c898e1612f1d2ee08");
     }
 
     const paths = {
@@ -445,7 +575,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="agregaciones">Agregaciones</h3>
 <p>Gráfico de barras</p>
 <p><code>count()</code> de cada una de los origines</p>
-<div id="4cc3b00c" class="cell" data-execution_count="5">
+<div id="555bd004" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_bar().encode(</span>
@@ -456,23 +586,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-  #altair-viz-095da24344aa46f698b6df270815c3d2.vega-embed {
+  #altair-viz-64b2cc3f4c0045e3b4eb079da3385826.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-095da24344aa46f698b6df270815c3d2.vega-embed details,
-  #altair-viz-095da24344aa46f698b6df270815c3d2.vega-embed details summary {
+  #altair-viz-64b2cc3f4c0045e3b4eb079da3385826.vega-embed details,
+  #altair-viz-64b2cc3f4c0045e3b4eb079da3385826.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-095da24344aa46f698b6df270815c3d2"></div>
+<div id="altair-viz-64b2cc3f4c0045e3b4eb079da3385826"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-095da24344aa46f698b6df270815c3d2") {
-      outputDiv = document.getElementById("altair-viz-095da24344aa46f698b6df270815c3d2");
+    if (outputDiv.id !== "altair-viz-64b2cc3f4c0045e3b4eb079da3385826") {
+      outputDiv = document.getElementById("altair-viz-64b2cc3f4c0045e3b4eb079da3385826");
     }
 
     const paths = {
@@ -525,7 +655,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p><code>mean()</code> de cada una de los origines</p>
-<div id="29e7faea" class="cell" data-execution_count="6">
+<div id="33e7e60a" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_bar().encode(</span>
@@ -540,23 +670,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-  #altair-viz-2c038023e8af4c5c8041d7731cce12b8.vega-embed {
+  #altair-viz-8e5ac953cefd476fae1f6da0ba067b4d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-2c038023e8af4c5c8041d7731cce12b8.vega-embed details,
-  #altair-viz-2c038023e8af4c5c8041d7731cce12b8.vega-embed details summary {
+  #altair-viz-8e5ac953cefd476fae1f6da0ba067b4d.vega-embed details,
+  #altair-viz-8e5ac953cefd476fae1f6da0ba067b4d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-2c038023e8af4c5c8041d7731cce12b8"></div>
+<div id="altair-viz-8e5ac953cefd476fae1f6da0ba067b4d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-2c038023e8af4c5c8041d7731cce12b8") {
-      outputDiv = document.getElementById("altair-viz-2c038023e8af4c5c8041d7731cce12b8");
+    if (outputDiv.id !== "altair-viz-8e5ac953cefd476fae1f6da0ba067b4d") {
+      outputDiv = document.getElementById("altair-viz-8e5ac953cefd476fae1f6da0ba067b4d");
     }
 
     const paths = {
@@ -609,7 +739,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>Gráfico lineal</p>
-<div id="98d9c377" class="cell" data-execution_count="7">
+<div id="394f860a" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -623,23 +753,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-  #altair-viz-9bb23496c05044af9770115756e8a02d.vega-embed {
+  #altair-viz-84fbc743d45647de8fcc86842843acf2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #altair-viz-9bb23496c05044af9770115756e8a02d.vega-embed details,
-  #altair-viz-9bb23496c05044af9770115756e8a02d.vega-embed details summary {
+  #altair-viz-84fbc743d45647de8fcc86842843acf2.vega-embed details,
+  #altair-viz-84fbc743d45647de8fcc86842843acf2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="altair-viz-9bb23496c05044af9770115756e8a02d"></div>
+<div id="altair-viz-84fbc743d45647de8fcc86842843acf2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-9bb23496c05044af9770115756e8a02d") {
-      outputDiv = document.getElementById("altair-viz-9bb23496c05044af9770115756e8a02d");
+    if (outputDiv.id !== "altair-viz-84fbc743d45647de8fcc86842843acf2") {
+      outputDiv = document.getElementById("altair-viz-84fbc743d45647de8fcc86842843acf2");
     }
 
     const paths = {
