@@ -3995,6 +3995,12 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
  <span class="menu-text">Term-Frequency - Inverse Document Frequency (TF-IDF)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./text_classification.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Text Classification</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -4010,6 +4016,12 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   <div class="sidebar-item-container"> 
   <a href="./laboratorio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">PRIMER REPORTE EN QUARTO</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./laboratorio2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Laboratorio 2</span></a>
   </div>
 </li>
       </ul>
@@ -4087,7 +4099,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <section id="importar-las-librerías" class="level1">
 <h1>importar las librerías</h1>
 <p>Gráfico de barras: Este gráfico muestra el promedio de la variable x_discapacidad por provincia. Permite comparar visualmente qué provincias tienen mayor o menor promedio de personas con discapacidad beneficiarias.</p>
-<div id="0fb5c710" class="cell" data-execution_count="1">
+<div id="ae5dbe54" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -4133,22 +4145,22 @@ None
 <div class="cell-output cell-output-display" data-execution_count="1">
 
 <style>
-#altair-viz-5739026acdba428491cbb5a351dcc6d5.vega-embed {
+#altair-viz-b5aefca52834410ea7d4cf0fbca10e99.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-5739026acdba428491cbb5a351dcc6d5.vega-embed details,
-#altair-viz-5739026acdba428491cbb5a351dcc6d5.vega-embed details summary {
+#altair-viz-b5aefca52834410ea7d4cf0fbca10e99.vega-embed details,
+#altair-viz-b5aefca52834410ea7d4cf0fbca10e99.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-5739026acdba428491cbb5a351dcc6d5"></div>
+<div id="altair-viz-b5aefca52834410ea7d4cf0fbca10e99"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5739026acdba428491cbb5a351dcc6d5") {
-      outputDiv = document.getElementById("altair-viz-5739026acdba428491cbb5a351dcc6d5");
+    if (outputDiv.id !== "altair-viz-b5aefca52834410ea7d4cf0fbca10e99") {
+      outputDiv = document.getElementById("altair-viz-b5aefca52834410ea7d4cf0fbca10e99");
     }
 
     const paths = {
@@ -4201,7 +4213,7 @@ position: relative;
 </div>
 </div>
 <p>Gráfico de dispersión (puntos): Representa la relación entre la edad de los beneficiarios y la provincia, diferenciando por sexo. Ayuda a identificar la distribución de edades en cada provincia y posibles diferencias entre hombres y mujeres.</p>
-<div id="5e11adc5" class="cell" data-execution_count="2">
+<div id="a3c4597d" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(dataset).mark_point(filled<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -4214,22 +4226,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-#altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3.vega-embed {
+#altair-viz-f6182c004cc34978bf0948be65fb6081.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3.vega-embed details,
-#altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3.vega-embed details summary {
+#altair-viz-f6182c004cc34978bf0948be65fb6081.vega-embed details,
+#altair-viz-f6182c004cc34978bf0948be65fb6081.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3"></div>
+<div id="altair-viz-f6182c004cc34978bf0948be65fb6081"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3") {
-      outputDiv = document.getElementById("altair-viz-e8329dddf35b4b6cb2907d6c265ca8c3");
+    if (outputDiv.id !== "altair-viz-f6182c004cc34978bf0948be65fb6081") {
+      outputDiv = document.getElementById("altair-viz-f6182c004cc34978bf0948be65fb6081");
     }
 
     const paths = {
@@ -4282,7 +4294,7 @@ position: relative;
 </div>
 </div>
 <p>Gráfico de líneas: Muestra la edad promedio de los beneficiarios por provincia. Es útil para observar tendencias y comparar cómo varía la edad promedio entre diferentes provincias.</p>
-<div id="883ca9b6" class="cell" data-execution_count="3">
+<div id="a00f5084" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(dataset).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -4298,22 +4310,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-#altair-viz-4d3521fbbcab444787db946da754c9a2.vega-embed {
+#altair-viz-c304b270df224ff0957ad7638cbb43bc.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-4d3521fbbcab444787db946da754c9a2.vega-embed details,
-#altair-viz-4d3521fbbcab444787db946da754c9a2.vega-embed details summary {
+#altair-viz-c304b270df224ff0957ad7638cbb43bc.vega-embed details,
+#altair-viz-c304b270df224ff0957ad7638cbb43bc.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-4d3521fbbcab444787db946da754c9a2"></div>
+<div id="altair-viz-c304b270df224ff0957ad7638cbb43bc"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-4d3521fbbcab444787db946da754c9a2") {
-      outputDiv = document.getElementById("altair-viz-4d3521fbbcab444787db946da754c9a2");
+    if (outputDiv.id !== "altair-viz-c304b270df224ff0957ad7638cbb43bc") {
+      outputDiv = document.getElementById("altair-viz-c304b270df224ff0957ad7638cbb43bc");
     }
 
     const paths = {
@@ -4365,7 +4377,7 @@ position: relative;
 </script>
 </div>
 </div>
-<div id="2a5f86c2" class="cell" data-execution_count="4">
+<div id="b245a3c2" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
@@ -4390,22 +4402,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-#altair-viz-1565bebc5e814835a7180a2aa144ef20.vega-embed {
+#altair-viz-6b678bdbf773410cb76fc10abc1a1592.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-1565bebc5e814835a7180a2aa144ef20.vega-embed details,
-#altair-viz-1565bebc5e814835a7180a2aa144ef20.vega-embed details summary {
+#altair-viz-6b678bdbf773410cb76fc10abc1a1592.vega-embed details,
+#altair-viz-6b678bdbf773410cb76fc10abc1a1592.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-1565bebc5e814835a7180a2aa144ef20"></div>
+<div id="altair-viz-6b678bdbf773410cb76fc10abc1a1592"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-1565bebc5e814835a7180a2aa144ef20") {
-      outputDiv = document.getElementById("altair-viz-1565bebc5e814835a7180a2aa144ef20");
+    if (outputDiv.id !== "altair-viz-6b678bdbf773410cb76fc10abc1a1592") {
+      outputDiv = document.getElementById("altair-viz-6b678bdbf773410cb76fc10abc1a1592");
     }
 
     const paths = {
