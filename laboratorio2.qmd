@@ -181,16 +181,23 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 cm = confusion_matrix(y_test, y_pred)
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')  
+plt.xticks(ticks=range(len(model.classes_)), labels=model.classes_)
+plt.yticks(ticks=range(len(model.classes_)), labels=model.classes_, rotation=0)
 plt.xlabel('Predicción')
 plt.ylabel('Realidad')
 plt.title('Matriz de Confusión')
 plt.show()  
 ##	ConfusionMatrixDisplay
 from sklearn.metrics import ConfusionMatrixDisplay
-disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm) # Crear el display
 disp.plot()
-disp.ax_.set_title('Matriz de Confusión')
+disp.ax_.set_title('Matriz de Confusión') 
 # etiquetas de los ejes
+# etiqueta los labels de los ejes
+disp.ax_.set_xticks(range(len(model.classes_)))
+disp.ax_.set_yticks(range(len(model.classes_))) 
+disp.ax_.set_xticklabels(model.classes_)
+disp.ax_.set_yticklabels(model.classes_)
 disp.ax_.set_xlabel('Predicción')
 disp.ax_.set_ylabel('Realidad')
 plt.show()

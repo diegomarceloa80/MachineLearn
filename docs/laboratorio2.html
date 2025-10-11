@@ -327,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="a6e59641" class="cell" data-execution_count="1">
+<div id="db11bc9c" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_20newsgroups</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -373,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>1. Explorar el dataset y eliminar los features que no considere relevantes para el análisis.</h1>
 <section id="cargar-dataset-y-explorar" class="level2">
 <h2 class="anchored" data-anchor-id="cargar-dataset-y-explorar">Cargar dataset y explorar</h2>
-<div id="86266040" class="cell" data-execution_count="2">
+<div id="c41f91c8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Cargar el dataset</span></span>
@@ -390,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="explorar-el-dataset-eda" class="level2">
 <h2 class="anchored" data-anchor-id="explorar-el-dataset-eda">Explorar el dataset EDA</h2>
-<div id="2c0943a1" class="cell" data-execution_count="3">
+<div id="a963ed05" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.head()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.info()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df.describe()</span>
@@ -441,7 +441,7 @@ Columnas disponibles: ['tweetId', 'tweetUrl', 'content', 'isReply', 'replyTo', '
 </section>
 <section id="eliminar-features-no-relevantes" class="level2">
 <h2 class="anchored" data-anchor-id="eliminar-features-no-relevantes">Eliminar features no relevantes</h2>
-<div id="52a2f9c2" class="cell" data-execution_count="4">
+<div id="b2110248" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas irrelevantes</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'tweetId'</span>, <span class="st">'tweetUrl'</span>, <span class="st">'replyTo'</span>, <span class="st">'createdAt'</span>, <span class="st">'authorId'</span>, <span class="st">'authorName'</span>, <span class="st">'authorUsername'</span>,  <span class="st">'authorFollowers'</span>, <span class="st">'source'</span>, <span class="st">'hashtags'</span>, <span class="st">'mentions'</span>, <span class="st">'Date'</span>, <span class="st">'time_response'</span>, <span class="st">'account_age_days'</span>, <span class="st">'mentions_count'</span>, <span class="st">'hashtags_count'</span>, <span class="st">'content_length'</span>, <span class="st">'sentiment_polarity'</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -465,7 +465,7 @@ memory usage: 6.5+ MB</code></pre>
 </div>
 <section id="vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos." class="level3">
 <h3 class="anchored" data-anchor-id="vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos.">VADER es una herramienta de análisis de sentimientos basada en reglas, altamente optimizada para texto en redes sociales, que utiliza un diccionario llamado Lexicon , diseñado específicamente para el análisis de sentimientos.</h3>
-<div id="5bead288" class="cell" data-execution_count="5">
+<div id="cf8c87b9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula el puntaje de polaridad compuesto (compound score)</span></span>
@@ -493,7 +493,7 @@ memory usage: 6.5+ MB</code></pre>
 <h1>2. Derivar o seleccionar la variable objetivo (target) para una tarea de clasificación.</h1>
 <section id="seleccionar-la-variable-objetivo" class="level2">
 <h2 class="anchored" data-anchor-id="seleccionar-la-variable-objetivo">Seleccionar la variable objetivo</h2>
-<div id="f46e148a" class="cell" data-execution_count="6">
+<div id="61adf256" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clasificar los tweets según su sentimiento</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sentiment'</span>] <span class="op">=</span> df[<span class="st">'content'</span>].<span class="bu">apply</span>(classify_sentiment) <span class="co"># Crear la variable objetivo basada en el contenido del tweet</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -513,7 +513,7 @@ Name: count, dtype: int64</code></pre>
 <h1>3. Preprocesar variables categóricas mediante técnicas como OneHotEncoder, OrdinalEncoder u otras que consideren pertinentes.</h1>
 <section id="preprocesar-variables-categóricas" class="level2">
 <h2 class="anchored" data-anchor-id="preprocesar-variables-categóricas">Preprocesar variables categóricas</h2>
-<div id="c89a20ce" class="cell" data-execution_count="7">
+<div id="801fa24a" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar OneHotEncoder a las variables categóricas</span></span>
@@ -528,7 +528,7 @@ Name: count, dtype: int64</code></pre>
 <h1>4. Preprocesar el contenido textual del tweet (content) utilizando técnicas de vectorización como CountVectorizer o TfidfVectorizer. Pueden aplicar limpieza de texto, eliminación de stopwords, y lematización si lo consideran relevante, etc.</h1>
 <section id="preprocesamiento-del-texto" class="level2">
 <h2 class="anchored" data-anchor-id="preprocesamiento-del-texto">Preprocesamiento del texto</h2>
-<div id="93b3536e" class="cell" data-execution_count="8">
+<div id="20e80c79" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer el contenido textual</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> df[<span class="st">'content'</span>].astype(<span class="bu">str</span>).tolist()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el vectorizador (CountVectorizer o TfidfVectorizer)</span></span>
@@ -543,7 +543,7 @@ Name: count, dtype: int64</code></pre>
 <h1>5. Crear un pipeline de preprocesamiento utilizando ColumnTransformer o estructuras equivalentes para unir variables categóricas, textuales y numéricas (si aplica).</h1>
 <section id="crear-el-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="crear-el-pipeline">Crear el pipeline</h2>
-<div id="20a6d506" class="cell" data-execution_count="9">
+<div id="52a41cbf" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -568,7 +568,7 @@ Name: count, dtype: int64</code></pre>
 <h1>6. Entrenar un modelo de clasificación. Aunque el foco no está en los modelos, deben aplicar al menos uno entre:</h1>
 <section id="logisticregression" class="level2">
 <h2 class="anchored" data-anchor-id="logisticregression">LogisticRegression</h2>
-<div id="3b05711c" class="cell" data-execution_count="10">
+<div id="277764a2" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -590,37 +590,44 @@ Name: count, dtype: int64</code></pre>
 <h1>7. Evaluar el desempeño del modelo utilizando:</h1>
 <section id="classification_report" class="level2">
 <h2 class="anchored" data-anchor-id="classification_report">classification_report</h2>
-<div id="2267e677" class="cell" data-execution_count="11">
+<div id="72b552ce" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">##  confusion_matrix</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>)  </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Predicción'</span>)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Realidad'</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matriz de Confusión'</span>)</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.show()  </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">##  ConfusionMatrixDisplay</span></span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>disp.plot()</span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_title(<span class="st">'Matriz de Confusión'</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># etiquetas de los ejes</span></span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_xlabel(<span class="st">'Predicción'</span>)</span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_ylabel(<span class="st">'Realidad'</span>)</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>plt.xticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(model.classes_)), labels<span class="op">=</span>model.classes_)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>plt.yticks(ticks<span class="op">=</span><span class="bu">range</span>(<span class="bu">len</span>(model.classes_)), labels<span class="op">=</span>model.classes_, rotation<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Predicción'</span>)</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Realidad'</span>)</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matriz de Confusión'</span>)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.show()  </span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co">##  ConfusionMatrixDisplay</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> ConfusionMatrixDisplay</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>disp.plot()</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_title(<span class="st">'Matriz de Confusión'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="co"># etiquetas de los ejes</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a><span class="co"># etiqueta los labels de los ejes</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(model.classes_)))</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(model.classes_))) </span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_xticklabels(model.classes_)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_yticklabels(model.classes_)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_xlabel(<span class="st">'Predicción'</span>)</span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_ylabel(<span class="st">'Realidad'</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="laboratorio2_files/figure-html/cell-12-output-1.png" width="573" height="449" class="figure-img"></p>
+<p><img src="laboratorio2_files/figure-html/cell-12-output-1.png" width="619" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="laboratorio2_files/figure-html/cell-12-output-2.png" width="521" height="449" class="figure-img"></p>
+<p><img src="laboratorio2_files/figure-html/cell-12-output-2.png" width="572" height="449" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -629,7 +636,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="calcular-accuracy-precision-recall-y-f1-score" class="level1">
 <h1>calcular accuracy, precision, recall y F1-score</h1>
-<div id="6fd022cb" class="cell" data-execution_count="12">
+<div id="9eb984fd" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, precision_score, recall_score, f1_score</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
