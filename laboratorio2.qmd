@@ -68,7 +68,7 @@ print(f"Columnas disponibles: {df.columns.tolist()}")
 df = df.drop(columns=['tweetId', 'tweetUrl', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername',  'authorFollowers', 'source', 'hashtags', 'mentions', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'sentiment_polarity'])
 df.info()
 ```
-
+### VADER es una herramienta de análisis de sentimientos basada en reglas, altamente optimizada para texto en redes sociales, que utiliza un diccionario llamado Lexicon , diseñado específicamente para el análisis de sentimientos.
 ```{python}
 def classify_sentiment(text):
     """
@@ -79,8 +79,8 @@ def classify_sentiment(text):
         return 'Neutro'
 
     # VADER usa el 'compound score' (va de -1 a +1)
-    scores = sid.polarity_scores(text)
-    compound_score = scores['compound']
+    scores = sid.polarity_scores(text) # Obtener los puntajes de polaridad
+    compound_score = scores['compound'] # Obtener el compound score
 
     # Definir umbrales (estos son los umbrales estándar de VADER)
     if compound_score >= 0.05:
@@ -113,7 +113,6 @@ categorical_features = df.select_dtypes(include=['object']).columns.tolist()
 #df_encoded = pd.DataFrame(ohe.fit_transform(df[categorical_features]), columns=ohe.get_feature_names_out(categorical_features))
 #df = pd.concat([df, df_encoded], axis=1).drop(columns=categorical_features)
 ```
-
 # 4.	Preprocesar el contenido textual del tweet (content) utilizando técnicas de vectorización como CountVectorizer o TfidfVectorizer. Pueden aplicar limpieza de texto, eliminación de stopwords, y lematización si lo consideran relevante, etc.
 ## Preprocesamiento del texto
 ```{python}
@@ -135,14 +134,14 @@ from sklearn.pipeline import Pipeline
 # Definir el preprocesador
 preprocessor = ColumnTransformer(
     transformers=[
-        ('text', vectorizer, 'content'),
-        ('cat', OneHotEncoder(), categorical_features)
+        ('text', vectorizer, 'content'), # Procesar la columna de texto
+        ('cat', OneHotEncoder(), categorical_features) # Procesar las columnas categóricas
     ]
 )
 
 # Crear el pipeline
 pipeline = Pipeline(steps=[
-    ('preprocessor', preprocessor)
+    ('preprocessor', preprocessor) # Preprocesamiento
 ])      
 pipeline.fit(df)
 X = pipeline.transform(df)
@@ -191,6 +190,9 @@ from sklearn.metrics import ConfusionMatrixDisplay
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
 disp.ax_.set_title('Matriz de Confusión')
+# etiquetas de los ejes
+disp.ax_.set_xlabel('Predicción')
+disp.ax_.set_ylabel('Realidad')
 plt.show()
 ```
 # calcular accuracy, precision, recall y F1-score
@@ -208,3 +210,10 @@ print(f"Recall: {recall}")
 print(f"F1 Score: {f1}")    
 print("Reporte de clasificación\n", classification_report(y_test, y_pred))
 ```
+# Conclusiones  
+- Se logró cargar y explorar el dataset de tweets, identificando las columnas relevantes para el análisis.
+- Se definió la variable objetivo 'sentiment' basada en el contenido del tweet utilizando VADER.
+- Se preprocesaron las variables categóricas con OneHotEncoder y el texto con TfidfVectorizer, incluyendo la eliminación de stopwords en español.
+- Se creó un pipeline que integra el preprocesamiento de texto y variables categóricas. 
+- Se entrenó un modelo de clasificación (Logistic Regression y MultinomialNB) para predecir el sentimiento de los tweets.
+- El modelo fue evaluado utilizando métricas como accuracy, precision, recall, F1-score, y se visualizó la matriz de confusión.

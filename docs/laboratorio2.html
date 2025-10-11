@@ -266,7 +266,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#cargar-dataset-y-explorar" id="toc-cargar-dataset-y-explorar" class="nav-link" data-scroll-target="#cargar-dataset-y-explorar">Cargar dataset y explorar</a></li>
   <li><a href="#explorar-el-dataset-eda" id="toc-explorar-el-dataset-eda" class="nav-link" data-scroll-target="#explorar-el-dataset-eda">Explorar el dataset EDA</a></li>
-  <li><a href="#eliminar-features-no-relevantes" id="toc-eliminar-features-no-relevantes" class="nav-link" data-scroll-target="#eliminar-features-no-relevantes">Eliminar features no relevantes</a></li>
+  <li><a href="#eliminar-features-no-relevantes" id="toc-eliminar-features-no-relevantes" class="nav-link" data-scroll-target="#eliminar-features-no-relevantes">Eliminar features no relevantes</a>
+  <ul class="collapse">
+  <li><a href="#vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos." id="toc-vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos." class="nav-link" data-scroll-target="#vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos.">VADER es una herramienta de análisis de sentimientos basada en reglas, altamente optimizada para texto en redes sociales, que utiliza un diccionario llamado Lexicon , diseñado específicamente para el análisis de sentimientos.</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#derivar-o-seleccionar-la-variable-objetivo-target-para-una-tarea-de-clasificación." id="toc-derivar-o-seleccionar-la-variable-objetivo-target-para-una-tarea-de-clasificación." class="nav-link" data-scroll-target="#derivar-o-seleccionar-la-variable-objetivo-target-para-una-tarea-de-clasificación.">2. Derivar o seleccionar la variable objetivo (target) para una tarea de clasificación.</a>
   <ul class="collapse">
@@ -293,6 +296,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#classification_report" id="toc-classification_report" class="nav-link" data-scroll-target="#classification_report">classification_report</a></li>
   </ul></li>
   <li><a href="#calcular-accuracy-precision-recall-y-f1-score" id="toc-calcular-accuracy-precision-recall-y-f1-score" class="nav-link" data-scroll-target="#calcular-accuracy-precision-recall-y-f1-score">calcular accuracy, precision, recall y F1-score</a></li>
+  <li><a href="#conclusiones" id="toc-conclusiones" class="nav-link" data-scroll-target="#conclusiones">Conclusiones</a></li>
   </ul>
 </nav>
     </div>
@@ -323,7 +327,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="6b61a963" class="cell" data-execution_count="1">
+<div id="a6e59641" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_20newsgroups</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -369,7 +373,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>1. Explorar el dataset y eliminar los features que no considere relevantes para el análisis.</h1>
 <section id="cargar-dataset-y-explorar" class="level2">
 <h2 class="anchored" data-anchor-id="cargar-dataset-y-explorar">Cargar dataset y explorar</h2>
-<div id="11c41cde" class="cell" data-execution_count="2">
+<div id="86266040" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv"</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Cargar el dataset</span></span>
@@ -386,7 +390,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="explorar-el-dataset-eda" class="level2">
 <h2 class="anchored" data-anchor-id="explorar-el-dataset-eda">Explorar el dataset EDA</h2>
-<div id="1c8d5e82" class="cell" data-execution_count="3">
+<div id="2c0943a1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df.head()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.info()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df.describe()</span>
@@ -437,7 +441,7 @@ Columnas disponibles: ['tweetId', 'tweetUrl', 'content', 'isReply', 'replyTo', '
 </section>
 <section id="eliminar-features-no-relevantes" class="level2">
 <h2 class="anchored" data-anchor-id="eliminar-features-no-relevantes">Eliminar features no relevantes</h2>
-<div id="1d6fe5f9" class="cell" data-execution_count="4">
+<div id="52a2f9c2" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar columnas irrelevantes</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'tweetId'</span>, <span class="st">'tweetUrl'</span>, <span class="st">'replyTo'</span>, <span class="st">'createdAt'</span>, <span class="st">'authorId'</span>, <span class="st">'authorName'</span>, <span class="st">'authorUsername'</span>,  <span class="st">'authorFollowers'</span>, <span class="st">'source'</span>, <span class="st">'hashtags'</span>, <span class="st">'mentions'</span>, <span class="st">'Date'</span>, <span class="st">'time_response'</span>, <span class="st">'account_age_days'</span>, <span class="st">'mentions_count'</span>, <span class="st">'hashtags_count'</span>, <span class="st">'content_length'</span>, <span class="st">'sentiment_polarity'</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -459,7 +463,9 @@ dtypes: bool(3), int64(2), object(3)
 memory usage: 6.5+ MB</code></pre>
 </div>
 </div>
-<div id="df1a96bc" class="cell" data-execution_count="5">
+<section id="vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos." class="level3">
+<h3 class="anchored" data-anchor-id="vader-es-una-herramienta-de-análisis-de-sentimientos-basada-en-reglas-altamente-optimizada-para-texto-en-redes-sociales-que-utiliza-un-diccionario-llamado-lexicon-diseñado-específicamente-para-el-análisis-de-sentimientos.">VADER es una herramienta de análisis de sentimientos basada en reglas, altamente optimizada para texto en redes sociales, que utiliza un diccionario llamado Lexicon , diseñado específicamente para el análisis de sentimientos.</h3>
+<div id="5bead288" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Calcula el puntaje de polaridad compuesto (compound score)</span></span>
@@ -469,8 +475,8 @@ memory usage: 6.5+ MB</code></pre>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">'Neutro'</span></span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># VADER usa el 'compound score' (va de -1 a +1)</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sid.polarity_scores(text)</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    compound_score <span class="op">=</span> scores[<span class="st">'compound'</span>]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    scores <span class="op">=</span> sid.polarity_scores(text) <span class="co"># Obtener los puntajes de polaridad</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    compound_score <span class="op">=</span> scores[<span class="st">'compound'</span>] <span class="co"># Obtener el compound score</span></span>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Definir umbrales (estos son los umbrales estándar de VADER)</span></span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> compound_score <span class="op">&gt;=</span> <span class="fl">0.05</span>:</span>
@@ -482,11 +488,12 @@ memory usage: 6.5+ MB</code></pre>
 </div>
 </section>
 </section>
+</section>
 <section id="derivar-o-seleccionar-la-variable-objetivo-target-para-una-tarea-de-clasificación." class="level1">
 <h1>2. Derivar o seleccionar la variable objetivo (target) para una tarea de clasificación.</h1>
 <section id="seleccionar-la-variable-objetivo" class="level2">
 <h2 class="anchored" data-anchor-id="seleccionar-la-variable-objetivo">Seleccionar la variable objetivo</h2>
-<div id="8610a771" class="cell" data-execution_count="6">
+<div id="f46e148a" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Clasificar los tweets según su sentimiento</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sentiment'</span>] <span class="op">=</span> df[<span class="st">'content'</span>].<span class="bu">apply</span>(classify_sentiment) <span class="co"># Crear la variable objetivo basada en el contenido del tweet</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -506,7 +513,7 @@ Name: count, dtype: int64</code></pre>
 <h1>3. Preprocesar variables categóricas mediante técnicas como OneHotEncoder, OrdinalEncoder u otras que consideren pertinentes.</h1>
 <section id="preprocesar-variables-categóricas" class="level2">
 <h2 class="anchored" data-anchor-id="preprocesar-variables-categóricas">Preprocesar variables categóricas</h2>
-<div id="5105fe1b" class="cell" data-execution_count="7">
+<div id="c89a20ce" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> OneHotEncoder</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar OneHotEncoder a las variables categóricas</span></span>
@@ -521,7 +528,7 @@ Name: count, dtype: int64</code></pre>
 <h1>4. Preprocesar el contenido textual del tweet (content) utilizando técnicas de vectorización como CountVectorizer o TfidfVectorizer. Pueden aplicar limpieza de texto, eliminación de stopwords, y lematización si lo consideran relevante, etc.</h1>
 <section id="preprocesamiento-del-texto" class="level2">
 <h2 class="anchored" data-anchor-id="preprocesamiento-del-texto">Preprocesamiento del texto</h2>
-<div id="4c943fa4" class="cell" data-execution_count="8">
+<div id="93b3536e" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Extraer el contenido textual</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>corpus <span class="op">=</span> df[<span class="st">'content'</span>].astype(<span class="bu">str</span>).tolist()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el vectorizador (CountVectorizer o TfidfVectorizer)</span></span>
@@ -536,21 +543,21 @@ Name: count, dtype: int64</code></pre>
 <h1>5. Crear un pipeline de preprocesamiento utilizando ColumnTransformer o estructuras equivalentes para unir variables categóricas, textuales y numéricas (si aplica).</h1>
 <section id="crear-el-pipeline" class="level2">
 <h2 class="anchored" data-anchor-id="crear-el-pipeline">Crear el pipeline</h2>
-<div id="8e7d22ab" class="cell" data-execution_count="9">
+<div id="20a6d506" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definir el preprocesador</span></span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>preprocessor <span class="op">=</span> ColumnTransformer(</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    transformers<span class="op">=</span>[</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'text'</span>, vectorizer, <span class="st">'content'</span>),</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'cat'</span>, OneHotEncoder(), categorical_features)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'text'</span>, vectorizer, <span class="st">'content'</span>), <span class="co"># Procesar la columna de texto</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'cat'</span>, OneHotEncoder(), categorical_features) <span class="co"># Procesar las columnas categóricas</span></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    ]</span>
 <span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear el pipeline</span></span>
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline(steps<span class="op">=</span>[</span>
-<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'preprocessor'</span>, preprocessor) <span class="co"># Preprocesamiento</span></span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>])      </span>
 <span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>pipeline.fit(df)</span>
 <span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> pipeline.transform(df)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -561,7 +568,7 @@ Name: count, dtype: int64</code></pre>
 <h1>6. Entrenar un modelo de clasificación. Aunque el foco no está en los modelos, deben aplicar al menos uno entre:</h1>
 <section id="logisticregression" class="level2">
 <h2 class="anchored" data-anchor-id="logisticregression">LogisticRegression</h2>
-<div id="a26c0f23" class="cell" data-execution_count="10">
+<div id="3b05711c" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -583,7 +590,7 @@ Name: count, dtype: int64</code></pre>
 <h1>7. Evaluar el desempeño del modelo utilizando:</h1>
 <section id="classification_report" class="level2">
 <h2 class="anchored" data-anchor-id="classification_report">classification_report</h2>
-<div id="a36ff9cb" class="cell" data-execution_count="11">
+<div id="2267e677" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">##  confusion_matrix</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -599,7 +606,10 @@ Name: count, dtype: int64</code></pre>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm)</span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>disp.plot()</span>
 <span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_title(<span class="st">'Matriz de Confusión'</span>)</span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a><span class="co"># etiquetas de los ejes</span></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_xlabel(<span class="st">'Predicción'</span>)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>disp.ax_.set_ylabel(<span class="st">'Realidad'</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -619,7 +629,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="calcular-accuracy-precision-recall-y-f1-score" class="level1">
 <h1>calcular accuracy, precision, recall y F1-score</h1>
-<div id="4e97f967" class="cell" data-execution_count="12">
+<div id="6fd022cb" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, precision_score, recall_score, f1_score</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
@@ -650,6 +660,17 @@ weighted avg       1.00      1.00      1.00     31775
 </code></pre>
 </div>
 </div>
+</section>
+<section id="conclusiones" class="level1">
+<h1>Conclusiones</h1>
+<ul>
+<li>Se logró cargar y explorar el dataset de tweets, identificando las columnas relevantes para el análisis.</li>
+<li>Se definió la variable objetivo ‘sentiment’ basada en el contenido del tweet utilizando VADER.</li>
+<li>Se preprocesaron las variables categóricas con OneHotEncoder y el texto con TfidfVectorizer, incluyendo la eliminación de stopwords en español.</li>
+<li>Se creó un pipeline que integra el preprocesamiento de texto y variables categóricas.</li>
+<li>Se entrenó un modelo de clasificación (Logistic Regression y MultinomialNB) para predecir el sentimiento de los tweets.</li>
+<li>El modelo fue evaluado utilizando métricas como accuracy, precision, recall, F1-score, y se visualizó la matriz de confusión.</li>
+</ul>
 
 
 </section>
