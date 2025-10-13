@@ -251,6 +251,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Laboratorio 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correccionlab2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correción Laboratorio 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Midterm</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./midterm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm Project</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -301,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="9935ff91" class="cell" data-execution_count="1">
+<div id="2fa3fedf" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> fetch_20newsgroups</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
@@ -333,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cargar-dataset" class="level1">
 <h1>Cargar dataset</h1>
-<div id="ab069c81" class="cell" data-execution_count="2">
+<div id="4ec84cf7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>categorias <span class="op">=</span> [<span class="st">'comp.graphics'</span>, <span class="st">'comp.sys.mac.hardware'</span>, <span class="st">'rec.sport.baseball'</span>, <span class="st">'talk.politics.misc'</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>newsgroups <span class="op">=</span> fetch_20newsgroups(subset<span class="op">=</span><span class="st">'train'</span>, categories<span class="op">=</span>categorias, remove<span class="op">=</span>(<span class="st">'headers'</span>, <span class="st">'footers'</span>, <span class="st">'quotes'</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(newsgroups.target_names)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -344,20 +367,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="feature-y-target" class="level1">
 <h1>Feature y target</h1>
-<div id="afe418bc" class="cell" data-execution_count="3">
+<div id="f70486e0" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>X_text <span class="op">=</span> newsgroups.data</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> newsgroups.target   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="train-test-split" class="level1">
 <h1>train-test split</h1>
-<div id="6abbdbe7" class="cell" data-execution_count="4">
+<div id="d007f865" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_text, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="vectorización-de-texto" class="level1">
 <h1>Vectorización de texto</h1>
-<div id="53e2b40a" class="cell" data-execution_count="5">
+<div id="0c2d1f13" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>stopwords <span class="op">=</span> stopwords.words(<span class="st">"english"</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#stopwords.append('blabla')# añadir stopwords personalizadas</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#vectorizer = TfidfVectorizer()  # Cambiar a CountVectorizer() para usar conteo de palabras</span></span>
@@ -366,13 +389,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="modelo" class="level1">
 <h1>Modelo</h1>
-<div id="9aeb2c2f" class="cell" data-execution_count="6">
+<div id="731832bd" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MultinomialNB()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pipeline" class="level1">
 <h1>pipeline</h1>
-<div id="9a2392eb" class="cell" data-execution_count="7">
+<div id="a46d3e9b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'vectorizer'</span>, vectorizer),  <span class="co"># Cambiar a CountVectorizer() para usar conteo de palabras</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'classifier'</span>, model)</span>
@@ -381,7 +404,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="fit-del-modelo" class="level1">
 <h1>Fit del modelo</h1>
-<div id="023296d0" class="cell" data-execution_count="8">
+<div id="34049678" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <style>#sk-container-id-1 {
@@ -1079,13 +1102,13 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="predicciones" class="level1">
 <h1>Predicciones</h1>
-<div id="9dcd5353" class="cell" data-execution_count="9">
+<div id="0e6c5aba" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipeline.predict(X_test)   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="reporte-de-clasificación" class="level1">
 <h1>Reporte de clasificación</h1>
-<div id="04f6d642" class="cell" data-execution_count="10">
+<div id="c14e1a3b" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reporte de clasificación</span><span class="ch">\n</span><span class="st">"</span>, classification_report(y_test, y_pred, target_names<span class="op">=</span>newsgroups.target_names))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Reporte de clasificación
@@ -1105,7 +1128,7 @@ comp.sys.mac.hardware       0.91      0.92      0.91       116
 </section>
 <section id="matriz-de-confusión" class="level1">
 <h1>Matriz de confusión</h1>
-<div id="689170ba" class="cell" data-execution_count="11">
+<div id="27e10c18" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>conf_matrix <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>conf_matrix, display_labels<span class="op">=</span>newsgroups.target_names)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>disp.plot(cmap<span class="op">=</span>plt.cm.Blues)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

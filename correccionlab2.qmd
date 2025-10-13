@@ -1,0 +1,193 @@
+---
+title: "Correción Laboratorio 2"
+Authors: "Diego Altamirano Plazarte"
+date: "2025-08-11"
+code-fold: false
+---
+# Corrección Laboratorio 2
+# Importar librerías
+```{python}
+import pandas as pd
+import re
+import nltk
+from pysentimiento import create_analyzer
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.model_selection import train_test_split
+from nltk.corpus import wordnet
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import classification_report
+from sklearn.metrics import confusion_matrix
+from sklearn.metrics import ConfusionMatrixDisplay
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.pipeline import Pipeline
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+nltk.download('wordnet') # necessary for lemmatization
+```
+# Cargar dataset
+```{python}
+url = "https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv"
+
+# 1. Cargar el dataset
+try:
+    df = pd.read_csv(url)
+    print("Dataset cargado exitosamente.")
+except Exception as e:
+    print(f"Error al cargar el dataset: {e}")
+    exit()
+
+# Para pruebas rápidas, trabajar solo con una muestra pequeña
+df = df.sample(n=10000, random_state=42)
+```
+# Explorar el dataset EDA
+## Mostrar las primeras filas (5)
+```{python}
+df.head(5)
+```
+## Información del dataset
+```{python}
+df.info()
+```
+## Inspección de datos
+```{python}
+print("\n--- Inspección de Datos ---")
+print(f"Forma del dataset: {df.shape}")
+print(f"Columnas disponibles: {df.columns.tolist()}")
+print(f"Nulos por columna:\n{df.isnull().sum()}")
+```
+## Eliminar features irrelevantes
+```{python}
+df = df.drop(columns=['tweetId', 'tweetUrl', 'isReply', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername', 'authorVerified', 'authorFollowers', 'authorProfilePic', 'authorJoinDate', 'source', 'hashtags', 'mentions', 'conversationId', 'inReplyToId', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'has_profile_picture', 'sentiment_polarity']) # eliminar columnas irrelevantes
+```
+
+## Analizar contenido de las columnas
+```{python}
+for column in df.columns:
+    unique_values = df[column].nunique()
+    print(f"\nColumna: {column}")
+    print(f"Número de valores únicos: {unique_values}")
+    if unique_values <= 10:
+        print(f"Valores únicos: {df[column].unique()}")
+    else:
+        print(f"Primeros 10 valores únicos: {df[column].unique()[:10]}")
+```
+# Preprocesamiento de datos
+## limpieza de datos de la columna 'content'
+### Eliminar URLs, menciones y caracteres especiales
+```{python}
+def clean_text(text):
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE) # eliminar URLs
+    text = re.sub(r'@\w+', '', text) # eliminar menciones
+    text = re.sub(r'#\w+', '', text) # eliminar hashtags
+    text = re.sub(r'\n', ' ', text) # eliminar saltos de línea
+    text = re.sub(r'[^A-Za-z0-9\s]+', '', text) # eliminar caracteres especiales
+    text = text.lower() # convertir a minúsculas
+    return text
+df['content'] = df['content'].apply(clean_text)
+```
+### ver resultados de la limpieza
+```{python}
+df['content'].head(10)
+```
+# crear variable objetivo
+### Importar pysentimiento
+```{python}
+#analyzer = SentimentIntensityAnalyzer()
+analyzer = create_analyzer(task="sentiment", lang="es")
+```
+### Función para clasificar sentimiento
+### crear función para clasificar si un sentimiento es positivo, negativo o neutro con la librería pysentimiento
+```{python}
+def classify_sentiment(text):
+    """
+    Clasifica el sentimiento de un texto en Positivo, Negativo o Neutro.
+    """
+    if pd.isna(text): # Manejar posibles NaN si no se hizo limpieza previa
+        return 'Neutro'
+
+    # Usar el analizador de pysentimiento
+    sentiment = analyzer.predict(text)
+    return sentiment.output  # Extrae la etiqueta: POS, NEG o NEU
+
+```
+### Aplicar la función classify_sentiment para crear la variable objetivo
+```{python}
+df['sentiment'] = df['content'].apply(classify_sentiment) # Crear la variable objetivo basada en el contenido del tweet
+print(df['sentiment'].value_counts()) # Verificar la distribución de las clases
+```
+
+### Selección de features
+```{python}
+X = df['content']  # Feature: contenido del tweet
+y = df['sentiment']  # Target: sentimiento clasificado
+```
+### Preprocesamiento manual de texto
+```{python}
+lemmatizer = WordNetLemmatizer()
+stop_words = list(stopwords.words('spanish'))
+
+def preprocess_text(text):
+    tokens = word_tokenize(text)
+    tokens = [word for word in tokens if word.lower() not in stop_words] # Eliminar stopwords 
+    # Lematización
+    tokens = [lemmatizer.lemmatize(word) for word in tokens]
+    return ' '.join(tokens)
+
+df['content'] = df['content'].apply(preprocess_text)
+```
+### split data
+```{python}
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+### Vectorización de texto con tfidf
+```{python}
+vectorizer = TfidfVectorizer()
+```
+### Modelo
+```{python}
+# Entrenamiento del modelo
+model = MultinomialNB()
+```
+### pipeline
+```{python}
+
+
+pipeline = Pipeline([
+    ('vectorizer', vectorizer),
+    ('classifier', model)
+])
+```
+### Fit del modelo
+```{python}
+pipeline.fit(X_train, y_train)
+```
+### Predicciones
+```{python}
+y_pred = pipeline.predict(X_test)   
+```
+### Reporte de clasificación
+```{python}
+print(classification_report(y_test, y_pred))
+```
+### Matriz de confusión
+```{python}
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm) # Crear el display
+disp.plot()
+disp.ax_.set_title('Matriz de Confusión') 
+# etiquetas de los ejes
+# etiqueta los labels de los ejes
+disp.ax_.set_xticks(range(len(pipeline.classes_)))
+disp.ax_.set_yticks(range(len(pipeline.classes_))) 
+disp.ax_.set_xticklabels(pipeline.classes_)
+disp.ax_.set_yticklabels(pipeline.classes_)
+disp.ax_.set_xlabel('Predicción')
+disp.ax_.set_ylabel('Realidad')
+plt.show()
+```

@@ -147,7 +147,7 @@
     "href": "laboratorio2.html#classification_report",
     "title": "Laboratorio 2",
     "section": "classification_report",
-    "text": "classification_report\n\n##  confusion_matrix\nfrom sklearn.metrics import confusion_matrix\nimport seaborn as sns\nimport matplotlib.pyplot as plt\ncm = confusion_matrix(y_test, y_pred)\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues')  \nplt.xticks(ticks=range(len(model.classes_)), labels=model.classes_)\nplt.yticks(ticks=range(len(model.classes_)), labels=model.classes_, rotation=0)\nplt.xlabel('Predicción')\nplt.ylabel('Realidad')\nplt.title('Matriz de Confusión')\nplt.show()  \n##  ConfusionMatrixDisplay\nfrom sklearn.metrics import ConfusionMatrixDisplay\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm)\ndisp.plot()\ndisp.ax_.set_title('Matriz de Confusión')\n# etiquetas de los ejes\n# etiqueta los labels de los ejes\ndisp.ax_.set_xticks(range(len(model.classes_)))\ndisp.ax_.set_yticks(range(len(model.classes_))) \ndisp.ax_.set_xticklabels(model.classes_)\ndisp.ax_.set_yticklabels(model.classes_)\ndisp.ax_.set_xlabel('Predicción')\ndisp.ax_.set_ylabel('Realidad')\nplt.show()",
+    "text": "classification_report\n\n##  confusion_matrix\nfrom sklearn.metrics import confusion_matrix\nimport seaborn as sns\nimport matplotlib.pyplot as plt\ncm = confusion_matrix(y_test, y_pred)\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues')  \nplt.xticks(ticks=range(len(model.classes_)), labels=model.classes_)\nplt.yticks(ticks=range(len(model.classes_)), labels=model.classes_, rotation=0)\nplt.xlabel('Predicción')\nplt.ylabel('Realidad')\nplt.title('Matriz de Confusión')\nplt.show()  \n##  ConfusionMatrixDisplay\nfrom sklearn.metrics import ConfusionMatrixDisplay\ndisp = ConfusionMatrixDisplay(confusion_matrix=cm) # Crear el display\ndisp.plot()\ndisp.ax_.set_title('Matriz de Confusión') \n# etiquetas de los ejes\n# etiqueta los labels de los ejes\ndisp.ax_.set_xticks(range(len(model.classes_)))\ndisp.ax_.set_yticks(range(len(model.classes_))) \ndisp.ax_.set_xticklabels(model.classes_)\ndisp.ax_.set_yticklabels(model.classes_)\ndisp.ax_.set_xlabel('Predicción')\ndisp.ax_.set_ylabel('Realidad')\nplt.show()",
     "crumbs": [
       "Laboratorios",
       "Laboratorio 2"
@@ -184,13 +184,212 @@
     ]
   },
   {
-    "objectID": "clasificacion.html",
-    "href": "clasificacion.html",
-    "title": "1. Import libraries",
-    "section": "",
-    "text": "Code\n# 1. Import libraries\nfrom sklearn.datasets import load_breast_cancer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, ConfusionMatrixDisplay\n\n\n\n2. Load dataset\n\n\nCode\ndata = load_breast_cancer()\ndata\nX = data.data\ny = data.target # 0 = malignant, 1 = benign\n\n\n\n\n3. Split dataset\n\n\nCode\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       \nX_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n\n((455, 30), (114, 30), (455,), (114,))\n\n\n\n\n4. Create and train model\n\n\nCode\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train) \n\n\nC:\\MachineLearn\\.venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py:473: ConvergenceWarning: lbfgs failed to converge after 1000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=1000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression\n  n_iter_i = _check_optimize_result(\n\n\nLogisticRegression(max_iter=1000)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LogisticRegression?Documentation for LogisticRegressioniFitted\n        \n            \n                Parameters\n                \n\n\n\n\npenalty \n'l2'\n\n\n\ndual \nFalse\n\n\n\ntol \n0.0001\n\n\n\nC \n1.0\n\n\n\nfit_intercept \nTrue\n\n\n\nintercept_scaling \n1\n\n\n\nclass_weight \nNone\n\n\n\nrandom_state \nNone\n\n\n\nsolver \n'lbfgs'\n\n\n\nmax_iter \n1000\n\n\n\nmulti_class \n'deprecated'\n\n\n\nverbose \n0\n\n\n\nwarm_start \nFalse\n\n\n\nn_jobs \nNone\n\n\n\nl1_ratio \nNone\n\n\n\n\n            \n        \n    \n\n\n\n\nPredictions\n\n\nCode\ny_pred = model.predict(X_test)\n\n\n\n\n5. Evaluate model\n\n\nCode\naccuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test, y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy}\")\nprint(f\"Precision: {precision}\")\nprint(f\"Recall: {recall}\")\nprint(f\"F1 Score: {f1}\")\n\nConfusionMatrixDisplay.from_predictions(y_test, y_pred) \n\n\nAccuracy: 0.956140350877193\nPrecision: 0.958904109589041\nRecall: 0.9722222222222222\nF1 Score: 0.9655172413793104\n\n\n\n\n\n\n\n\n\n\n\ncon Pipelines\n\n\nimport libraries\n\n\nCode\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\n\n\n\ncarga de datos\n\n\nCode\ndata = load_breast_cancer()\ndata\nX = data.data\ny = data.target # 0 = malignant, 1 = benign\n\n\n\n\n3. Split dataset\n\n\nCode\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       \nX_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n\n((455, 30), (114, 30), (455,), (114,))\n\n\n\n\n4. pipeline\n\n\nCode\npipeline = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"log_reg\", LogisticRegression(max_iter=1000))\n])\n\n\n\n\ntrain model\n\n\nCode\npipeline.fit(X_train, y_train)\n\n\nPipeline(steps=[('scaler', StandardScaler()),\n                ('log_reg', LogisticRegression(max_iter=1000))])In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.Pipeline?Documentation for PipelineiFitted\n        \n            \n                Parameters\n                \n\n\n\n\nsteps \n[('scaler', ...), ('log_reg', ...)]\n\n\n\ntransform_input \nNone\n\n\n\nmemory \nNone\n\n\n\nverbose \nFalse\n\n\n\n\n            \n        \n    StandardScaler?Documentation for StandardScaler\n        \n            \n                Parameters\n                \n\n\n\n\ncopy \nTrue\n\n\n\nwith_mean \nTrue\n\n\n\nwith_std \nTrue\n\n\n\n\n            \n        \n    LogisticRegression?Documentation for LogisticRegression\n        \n            \n                Parameters\n                \n\n\n\n\npenalty \n'l2'\n\n\n\ndual \nFalse\n\n\n\ntol \n0.0001\n\n\n\nC \n1.0\n\n\n\nfit_intercept \nTrue\n\n\n\nintercept_scaling \n1\n\n\n\nclass_weight \nNone\n\n\n\nrandom_state \nNone\n\n\n\nsolver \n'lbfgs'\n\n\n\nmax_iter \n1000\n\n\n\nmulti_class \n'deprecated'\n\n\n\nverbose \n0\n\n\n\nwarm_start \nFalse\n\n\n\nn_jobs \nNone\n\n\n\nl1_ratio \nNone\n\n\n\n\n            \n        \n    \n\n\n\n\nPredictions\n\n\nCode\ny_pred_pipeline = pipeline.predict(X_test)\n\n\n\n\n5. Evaluate model\n\n\nCode\naccuracy = accuracy_score(y_test, y_pred_pipeline)\nprecision = precision_score(y_test, y_pred_pipeline)\nrecall = recall_score(y_test, y_pred_pipeline)\nf1 = f1_score(y_test, y_pred_pipeline)\n\nprint(f\"Accuracy: {accuracy}\")\nprint(f\"Precision: {precision}\")\nprint(f\"Recall: {recall}\")\nprint(f\"F1 Score: {f1}\")\n\nConfusionMatrixDisplay.from_predictions(y_test, y_pred_pipeline) \n\n\nAccuracy: 0.9824561403508771\nPrecision: 0.9861111111111112\nRecall: 0.9861111111111112\nF1 Score: 0.9861111111111112",
+    "objectID": "correccionlab2.html#mostrar-las-primeras-filas-5",
+    "href": "correccionlab2.html#mostrar-las-primeras-filas-5",
+    "title": "Correción Laboratorio 2",
+    "section": "Mostrar las primeras filas (5)",
+    "text": "Mostrar las primeras filas (5)\n\ndf.head(5)\n\n\n\n\n\n\n\n\ntweetId\ntweetUrl\ncontent\nisReply\nreplyTo\ncreatedAt\nauthorId\nauthorName\nauthorUsername\nauthorVerified\n...\nconversationId\ninReplyToId\nDate\ntime_response\naccount_age_days\nmentions_count\nhashtags_count\ncontent_length\nhas_profile_picture\nsentiment_polarity\n\n\n\n\n4622\n1878630970745900800\nhttps://x.com/Pableins15/status/18786309707459...\n@DanielNoboaOk @DiegoBorjaPC Lávate el hocico ...\nTrue\nDanielNoboaOk\n2025-01-13 02:31:00\n176948611\nPablo Balarezo\nPableins15\nFalse\n...\n1878539079249547410\n1878539079249547520\n2025-01-12 20:26:32\n364.466667\n5261\n2\n0\n309\nFalse\n0.0\n\n\n46636\n1904041877503984128\nhttps://x.com/solma1201/status/190404187750398...\n@DanielNoboaOk De esa arrastrada no te levanta...\nTrue\nDanielNoboaOk\n2025-03-24 05:25:00\n1368663286582030336\nSolma1201\nsolma1201\nFalse\n...\n1904003201143115786\n1904003201143115776\n2025-03-24 02:51:52\n153.133333\n1399\n1\n0\n70\nTrue\n0.0\n\n\n61932\n1877463444649046016\nhttps://x.com/Mediterran67794/status/187746344...\n@LuisaGonzalezEc @RC5Oficial Protegiendo a los...\nTrue\nLuisaGonzalezEc\n2025-01-09 21:12:00\n1851005619106451712\nMédico Escritor Filósofo Hermeneútico\nMediterran67794\nFalse\n...\n1877158437236228465\n1877158437236228352\n2025-01-09 01:00:22\n1211.633333\n68\n2\n0\n122\nTrue\n0.0\n\n\n10464\n1881356046108885248\nhttps://x.com/ardededa/status/1881356046108885494\n@DanielNoboaOk #NoboaPresidente. Todo 7!\nTrue\nDanielNoboaOk\n2025-01-20 15:00:00\n315799544\nDenise\nardededa\nFalse\n...\n1881165128185561105\n1881165128185560832\n2025-01-20 02:21:31\n758.483333\n4955\n1\n0\n41\nTrue\n0.0\n\n\n105904\n1888331962063978752\nhttps://x.com/LMarquinezm/status/1888331962063...\n@slider1908 @LuisaGonzalezEc @DianaAtamaint @c...\nTrue\nslider1908\n2025-02-08 20:59:00\n1551883554\nLuis Marquínez\nLMarquinezm\nFalse\n...\n1888241152287232352\n1888256000085397504\n2025-02-08 14:59:07\n359.883333\n4208\n5\n0\n101\nTrue\n0.0\n\n\n\n\n5 rows × 26 columns",
     "crumbs": [
-      "Classification"
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "correccionlab2.html#información-del-dataset",
+    "href": "correccionlab2.html#información-del-dataset",
+    "title": "Correción Laboratorio 2",
+    "section": "Información del dataset",
+    "text": "Información del dataset\n\ndf.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nIndex: 10000 entries, 4622 to 74833\nData columns (total 26 columns):\n #   Column               Non-Null Count  Dtype  \n---  ------               --------------  -----  \n 0   tweetId              10000 non-null  int64  \n 1   tweetUrl             10000 non-null  object \n 2   content              10000 non-null  object \n 3   isReply              10000 non-null  bool   \n 4   replyTo              9946 non-null   object \n 5   createdAt            10000 non-null  object \n 6   authorId             10000 non-null  int64  \n 7   authorName           10000 non-null  object \n 8   authorUsername       10000 non-null  object \n 9   authorVerified       10000 non-null  bool   \n 10  authorFollowers      10000 non-null  int64  \n 11  authorProfilePic     10000 non-null  object \n 12  authorJoinDate       10000 non-null  object \n 13  source               10000 non-null  object \n 14  hashtags             812 non-null    object \n 15  mentions             9978 non-null   object \n 16  conversationId       10000 non-null  int64  \n 17  inReplyToId          10000 non-null  int64  \n 18  Date                 10000 non-null  object \n 19  time_response        10000 non-null  float64\n 20  account_age_days     10000 non-null  int64  \n 21  mentions_count       10000 non-null  int64  \n 22  hashtags_count       10000 non-null  int64  \n 23  content_length       10000 non-null  int64  \n 24  has_profile_picture  10000 non-null  bool   \n 25  sentiment_polarity   10000 non-null  float64\ndtypes: bool(3), float64(2), int64(9), object(12)\nmemory usage: 1.9+ MB",
+    "crumbs": [
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "correccionlab2.html#inspección-de-datos",
+    "href": "correccionlab2.html#inspección-de-datos",
+    "title": "Correción Laboratorio 2",
+    "section": "Inspección de datos",
+    "text": "Inspección de datos\n\nprint(\"\\n--- Inspección de Datos ---\")\nprint(f\"Forma del dataset: {df.shape}\")\nprint(f\"Columnas disponibles: {df.columns.tolist()}\")\nprint(f\"Nulos por columna:\\n{df.isnull().sum()}\")\n\n\n--- Inspección de Datos ---\nForma del dataset: (10000, 26)\nColumnas disponibles: ['tweetId', 'tweetUrl', 'content', 'isReply', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername', 'authorVerified', 'authorFollowers', 'authorProfilePic', 'authorJoinDate', 'source', 'hashtags', 'mentions', 'conversationId', 'inReplyToId', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'has_profile_picture', 'sentiment_polarity']\nNulos por columna:\ntweetId                   0\ntweetUrl                  0\ncontent                   0\nisReply                   0\nreplyTo                  54\ncreatedAt                 0\nauthorId                  0\nauthorName                0\nauthorUsername            0\nauthorVerified            0\nauthorFollowers           0\nauthorProfilePic          0\nauthorJoinDate            0\nsource                    0\nhashtags               9188\nmentions                 22\nconversationId            0\ninReplyToId               0\nDate                      0\ntime_response             0\naccount_age_days          0\nmentions_count            0\nhashtags_count            0\ncontent_length            0\nhas_profile_picture       0\nsentiment_polarity        0\ndtype: int64",
+    "crumbs": [
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "correccionlab2.html#eliminar-features-irrelevantes",
+    "href": "correccionlab2.html#eliminar-features-irrelevantes",
+    "title": "Correción Laboratorio 2",
+    "section": "Eliminar features irrelevantes",
+    "text": "Eliminar features irrelevantes\n\ndf = df.drop(columns=['tweetId', 'tweetUrl', 'isReply', 'replyTo', 'createdAt', 'authorId', 'authorName', 'authorUsername', 'authorVerified', 'authorFollowers', 'authorProfilePic', 'authorJoinDate', 'source', 'hashtags', 'mentions', 'conversationId', 'inReplyToId', 'Date', 'time_response', 'account_age_days', 'mentions_count', 'hashtags_count', 'content_length', 'has_profile_picture', 'sentiment_polarity']) # eliminar columnas irrelevantes",
+    "crumbs": [
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "correccionlab2.html#analizar-contenido-de-las-columnas",
+    "href": "correccionlab2.html#analizar-contenido-de-las-columnas",
+    "title": "Correción Laboratorio 2",
+    "section": "Analizar contenido de las columnas",
+    "text": "Analizar contenido de las columnas\n\nfor column in df.columns:\n    unique_values = df[column].nunique()\n    print(f\"\\nColumna: {column}\")\n    print(f\"Número de valores únicos: {unique_values}\")\n    if unique_values &lt;= 10:\n        print(f\"Valores únicos: {df[column].unique()}\")\n    else:\n        print(f\"Primeros 10 valores únicos: {df[column].unique()[:10]}\")\n\n\nColumna: content\nNúmero de valores únicos: 9882\nPrimeros 10 valores únicos: ['@DanielNoboaOk @DiegoBorjaPC Lávate el hocico presidente de cartón,habla la verdad y cómo son las cosas! Cómo han sido los tiempos y cómo han pasado las cosas,si no entiendes cómo son los procesos de contratación qué haces de presidente ignorante!Borja no debería ser candidato es correcto al tener un vínculo'\n '@DanielNoboaOk De esa arrastrada no te levantas nunca... Chao cartón 📉'\n '@LuisaGonzalezEc @RC5Oficial Protegiendo a los narcotraficantes, criminales, violadores, delincuentes, locos y prostitutas'\n '@DanielNoboaOk #NoboaPresidente.  Todo 7!'\n '@slider1908 @LuisaGonzalezEc @DianaAtamaint @cnegobec @FFAAECUADOR Troll de mierda a callarse la boca'\n '@JaimeEspin13 @Jorge29E @LuisaGonzalezEc @DanielNoboaOk Luisa les envia a los asambleistas de la rc5 con ayuda asi como los envio a esmeralda  a farrear y chupar'\n '@DanielNoboaOk La desesperación en la que estás, porque sabes que pierdes, te hace cometer error tras error, ningún show te resulta, ningún montaje te sale bien, ninguna mentira te la creen...'\n '@DanielNoboaOk por fin un gobierno que le da valor a los ecuatorianos que estan afuera daniel noboa esta marcando la diferencia para que puedan regresar y rehacer su vida 💜'\n '@LuisaGonzalezEc @RC5Oficial ¿Y por que no hizo nada cuando @soledadpadillam le pidió ayuda para frenar el abuso del compinche mimado del dueño, amo y señor de su partido político?\\n\\nBasta de mentiras!!🤬\\n\\nhttps://t.co/JcwqYWpuwM'\n '@LuisaGonzalezEc Te revolcaron Luisa... Vergüenza de candidata... Nunca más estos odiadores..!']",
+    "crumbs": [
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "correccionlab2.html#limpieza-de-datos-de-la-columna-content",
+    "href": "correccionlab2.html#limpieza-de-datos-de-la-columna-content",
+    "title": "Correción Laboratorio 2",
+    "section": "limpieza de datos de la columna ‘content’",
+    "text": "limpieza de datos de la columna ‘content’\n\nEliminar URLs, menciones y caracteres especiales\n\ndef clean_text(text):\n    text = re.sub(r'http\\S+|www\\S+|https\\S+', '', text, flags=re.MULTILINE) # eliminar URLs\n    text = re.sub(r'@\\w+', '', text) # eliminar menciones\n    text = re.sub(r'#\\w+', '', text) # eliminar hashtags\n    text = re.sub(r'\\n', ' ', text) # eliminar saltos de línea\n    text = re.sub(r'[^A-Za-z0-9\\s]+', '', text) # eliminar caracteres especiales\n    text = text.lower() # convertir a minúsculas\n    return text\ndf['content'] = df['content'].apply(clean_text)\n\n\n\nver resultados de la limpieza\n\ndf['content'].head(10)\n\n4622        lvate el hocico presidente de cartnhabla la ...\n46636      de esa arrastrada no te levantas nunca chao c...\n61932       protegiendo a los narcotraficantes criminale...\n10464                                                todo 7\n105904                   troll de mierda a callarse la boca\n150073        luisa les envia a los asambleistas de la r...\n18296      la desesperacin en la que ests porque sabes q...\n36092      por fin un gobierno que le da valor a los ecu...\n137483      y por que no hizo nada cuando  le pidi ayuda...\n79539      te revolcaron luisa vergenza de candidata nun...\nName: content, dtype: object",
+    "crumbs": [
+      "Laboratorios",
+      "Correción Laboratorio 2"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html",
+    "href": "categorical_pipeline.html",
+    "title": "Categorical Pipeline",
+    "section": "",
+    "text": "import pandas as pd\nfrom sklearn.datasets import fetch_openml\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, LabelEncoder, StandardScaler\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.metrics import classification_report,ConfusionMatrixDisplay",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html#categorical-column-ordinal-education",
+    "href": "categorical_pipeline.html#categorical-column-ordinal-education",
+    "title": "Categorical Pipeline",
+    "section": "Categorical column ordinal education",
+    "text": "Categorical column ordinal education\n\neducation_order\n\n['Preschool',\n '1st-4th',\n '5th-6th',\n '7th-8th',\n '9th',\n '10th',\n '11th',\n '12th',\n 'HS-grad',\n 'Some-college',\n 'Assoc-acdm',\n 'Assoc-voc',\n 'Prof-school',\n 'Bachelors',\n 'Masters',\n 'Doctorate']",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html#categorical-columns-nominal",
+    "href": "categorical_pipeline.html#categorical-columns-nominal",
+    "title": "Categorical Pipeline",
+    "section": "Categorical columns nominal",
+    "text": "Categorical columns nominal\n\ncategorical_columns = X.select_dtypes(include='category').columns.tolist()\ncategorical_columns_nominal = [col for col in categorical_columns if col != 'education']\ncategorical_columns_nominal\n\n['workclass',\n 'marital-status',\n 'occupation',\n 'relationship',\n 'race',\n 'sex',\n 'native-country']",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html#numerical-columns",
+    "href": "categorical_pipeline.html#numerical-columns",
+    "title": "Categorical Pipeline",
+    "section": "Numerical columns",
+    "text": "Numerical columns\n\nnumerical_columns = X.select_dtypes(include='number').columns.tolist()\nnumerical_columns\n\n['age',\n 'fnlwgt',\n 'education-num',\n 'capital-gain',\n 'capital-loss',\n 'hours-per-week']",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html#features-transform",
+    "href": "categorical_pipeline.html#features-transform",
+    "title": "Categorical Pipeline",
+    "section": "Features transform",
+    "text": "Features transform\n\nprocessor = ColumnTransformer(\n    transformers=[\n        ('num',StandardScaler(),numerical_columns),\n        ('edu',OrdinalEncoder(categories=[education_order]),['education']),\n        ('onehot',OneHotEncoder(handle_unknown='ignore'),categorical_columns_nominal)\n    ]\n)",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "categorical_pipeline.html#target-transform",
+    "href": "categorical_pipeline.html#target-transform",
+    "title": "Categorical Pipeline",
+    "section": "Target transform",
+    "text": "Target transform\n\nlabel_target_encoded = LabelEncoder()\ny_train_encoded = label_target_encoded.fit_transform(y_train)\ny_test_encoded = label_target_encoded.fit_transform(y_test)",
+    "crumbs": [
+      "Classification",
+      "Categorical Pipeline"
+    ]
+  },
+  {
+    "objectID": "bagofwords.html",
+    "href": "bagofwords.html",
+    "title": "Bag of Words (BoW)",
+    "section": "",
+    "text": "from sklearn.feature_extraction.text import CountVectorizer #BoW\nimport pandas as pd\nimport nltk\nfrom nltk.corpus import stopwords\nfrom nltk import word_tokenize # tokenizacion\nfrom nltk import pos_tag #lematizacion\nfrom nltk.stem import WordNetLemmatizer\nfrom nltk.corpus import wordnet\n\nlemmatizer = WordNetLemmatizer()\n\nnltk.download('stopwords') # necessary for removal of stop words\nnltk.download('wordnet') # necessary for lemmatization\n\n[nltk_data] Downloading package stopwords to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package stopwords is already up-to-date!\n[nltk_data] Downloading package wordnet to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package wordnet is already up-to-date!\n\n\nTrue",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Bag of Words (BoW)"
+    ]
+  },
+  {
+    "objectID": "bagofwords.html#ejemplo-de-función-de-limpieza",
+    "href": "bagofwords.html#ejemplo-de-función-de-limpieza",
+    "title": "Bag of Words (BoW)",
+    "section": "Ejemplo de función de limpieza",
+    "text": "Ejemplo de función de limpieza\n\ndef get_wordnet_pos(treebank_tag):\n    # print(\"treebank_tag\",treebank_tag)\n    if treebank_tag.startswith('J'):\n        return wordnet.ADJ\n    elif treebank_tag.startswith('V'):\n        return wordnet.VERB\n    elif treebank_tag.startswith('N'):\n        return wordnet.NOUN\n    elif treebank_tag.startswith('R'):\n        return wordnet.ADV\n    else:\n        return wordnet.NOUN \n\n\ndef preprocessing_document(doc):\n    #1 transformar en minusculas\n    doc = doc.lower()\n    \n    #2 tokenizar\n    tokens = word_tokenize(doc)\n\n    #3 obtener lematizacion con etiqueta POS\n    tagged_tokens = pos_tag(tokens)\n\n    #ELIMINAR LAS STOP-WORDS EN CASO QUE NO USE EL PARAMETRO STOPWORD EN LA VECTORIZACION\n\n    #4 filtrar numeros\n    filtered_tokens = [(word,pos) for (word,pos) in tagged_tokens if word.isalpha()]\n\n    #5 Lematizacion usando el pos\n    lemmatized_words = [lemmatizer.lemmatize(word,get_wordnet_pos(pos)) for word, pos in filtered_tokens]\n\n    return \" \".join(lemmatized_words)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Bag of Words (BoW)"
+    ]
+  },
+  {
+    "objectID": "bagofwords.html#fit_transform",
+    "href": "bagofwords.html#fit_transform",
+    "title": "Bag of Words (BoW)",
+    "section": "Fit_transform",
+    "text": "Fit_transform\nAprende del Corpus (vocabulario) y del ser caso elimina las stop-words\n\ncorpus_cleaned = [preprocessing_document(doc) for doc in corpus]\nX = vectorizer.fit_transform(corpus_cleaned)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Bag of Words (BoW)"
+    ]
+  },
+  {
+    "objectID": "bagofwords.html#obtener-las-palabras-finales",
+    "href": "bagofwords.html#obtener-las-palabras-finales",
+    "title": "Bag of Words (BoW)",
+    "section": "Obtener las palabras finales",
+    "text": "Obtener las palabras finales\n\nvectorizer.get_feature_names_out()\n\narray(['ai', 'fun', 'learning', 'love', 'machine', 'part'], dtype=object)",
+    "crumbs": [
+      "Natural Language Processing (NLP)",
+      "Bag of Words (BoW)"
+    ]
+  },
+  {
+    "objectID": "altair.html",
+    "href": "altair.html",
+    "title": "Introducción a Altair",
+    "section": "",
+    "text": "Code\nimport altair as alt\nfrom vega_datasets import data\ncars = data.cars()\nprint(cars.head())\n\n\n                        Name  Miles_per_Gallon  Cylinders  Displacement  \\\n0  chevrolet chevelle malibu              18.0          8         307.0   \n1          buick skylark 320              15.0          8         350.0   \n2         plymouth satellite              18.0          8         318.0   \n3              amc rebel sst              16.0          8         304.0   \n4                ford torino              17.0          8         302.0   \n\n   Horsepower  Weight_in_lbs  Acceleration       Year Origin  \n0       130.0           3504          12.0 1970-01-01    USA  \n1       165.0           3693          11.5 1970-01-01    USA  \n2       150.0           3436          11.0 1970-01-01    USA  \n3       150.0           3433          12.0 1970-01-01    USA  \n4       140.0           3449          10.5 1970-01-01    USA  \n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point().encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n#interactive: zoom, brush\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    shape=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\nGráfico de barras\ncount() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('count()')\n)\n\n\n\n\n\n\n\n\nmean() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('mean(Weight_in_lbs)'),\n    tooltip=['Origin','mean(Weight_in_lbs)']\n).properties(\n    width=200,\n    height=200\n)\n\n\n\n\n\n\n\n\nGráfico lineal\n\n\nCode\nalt.Chart(cars).mark_line(point=True).encode(\n    alt.X('Year'),\n    alt.Y('mean(Weight_in_lbs)'),\n    alt.Color('Origin')\n).properties(\n    width=600\n).interactive()",
+    "crumbs": [
+      "Introduction to ML",
+      "Introducción a Altair"
+    ]
+  },
+  {
+    "objectID": "altair.html#importar-el-dataset",
+    "href": "altair.html#importar-el-dataset",
+    "title": "Introducción a Altair",
+    "section": "",
+    "text": "Code\nimport altair as alt\nfrom vega_datasets import data\ncars = data.cars()\nprint(cars.head())\n\n\n                        Name  Miles_per_Gallon  Cylinders  Displacement  \\\n0  chevrolet chevelle malibu              18.0          8         307.0   \n1          buick skylark 320              15.0          8         350.0   \n2         plymouth satellite              18.0          8         318.0   \n3              amc rebel sst              16.0          8         304.0   \n4                ford torino              17.0          8         302.0   \n\n   Horsepower  Weight_in_lbs  Acceleration       Year Origin  \n0       130.0           3504          12.0 1970-01-01    USA  \n1       165.0           3693          11.5 1970-01-01    USA  \n2       150.0           3436          11.0 1970-01-01    USA  \n3       150.0           3433          12.0 1970-01-01    USA  \n4       140.0           3449          10.5 1970-01-01    USA",
+    "crumbs": [
+      "Introduction to ML",
+      "Introducción a Altair"
+    ]
+  },
+  {
+    "objectID": "altair.html#visualización-en-altair",
+    "href": "altair.html#visualización-en-altair",
+    "title": "Introducción a Altair",
+    "section": "",
+    "text": "Code\nalt.Chart(cars).mark_point().encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n#interactive: zoom, brush\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    shape=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\nGráfico de barras\ncount() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('count()')\n)\n\n\n\n\n\n\n\n\nmean() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('mean(Weight_in_lbs)'),\n    tooltip=['Origin','mean(Weight_in_lbs)']\n).properties(\n    width=200,\n    height=200\n)\n\n\n\n\n\n\n\n\nGráfico lineal\n\n\nCode\nalt.Chart(cars).mark_line(point=True).encode(\n    alt.X('Year'),\n    alt.Y('mean(Weight_in_lbs)'),\n    alt.Color('Origin')\n).properties(\n    width=600\n).interactive()",
+    "crumbs": [
+      "Introduction to ML",
+      "Introducción a Altair"
     ]
   },
   {
@@ -282,146 +481,13 @@
     ]
   },
   {
-    "objectID": "altair.html",
-    "href": "altair.html",
-    "title": "Introducción a Altair",
+    "objectID": "clasificacion.html",
+    "href": "clasificacion.html",
+    "title": "1. Import libraries",
     "section": "",
-    "text": "Code\nimport altair as alt\nfrom vega_datasets import data\ncars = data.cars()\nprint(cars.head())\n\n\n                        Name  Miles_per_Gallon  Cylinders  Displacement  \\\n0  chevrolet chevelle malibu              18.0          8         307.0   \n1          buick skylark 320              15.0          8         350.0   \n2         plymouth satellite              18.0          8         318.0   \n3              amc rebel sst              16.0          8         304.0   \n4                ford torino              17.0          8         302.0   \n\n   Horsepower  Weight_in_lbs  Acceleration       Year Origin  \n0       130.0           3504          12.0 1970-01-01    USA  \n1       165.0           3693          11.5 1970-01-01    USA  \n2       150.0           3436          11.0 1970-01-01    USA  \n3       150.0           3433          12.0 1970-01-01    USA  \n4       140.0           3449          10.5 1970-01-01    USA  \n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point().encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n#interactive: zoom, brush\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    shape=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\nGráfico de barras\ncount() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('count()')\n)\n\n\n\n\n\n\n\n\nmean() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('mean(Weight_in_lbs)'),\n    tooltip=['Origin','mean(Weight_in_lbs)']\n).properties(\n    width=200,\n    height=200\n)\n\n\n\n\n\n\n\n\nGráfico lineal\n\n\nCode\nalt.Chart(cars).mark_line(point=True).encode(\n    alt.X('Year'),\n    alt.Y('mean(Weight_in_lbs)'),\n    alt.Color('Origin')\n).properties(\n    width=600\n).interactive()",
+    "text": "Code\n# 1. Import libraries\nfrom sklearn.datasets import load_breast_cancer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, ConfusionMatrixDisplay\n\n\n\n2. Load dataset\n\n\nCode\ndata = load_breast_cancer()\ndata\nX = data.data\ny = data.target # 0 = malignant, 1 = benign\n\n\n\n\n3. Split dataset\n\n\nCode\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       \nX_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n\n((455, 30), (114, 30), (455,), (114,))\n\n\n\n\n4. Create and train model\n\n\nCode\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train) \n\n\nC:\\MachineLearn\\.venv\\Lib\\site-packages\\sklearn\\linear_model\\_logistic.py:473: ConvergenceWarning: lbfgs failed to converge after 1000 iteration(s) (status=1):\nSTOP: TOTAL NO. OF ITERATIONS REACHED LIMIT\n\nIncrease the number of iterations to improve the convergence (max_iter=1000).\nYou might also want to scale the data as shown in:\n    https://scikit-learn.org/stable/modules/preprocessing.html\nPlease also refer to the documentation for alternative solver options:\n    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression\n  n_iter_i = _check_optimize_result(\n\n\nLogisticRegression(max_iter=1000)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LogisticRegression?Documentation for LogisticRegressioniFitted\n        \n            \n                Parameters\n                \n\n\n\n\npenalty \n'l2'\n\n\n\ndual \nFalse\n\n\n\ntol \n0.0001\n\n\n\nC \n1.0\n\n\n\nfit_intercept \nTrue\n\n\n\nintercept_scaling \n1\n\n\n\nclass_weight \nNone\n\n\n\nrandom_state \nNone\n\n\n\nsolver \n'lbfgs'\n\n\n\nmax_iter \n1000\n\n\n\nmulti_class \n'deprecated'\n\n\n\nverbose \n0\n\n\n\nwarm_start \nFalse\n\n\n\nn_jobs \nNone\n\n\n\nl1_ratio \nNone\n\n\n\n\n            \n        \n    \n\n\n\n\nPredictions\n\n\nCode\ny_pred = model.predict(X_test)\n\n\n\n\n5. Evaluate model\n\n\nCode\naccuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test, y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy}\")\nprint(f\"Precision: {precision}\")\nprint(f\"Recall: {recall}\")\nprint(f\"F1 Score: {f1}\")\n\nConfusionMatrixDisplay.from_predictions(y_test, y_pred) \n\n\nAccuracy: 0.956140350877193\nPrecision: 0.958904109589041\nRecall: 0.9722222222222222\nF1 Score: 0.9655172413793104\n\n\n\n\n\n\n\n\n\n\n\ncon Pipelines\n\n\nimport libraries\n\n\nCode\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\n\n\n\n\ncarga de datos\n\n\nCode\ndata = load_breast_cancer()\ndata\nX = data.data\ny = data.target # 0 = malignant, 1 = benign\n\n\n\n\n3. Split dataset\n\n\nCode\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)       \nX_train.shape, X_test.shape, y_train.shape, y_test.shape\n\n\n((455, 30), (114, 30), (455,), (114,))\n\n\n\n\n4. pipeline\n\n\nCode\npipeline = Pipeline([\n    (\"scaler\", StandardScaler()),\n    (\"log_reg\", LogisticRegression(max_iter=1000))\n])\n\n\n\n\ntrain model\n\n\nCode\npipeline.fit(X_train, y_train)\n\n\nPipeline(steps=[('scaler', StandardScaler()),\n                ('log_reg', LogisticRegression(max_iter=1000))])In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.Pipeline?Documentation for PipelineiFitted\n        \n            \n                Parameters\n                \n\n\n\n\nsteps \n[('scaler', ...), ('log_reg', ...)]\n\n\n\ntransform_input \nNone\n\n\n\nmemory \nNone\n\n\n\nverbose \nFalse\n\n\n\n\n            \n        \n    StandardScaler?Documentation for StandardScaler\n        \n            \n                Parameters\n                \n\n\n\n\ncopy \nTrue\n\n\n\nwith_mean \nTrue\n\n\n\nwith_std \nTrue\n\n\n\n\n            \n        \n    LogisticRegression?Documentation for LogisticRegression\n        \n            \n                Parameters\n                \n\n\n\n\npenalty \n'l2'\n\n\n\ndual \nFalse\n\n\n\ntol \n0.0001\n\n\n\nC \n1.0\n\n\n\nfit_intercept \nTrue\n\n\n\nintercept_scaling \n1\n\n\n\nclass_weight \nNone\n\n\n\nrandom_state \nNone\n\n\n\nsolver \n'lbfgs'\n\n\n\nmax_iter \n1000\n\n\n\nmulti_class \n'deprecated'\n\n\n\nverbose \n0\n\n\n\nwarm_start \nFalse\n\n\n\nn_jobs \nNone\n\n\n\nl1_ratio \nNone\n\n\n\n\n            \n        \n    \n\n\n\n\nPredictions\n\n\nCode\ny_pred_pipeline = pipeline.predict(X_test)\n\n\n\n\n5. Evaluate model\n\n\nCode\naccuracy = accuracy_score(y_test, y_pred_pipeline)\nprecision = precision_score(y_test, y_pred_pipeline)\nrecall = recall_score(y_test, y_pred_pipeline)\nf1 = f1_score(y_test, y_pred_pipeline)\n\nprint(f\"Accuracy: {accuracy}\")\nprint(f\"Precision: {precision}\")\nprint(f\"Recall: {recall}\")\nprint(f\"F1 Score: {f1}\")\n\nConfusionMatrixDisplay.from_predictions(y_test, y_pred_pipeline) \n\n\nAccuracy: 0.9824561403508771\nPrecision: 0.9861111111111112\nRecall: 0.9861111111111112\nF1 Score: 0.9861111111111112",
     "crumbs": [
-      "Introduction to ML",
-      "Introducción a Altair"
-    ]
-  },
-  {
-    "objectID": "altair.html#importar-el-dataset",
-    "href": "altair.html#importar-el-dataset",
-    "title": "Introducción a Altair",
-    "section": "",
-    "text": "Code\nimport altair as alt\nfrom vega_datasets import data\ncars = data.cars()\nprint(cars.head())\n\n\n                        Name  Miles_per_Gallon  Cylinders  Displacement  \\\n0  chevrolet chevelle malibu              18.0          8         307.0   \n1          buick skylark 320              15.0          8         350.0   \n2         plymouth satellite              18.0          8         318.0   \n3              amc rebel sst              16.0          8         304.0   \n4                ford torino              17.0          8         302.0   \n\n   Horsepower  Weight_in_lbs  Acceleration       Year Origin  \n0       130.0           3504          12.0 1970-01-01    USA  \n1       165.0           3693          11.5 1970-01-01    USA  \n2       150.0           3436          11.0 1970-01-01    USA  \n3       150.0           3433          12.0 1970-01-01    USA  \n4       140.0           3449          10.5 1970-01-01    USA",
-    "crumbs": [
-      "Introduction to ML",
-      "Introducción a Altair"
-    ]
-  },
-  {
-    "objectID": "altair.html#visualización-en-altair",
-    "href": "altair.html#visualización-en-altair",
-    "title": "Introducción a Altair",
-    "section": "",
-    "text": "Code\nalt.Chart(cars).mark_point().encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n#interactive: zoom, brush\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nalt.Chart(cars).mark_point(filled=True).encode(\n    x=\"Miles_per_Gallon\",\n    y=\"Horsepower\",\n    color=\"Origin\",\n    shape=\"Origin\",\n    tooltip=[\"Name\",\"Origin\",\"Miles_per_Gallon\",\"Horsepower\"]\n).interactive()\n\n\n\n\n\n\n\n\n\n\n\nGráfico de barras\ncount() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('count()')\n)\n\n\n\n\n\n\n\n\nmean() de cada una de los origines\n\n\nCode\nalt.Chart(cars).mark_bar().encode(\n    alt.X('Origin',sort='-y'),\n    alt.Y('mean(Weight_in_lbs)'),\n    tooltip=['Origin','mean(Weight_in_lbs)']\n).properties(\n    width=200,\n    height=200\n)\n\n\n\n\n\n\n\n\nGráfico lineal\n\n\nCode\nalt.Chart(cars).mark_line(point=True).encode(\n    alt.X('Year'),\n    alt.Y('mean(Weight_in_lbs)'),\n    alt.Color('Origin')\n).properties(\n    width=600\n).interactive()",
-    "crumbs": [
-      "Introduction to ML",
-      "Introducción a Altair"
-    ]
-  },
-  {
-    "objectID": "bagofwords.html",
-    "href": "bagofwords.html",
-    "title": "Bag of Words (BoW)",
-    "section": "",
-    "text": "from sklearn.feature_extraction.text import CountVectorizer #BoW\nimport pandas as pd\nimport nltk\nfrom nltk.corpus import stopwords\nfrom nltk import word_tokenize # tokenizacion\nfrom nltk import pos_tag #lematizacion\nfrom nltk.stem import WordNetLemmatizer\nfrom nltk.corpus import wordnet\n\nlemmatizer = WordNetLemmatizer()\n\nnltk.download('stopwords') # necessary for removal of stop words\nnltk.download('wordnet') # necessary for lemmatization\n\n[nltk_data] Downloading package stopwords to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package stopwords is already up-to-date!\n[nltk_data] Downloading package wordnet to\n[nltk_data]     C:\\Users\\daltamirano\\AppData\\Roaming\\nltk_data...\n[nltk_data]   Package wordnet is already up-to-date!\n\n\nTrue",
-    "crumbs": [
-      "Natural Language Processing (NLP)",
-      "Bag of Words (BoW)"
-    ]
-  },
-  {
-    "objectID": "bagofwords.html#ejemplo-de-función-de-limpieza",
-    "href": "bagofwords.html#ejemplo-de-función-de-limpieza",
-    "title": "Bag of Words (BoW)",
-    "section": "Ejemplo de función de limpieza",
-    "text": "Ejemplo de función de limpieza\n\ndef get_wordnet_pos(treebank_tag):\n    # print(\"treebank_tag\",treebank_tag)\n    if treebank_tag.startswith('J'):\n        return wordnet.ADJ\n    elif treebank_tag.startswith('V'):\n        return wordnet.VERB\n    elif treebank_tag.startswith('N'):\n        return wordnet.NOUN\n    elif treebank_tag.startswith('R'):\n        return wordnet.ADV\n    else:\n        return wordnet.NOUN \n\n\ndef preprocessing_document(doc):\n    #1 transformar en minusculas\n    doc = doc.lower()\n    \n    #2 tokenizar\n    tokens = word_tokenize(doc)\n\n    #3 obtener lematizacion con etiqueta POS\n    tagged_tokens = pos_tag(tokens)\n\n    #ELIMINAR LAS STOP-WORDS EN CASO QUE NO USE EL PARAMETRO STOPWORD EN LA VECTORIZACION\n\n    #4 filtrar numeros\n    filtered_tokens = [(word,pos) for (word,pos) in tagged_tokens if word.isalpha()]\n\n    #5 Lematizacion usando el pos\n    lemmatized_words = [lemmatizer.lemmatize(word,get_wordnet_pos(pos)) for word, pos in filtered_tokens]\n\n    return \" \".join(lemmatized_words)",
-    "crumbs": [
-      "Natural Language Processing (NLP)",
-      "Bag of Words (BoW)"
-    ]
-  },
-  {
-    "objectID": "bagofwords.html#fit_transform",
-    "href": "bagofwords.html#fit_transform",
-    "title": "Bag of Words (BoW)",
-    "section": "Fit_transform",
-    "text": "Fit_transform\nAprende del Corpus (vocabulario) y del ser caso elimina las stop-words\n\ncorpus_cleaned = [preprocessing_document(doc) for doc in corpus]\nX = vectorizer.fit_transform(corpus_cleaned)",
-    "crumbs": [
-      "Natural Language Processing (NLP)",
-      "Bag of Words (BoW)"
-    ]
-  },
-  {
-    "objectID": "bagofwords.html#obtener-las-palabras-finales",
-    "href": "bagofwords.html#obtener-las-palabras-finales",
-    "title": "Bag of Words (BoW)",
-    "section": "Obtener las palabras finales",
-    "text": "Obtener las palabras finales\n\nvectorizer.get_feature_names_out()\n\narray(['ai', 'fun', 'learning', 'love', 'machine', 'part'], dtype=object)",
-    "crumbs": [
-      "Natural Language Processing (NLP)",
-      "Bag of Words (BoW)"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html",
-    "href": "categorical_pipeline.html",
-    "title": "Categorical Pipeline",
-    "section": "",
-    "text": "import pandas as pd\nfrom sklearn.datasets import fetch_openml\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import OneHotEncoder, OrdinalEncoder, LabelEncoder, StandardScaler\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.metrics import classification_report,ConfusionMatrixDisplay",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html#categorical-column-ordinal-education",
-    "href": "categorical_pipeline.html#categorical-column-ordinal-education",
-    "title": "Categorical Pipeline",
-    "section": "Categorical column ordinal education",
-    "text": "Categorical column ordinal education\n\neducation_order\n\n['Preschool',\n '1st-4th',\n '5th-6th',\n '7th-8th',\n '9th',\n '10th',\n '11th',\n '12th',\n 'HS-grad',\n 'Some-college',\n 'Assoc-acdm',\n 'Assoc-voc',\n 'Prof-school',\n 'Bachelors',\n 'Masters',\n 'Doctorate']",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html#categorical-columns-nominal",
-    "href": "categorical_pipeline.html#categorical-columns-nominal",
-    "title": "Categorical Pipeline",
-    "section": "Categorical columns nominal",
-    "text": "Categorical columns nominal\n\ncategorical_columns = X.select_dtypes(include='category').columns.tolist()\ncategorical_columns_nominal = [col for col in categorical_columns if col != 'education']\ncategorical_columns_nominal\n\n['workclass',\n 'marital-status',\n 'occupation',\n 'relationship',\n 'race',\n 'sex',\n 'native-country']",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html#numerical-columns",
-    "href": "categorical_pipeline.html#numerical-columns",
-    "title": "Categorical Pipeline",
-    "section": "Numerical columns",
-    "text": "Numerical columns\n\nnumerical_columns = X.select_dtypes(include='number').columns.tolist()\nnumerical_columns\n\n['age',\n 'fnlwgt',\n 'education-num',\n 'capital-gain',\n 'capital-loss',\n 'hours-per-week']",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html#features-transform",
-    "href": "categorical_pipeline.html#features-transform",
-    "title": "Categorical Pipeline",
-    "section": "Features transform",
-    "text": "Features transform\n\nprocessor = ColumnTransformer(\n    transformers=[\n        ('num',StandardScaler(),numerical_columns),\n        ('edu',OrdinalEncoder(categories=[education_order]),['education']),\n        ('onehot',OneHotEncoder(handle_unknown='ignore'),categorical_columns_nominal)\n    ]\n)",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
-    ]
-  },
-  {
-    "objectID": "categorical_pipeline.html#target-transform",
-    "href": "categorical_pipeline.html#target-transform",
-    "title": "Categorical Pipeline",
-    "section": "Target transform",
-    "text": "Target transform\n\nlabel_target_encoded = LabelEncoder()\ny_train_encoded = label_target_encoded.fit_transform(y_train)\ny_test_encoded = label_target_encoded.fit_transform(y_test)",
-    "crumbs": [
-      "Classification",
-      "Categorical Pipeline"
+      "Classification"
     ]
   },
   {
@@ -539,14 +605,22 @@
     "href": "midterm.html#date-2025-10-04",
     "title": "Midterm Project",
     "section": "Date: 2025-10-04",
-    "text": "Date: 2025-10-04\n\nRegistro de las Estaciones Metereológicas Instituto de Investigación Geológico y Energético IIGE\nEl data set contiene datos de las estaciones meteorológicas del Instituto de Investigación Geológico y Energético (IIGE) de Ecuador. El conjunto de datos incluye diversas variables climáticas y meteorológicas registradas en diferentes estaciones a lo largo del tiempo. Estas variables pueden incluir temperatura, humedad, precipitación, velocidad del viento, entre otras."
+    "text": "Date: 2025-10-04\n\nRegistro de las Estaciones Metereológicas Instituto de Investigación Geológico y Energético IIGE\nEl data set contiene datos de las estaciones meteorológicas del Instituto de Investigación Geológico y Energético (IIGE) de Ecuador. El conjunto de datos incluye diversas variables climáticas y meteorológicas registradas en diferentes estaciones a lo largo del tiempo. Estas variables pueden incluir temperatura, humedad, precipitación, velocidad del viento, entre otras.",
+    "crumbs": [
+      "Midterm",
+      "Midterm Project"
+    ]
   },
   {
     "objectID": "midterm.html#líneas-activas-por-tecnología",
     "href": "midterm.html#líneas-activas-por-tecnología",
     "title": "Midterm Project",
     "section": "Líneas activas por tecnología",
-    "text": "Líneas activas por tecnología\nAgencia de Regulación y Control de las Telecomunicaciones ARCOTEL\nContiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.\n\nEl siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)\n\n\nCode\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n\n\n\nCode\n# Cargar el dataset\ndata_clasi = pd.read_csv(\"arcotel.csv\")\n\n\n\n\nCode\n# explacion data info\nprint(data_clasi.info())\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 459 entries, 0 to 458\nData columns (total 7 columns):\n #   Column  Non-Null Count  Dtype \n---  ------  --------------  ----- \n 0   fecha   459 non-null    object\n 1   nombre  459 non-null    object\n 2   cdma    459 non-null    int64 \n 3   gsma    459 non-null    int64 \n 4   umts    459 non-null    int64 \n 5   hspa+   459 non-null    int64 \n 6   lte     459 non-null    int64 \ndtypes: int64(5), object(2)\nmemory usage: 25.2+ KB\nNone\n\n\n\n\nCode\nprint(data_clasi.describe())\n\n\n                cdma          gsma          umts         hspa+           lte\ncount     459.000000  4.590000e+02  4.590000e+02  4.590000e+02  4.590000e+02\nmean    40267.352941  2.977108e+06  8.934777e+05  3.496252e+05  9.052915e+05\nstd     94139.701502  3.432653e+06  1.008160e+06  6.687707e+05  1.171305e+06\nmin         0.000000  8.819800e+04  0.000000e+00  0.000000e+00  0.000000e+00\n25%         0.000000  2.013070e+05  0.000000e+00  0.000000e+00  0.000000e+00\n50%         0.000000  1.162024e+06  3.503780e+05  5.741500e+04  3.655100e+04\n75%         0.000000  4.737962e+06  1.584279e+06  2.719630e+05  2.123770e+06\nmax    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06\n\n\n\n\nDefinición del Problema de Clasificación Binaria\nEl objetivo es predecir si un mes dado (registrado por un operador) está dominado por la tecnología de Cuarta Generación (4G).\nVariable Objetivo (Y): Dominio 4G (Binaria).\nClase 1 (Positivo): LTE (líneas 4G) supera la suma de líneas 3G (UMTS+HSPA+).\nClase 0 (Negativo): LTE es igual o menor a la suma de líneas 3G o si el dominio es de tecnologías más antiguas (GSMA).\nVariables Predictoras (X): Las líneas activas en tecnologías más antiguas y el operador.\ncdma (Legado), gsma (2G), umts (3G), hspa+ (3G/3.5G), y nombre (Operador).\n\n\nCode\n# 1. Creación de la Variable Objetivo Binaria (Y)\n# Clase 1 si LTE &gt; (UMTS + HSPA+), Clase 0 en caso contrario\ndata_clasi['Total_3G'] = data_clasi['umts'] + data_clasi['hspa+']\ndata_clasi['Dominio_4G'] = (data_clasi['lte'] &gt; data_clasi['Total_3G']).astype(int)\n\n# 2. Definición de Variables (X y Y)\nfeatures = ['cdma', 'gsma', 'umts', 'hspa+', 'nombre']\ntarget = 'Dominio_4G'\n\nX = data_clasi[features]\ny = data_clasi[target]\n\n# 3. Separación de conjuntos de entrenamiento y prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)\n\n# 4. Definición de preprocesamiento para variables numéricas y categóricas\nnumerical_features = ['cdma', 'gsma', 'umts', 'hspa+']\ncategorical_features = ['nombre']\n\n# Pipeline de preprocesamiento: Escalado (StandardScaler) para numéricas y One-Hot Encoding para categóricas\npreprocessor = ColumnTransformer(\n    transformers=[\n        ('num', StandardScaler(), numerical_features),\n        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)\n    ],\n    remainder='passthrough'\n)\n\n# 5. Creación y entrenamiento del Pipeline (Preprocesamiento + Modelo)\nmodel_pipeline = Pipeline(steps=[\n    ('preprocessor', preprocessor),\n    ('classifier', LogisticRegression(solver='liblinear', random_state=42, class_weight='balanced')) # Usamos class_weight='balanced' para mitigar el desbalance entre 3G y 4G.\n])\n\nmodel_pipeline.fit(X_train, y_train)\n\n# Predicciones\ny_pred = model_pipeline.predict(X_test)\ny_proba = model_pipeline.predict_proba(X_test)[:, 1]\n\n\n\n\nCode\n# Cálculo de Métricas\naccuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test, y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\ncm = confusion_matrix(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy:.4f}\")\nprint(f\"Precision: {precision:.4f}\")\nprint(f\"Recall: {recall:.4f}\")\nprint(f\"F1 Score: {f1:.4f}\")\n\n\nAccuracy: 0.9420\nPrecision: 0.8140\nRecall: 1.0000\nF1 Score: 0.8974\n\n\n\nMétricas de Evaluación del Modelo\nMétrica Valor Interpretación Accuracy (Exactitud) 0.9420 El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos). Precision (Precisión) 0.8140 Cuando el modelo predijo “Dominio 4G”. Recall (Sensibilidad) 1.00 El modelo identificó correctamente todos los meses donde realmente hubo Dominio 4G. F1 Score 0.8974 Media armónica entre Precisión y Recall (buen equilibrio de la clasificación). Área bajo la Curva ROC (AUC) 0.9978 El modelo tiene una buena capacidad para distinguir entre las dos clases.\n\n\nCode\n# Visualización de la Matriz de Confusión\nplt.figure(figsize=(6, 5))\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,\n            xticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'],\n            yticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'])\nplt.xlabel('Predicción')\nplt.ylabel('Valor Real')\nplt.title('Matriz de Confusión (Regresión Logística)')\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nMatriz de Confusión\nVerdaderos Positivos (TP): 95 (Meses donde se predijo Dominio 4G y fue correcto).\nVerdaderos Negativos (TN): 35 (Meses donde se predijo No Dominio 4G y fue correcto).\nFalsos Positivos (FP): 0 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).\nFalsos Negativos (FN): 8 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).\n\n\nCode\n# Visualización de la Curva ROC\nfpr, tpr, thresholds = roc_curve(y_test, y_proba)\nroc_auc = auc(fpr, tpr)\n\nplt.figure(figsize=(6, 5))\nplt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Curva ROC (área = {roc_auc:.4f})')\nplt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')\nplt.xlabel('Tasa de Falsos Positivos (FPR)')\nplt.ylabel('Tasa de Verdaderos Positivos (TPR)')\nplt.title('Curva Característica Operativa del Receptor (ROC)')\nplt.legend(loc=\"lower right\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nCurva ROC\nEl valor de AUC=0.9978 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador."
+    "text": "Líneas activas por tecnología\nAgencia de Regulación y Control de las Telecomunicaciones ARCOTEL\nContiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.\n\nEl siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)\n\n\nCode\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score, roc_curve, auc\nimport matplotlib.pyplot as plt\nimport seaborn as sns\n\n\n\n\nCode\n# Cargar el dataset\ndata_clasi = pd.read_csv(\"arcotel.csv\")\n\n\n\n\nCode\n# explacion data info\nprint(data_clasi.info())\n\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 459 entries, 0 to 458\nData columns (total 7 columns):\n #   Column  Non-Null Count  Dtype \n---  ------  --------------  ----- \n 0   fecha   459 non-null    object\n 1   nombre  459 non-null    object\n 2   cdma    459 non-null    int64 \n 3   gsma    459 non-null    int64 \n 4   umts    459 non-null    int64 \n 5   hspa+   459 non-null    int64 \n 6   lte     459 non-null    int64 \ndtypes: int64(5), object(2)\nmemory usage: 25.2+ KB\nNone\n\n\n\n\nCode\nprint(data_clasi.describe())\n\n\n                cdma          gsma          umts         hspa+           lte\ncount     459.000000  4.590000e+02  4.590000e+02  4.590000e+02  4.590000e+02\nmean    40267.352941  2.977108e+06  8.934777e+05  3.496252e+05  9.052915e+05\nstd     94139.701502  3.432653e+06  1.008160e+06  6.687707e+05  1.171305e+06\nmin         0.000000  8.819800e+04  0.000000e+00  0.000000e+00  0.000000e+00\n25%         0.000000  2.013070e+05  0.000000e+00  0.000000e+00  0.000000e+00\n50%         0.000000  1.162024e+06  3.503780e+05  5.741500e+04  3.655100e+04\n75%         0.000000  4.737962e+06  1.584279e+06  2.719630e+05  2.123770e+06\nmax    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06\n\n\n\n\nDefinición del Problema de Clasificación Binaria\nEl objetivo es predecir si un mes dado (registrado por un operador) está dominado por la tecnología de Cuarta Generación (4G).\nVariable Objetivo (Y): Dominio 4G (Binaria).\nClase 1 (Positivo): LTE (líneas 4G) supera la suma de líneas 3G (UMTS+HSPA+).\nClase 0 (Negativo): LTE es igual o menor a la suma de líneas 3G o si el dominio es de tecnologías más antiguas (GSMA).\nVariables Predictoras (X): Las líneas activas en tecnologías más antiguas y el operador.\ncdma (Legado), gsma (2G), umts (3G), hspa+ (3G/3.5G), y nombre (Operador).\n\n\nCode\n# 1. Creación de la Variable Objetivo Binaria (Y)\n# Clase 1 si LTE &gt; (UMTS + HSPA+), Clase 0 en caso contrario\ndata_clasi['Total_3G'] = data_clasi['umts'] + data_clasi['hspa+']\ndata_clasi['Dominio_4G'] = (data_clasi['lte'] &gt; data_clasi['Total_3G']).astype(int)\n\n# 2. Definición de Variables (X y Y)\nfeatures = ['cdma', 'gsma', 'umts', 'hspa+', 'nombre']\ntarget = 'Dominio_4G'\n\nX = data_clasi[features]\ny = data_clasi[target]\n\n# 3. Separación de conjuntos de entrenamiento y prueba\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)\n\n# 4. Definición de preprocesamiento para variables numéricas y categóricas\nnumerical_features = ['cdma', 'gsma', 'umts', 'hspa+']\ncategorical_features = ['nombre']\n\n# Pipeline de preprocesamiento: Escalado (StandardScaler) para numéricas y One-Hot Encoding para categóricas\npreprocessor = ColumnTransformer(\n    transformers=[\n        ('num', StandardScaler(), numerical_features),\n        ('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)\n    ],\n    remainder='passthrough'\n)\n\n# 5. Creación y entrenamiento del Pipeline (Preprocesamiento + Modelo)\nmodel_pipeline = Pipeline(steps=[\n    ('preprocessor', preprocessor),\n    ('classifier', LogisticRegression(solver='liblinear', random_state=42, class_weight='balanced')) # Usamos class_weight='balanced' para mitigar el desbalance entre 3G y 4G.\n])\n\nmodel_pipeline.fit(X_train, y_train)\n\n# Predicciones\ny_pred = model_pipeline.predict(X_test)\ny_proba = model_pipeline.predict_proba(X_test)[:, 1]\n\n\n\n\nCode\n# Cálculo de Métricas\naccuracy = accuracy_score(y_test, y_pred)\nprecision = precision_score(y_test, y_pred)\nrecall = recall_score(y_test, y_pred)\nf1 = f1_score(y_test, y_pred)\ncm = confusion_matrix(y_test, y_pred)\n\nprint(f\"Accuracy: {accuracy:.4f}\")\nprint(f\"Precision: {precision:.4f}\")\nprint(f\"Recall: {recall:.4f}\")\nprint(f\"F1 Score: {f1:.4f}\")\n\n\nAccuracy: 0.9420\nPrecision: 0.8140\nRecall: 1.0000\nF1 Score: 0.8974\n\n\n\nMétricas de Evaluación del Modelo\nMétrica Valor Interpretación Accuracy (Exactitud) 0.9420 El 82.05% de las predicciones fueron correctas (Dominio 4G vs. 3G/menos). Precision (Precisión) 0.8140 Cuando el modelo predijo “Dominio 4G”. Recall (Sensibilidad) 1.00 El modelo identificó correctamente todos los meses donde realmente hubo Dominio 4G. F1 Score 0.8974 Media armónica entre Precisión y Recall (buen equilibrio de la clasificación). Área bajo la Curva ROC (AUC) 0.9978 El modelo tiene una buena capacidad para distinguir entre las dos clases.\n\n\nCode\n# Visualización de la Matriz de Confusión\nplt.figure(figsize=(6, 5))\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False,\n            xticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'],\n            yticklabels=['No Dominio 4G (0)', 'Dominio 4G (1)'])\nplt.xlabel('Predicción')\nplt.ylabel('Valor Real')\nplt.title('Matriz de Confusión (Regresión Logística)')\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nMatriz de Confusión\nVerdaderos Positivos (TP): 95 (Meses donde se predijo Dominio 4G y fue correcto).\nVerdaderos Negativos (TN): 35 (Meses donde se predijo No Dominio 4G y fue correcto).\nFalsos Positivos (FP): 0 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).\nFalsos Negativos (FN): 8 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).\n\n\nCode\n# Visualización de la Curva ROC\nfpr, tpr, thresholds = roc_curve(y_test, y_proba)\nroc_auc = auc(fpr, tpr)\n\nplt.figure(figsize=(6, 5))\nplt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Curva ROC (área = {roc_auc:.4f})')\nplt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')\nplt.xlabel('Tasa de Falsos Positivos (FPR)')\nplt.ylabel('Tasa de Verdaderos Positivos (TPR)')\nplt.title('Curva Característica Operativa del Receptor (ROC)')\nplt.legend(loc=\"lower right\")\nplt.show()\n\n\n\n\n\n\n\n\n\n\n\nCurva ROC\nEl valor de AUC=0.9978 (área bajo la curva) es cercano a 1.0, lo que indica que el modelo es significativamente mejor que una suposición aleatoria (donde AUC=0.5). La curva se eleva rápidamente hacia la esquina superior izquierda, confirmando un buen rendimiento del clasificador.",
+    "crumbs": [
+      "Midterm",
+      "Midterm Project"
+    ]
   },
   {
     "objectID": "text_classification.html",

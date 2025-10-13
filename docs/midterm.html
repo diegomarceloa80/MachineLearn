@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Midterm Project</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./midterm.html">Midterm</a></li><li class="breadcrumb-item"><a href="./midterm.html">Midterm Project</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -251,6 +251,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Laboratorio 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./correccionlab2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Correción Laboratorio 2</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Midterm</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./midterm.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Midterm Project</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -301,7 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./midterm.html">Midterm</a></li><li class="breadcrumb-item"><a href="./midterm.html">Midterm Project</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Midterm Project</h1>
 </div>
@@ -335,7 +358,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importar-librerías" class="level1">
 <h1>importar librerías</h1>
-<div id="612eb9b2" class="cell" data-execution_count="1">
+<div id="deb1c083" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_regression</span>
@@ -351,14 +374,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cargar-dataset-csv" class="level1">
 <h1>2. cargar dataset csv</h1>
-<div id="bb8eec57" class="cell" data-execution_count="2">
+<div id="05e6023b" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">"iige005_san-gabriel.csv"</span>, encoding<span class="op">=</span><span class="st">"latin1"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_2404\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
+<pre><code>C:\Users\daltamirano\AppData\Local\Temp\ipykernel_27036\930717601.py:1: DtypeWarning: Columns (3,4,6,7,8,10,11,13,14,15,16,17) have mixed types. Specify dtype option on import or set low_memory=False.
   data = pd.read_csv("iige005_san-gabriel.csv", encoding="latin1")</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="2">
@@ -503,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="obtener-información-general-del-dataframe" class="level3">
 <h3 class="anchored" data-anchor-id="obtener-información-general-del-dataframe">obtener información general del DataFrame</h3>
-<div id="ff549351" class="cell" data-execution_count="3">
+<div id="31f1860a" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info()) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -540,7 +563,7 @@ None</code></pre>
 </section>
 <section id="describir-el-dataset" class="level3">
 <h3 class="anchored" data-anchor-id="describir-el-dataset">Describir el dataset</h3>
-<div id="1e29800e" class="cell" data-execution_count="4">
+<div id="e07d0d0c" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -560,7 +583,7 @@ max    198273.000000        2.0</code></pre>
 </section>
 <section id="para-el-estudio-requerimos-que-las-características-sean-numéricas-realizamos-una-transformación." class="level3">
 <h3 class="anchored" data-anchor-id="para-el-estudio-requerimos-que-las-características-sean-numéricas-realizamos-una-transformación.">Para el estudio requerimos que las características sean numéricas realizamos una transformación.</h3>
-<div id="7c8a2590" class="cell" data-execution_count="5">
+<div id="34b3e88c" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>cols_to_numeric <span class="op">=</span> data.columns[<span class="dv">3</span>:]</span>
@@ -570,7 +593,7 @@ max    198273.000000        2.0</code></pre>
 </section>
 <section id="comprabos-la-transformación" class="level3">
 <h3 class="anchored" data-anchor-id="comprabos-la-transformación">Comprabos la transformación</h3>
-<div id="2832fd7d" class="cell" data-execution_count="6">
+<div id="335464ac" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data.info())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -607,13 +630,13 @@ None</code></pre>
 </section>
 <section id="descartamos-las-columnas-que-no-aportan-en-el-análisis" class="level3">
 <h3 class="anchored" data-anchor-id="descartamos-las-columnas-que-no-aportan-en-el-análisis">descartamos las columnas que no aportan en el análisis</h3>
-<div id="28ad445e" class="cell" data-execution_count="7">
+<div id="59bfadee" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.iloc[:, <span class="dv">3</span>:] <span class="co">#    </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="4206570f" class="cell" data-execution_count="8">
+<div id="580beb16" class="cell" data-execution_count="8">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">"WD(most)"</span>, <span class="st">"Max_time"</span>], errors<span class="op">=</span><span class="st">"ignore"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -623,7 +646,7 @@ None</code></pre>
 </section>
 <section id="eliminar-filas-con-valores-nulos" class="level1">
 <h1>eliminar filas con valores nulos</h1>
-<div id="7ae4344f" class="cell" data-execution_count="9">
+<div id="7bf0ea95" class="cell" data-execution_count="9">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> data.dropna()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -632,7 +655,7 @@ None</code></pre>
 </section>
 <section id="split-dataset" class="level1">
 <h1>3. Split dataset</h1>
-<div id="79c5e1c7" class="cell" data-execution_count="10">
+<div id="45009347" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> data.drop(columns<span class="op">=</span>[<span class="st">"Rainfall"</span>])  <span class="co"># Variables predictoras</span></span>
@@ -647,7 +670,7 @@ None</code></pre>
 </section>
 <section id="pipeline-regression-lineal" class="level1">
 <h1>pipeline regression lineal</h1>
-<div id="b1aac3a0" class="cell" data-execution_count="11">
+<div id="541ac045" class="cell" data-execution_count="11">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline([</span>
@@ -659,7 +682,7 @@ None</code></pre>
 </section>
 <section id="train-model" class="level1">
 <h1>4. Train model</h1>
-<div id="63e63fdb" class="cell" data-execution_count="12">
+<div id="ea15d082" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(X_train, y_train)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1286,7 +1309,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="make-predictions" class="level1">
 <h1>5. Make predictions</h1>
-<div id="f78dd91f" class="cell" data-execution_count="13">
+<div id="147f308d" class="cell" data-execution_count="13">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>y_pred_regresion <span class="op">=</span> pipeline.predict(X_test)   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1295,7 +1318,7 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="evaluate-model" class="level1">
 <h1>6. Evaluate model</h1>
-<div id="ebbaaed4" class="cell" data-execution_count="14">
+<div id="3c952ae1" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>mse <span class="op">=</span> mean_squared_error(y_test, y_pred_regresion)</span>
@@ -1312,7 +1335,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="visualize-results" class="level1">
 <h1>7. Visualize results</h1>
-<div id="3b7543d0" class="cell" data-execution_count="15">
+<div id="ca8e1888" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1334,7 +1357,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafica-de-histogramas" class="level1">
 <h1>grafica de histogramas</h1>
-<div id="bafc5a69" class="cell" data-execution_count="16">
+<div id="859d7e44" class="cell" data-execution_count="16">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>plt.hist(y_test <span class="op">-</span> y_pred_regresion, bins<span class="op">=</span><span class="dv">30</span>)</span>
@@ -1354,7 +1377,7 @@ R²: 0.0008894319825145658</code></pre>
 </section>
 <section id="grafico-de-headmap" class="level1">
 <h1>grafico de headmap</h1>
-<div id="bd16a168" class="cell" data-execution_count="17">
+<div id="8f219e1e" class="cell" data-execution_count="17">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -1381,7 +1404,7 @@ R²: 0.0008894319825145658</code></pre>
 <p>Contiene los datos de lineas activas de tecnología del Servicio Móvil Avanzado.</p>
 <section id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021" class="level3">
 <h3 class="anchored" data-anchor-id="el-siguiente-dataset-líneas-activas-por-tecnología-de-arcotel-arcotel.csv-para-realizar-este-ejercicio-de-clasificación-binaria.-este-dataset-contiene-138-registros-un-registro-por-operador-y-por-mes-entre-2009-y-2021">El siguiente dataset Líneas Activas por Tecnología de ARCOTEL (arcotel.csv) para realizar este ejercicio de clasificación binaria. Este dataset contiene 138 registros (un registro por operador y por mes entre 2009 y 2021)</h3>
-<div id="071c9ff7" class="cell" data-execution_count="18">
+<div id="f417280c" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -1395,14 +1418,14 @@ R²: 0.0008894319825145658</code></pre>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="5545b272" class="cell" data-execution_count="19">
+<div id="3ed7d7b3" class="cell" data-execution_count="19">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cargar el dataset</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>data_clasi <span class="op">=</span> pd.read_csv(<span class="st">"arcotel.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="16ceac09" class="cell" data-execution_count="20">
+<div id="5cf7f85e" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># explacion data info</span></span>
@@ -1426,7 +1449,7 @@ memory usage: 25.2+ KB
 None</code></pre>
 </div>
 </div>
-<div id="5537e61b" class="cell" data-execution_count="21">
+<div id="3812d096" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(data_clasi.describe())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1452,7 +1475,7 @@ max    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06</co
 <p>Clase 0 (Negativo): LTE es igual o menor a la suma de líneas 3G o si el dominio es de tecnologías más antiguas (GSMA).</p>
 <p>Variables Predictoras (X): Las líneas activas en tecnologías más antiguas y el operador.</p>
 <p>cdma (Legado), gsma (2G), umts (3G), hspa+ (3G/3.5G), y nombre (Operador).</p>
-<div id="d89fd6d8" class="cell" data-execution_count="22">
+<div id="a80a9778" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Creación de la Variable Objetivo Binaria (Y)</span></span>
@@ -1496,7 +1519,7 @@ max    520002.000000  1.051359e+07  4.523342e+06  3.323309e+06  3.702395e+06</co
 <span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a>y_proba <span class="op">=</span> model_pipeline.predict_proba(X_test)[:, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
-<div id="d910f0bf" class="cell" data-execution_count="23">
+<div id="b75d4767" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Cálculo de Métricas</span></span>
@@ -1521,7 +1544,7 @@ F1 Score: 0.8974</code></pre>
 <section id="métricas-de-evaluación-del-modelo" class="level4">
 <h4 class="anchored" data-anchor-id="métricas-de-evaluación-del-modelo">Métricas de Evaluación del Modelo</h4>
 <p>Métrica Valor Interpretación Accuracy (Exactitud) 0.9420 El 82.05% de las predicciones fueron correctas (Dominio 4G vs.&nbsp;3G/menos). Precision (Precisión) 0.8140 Cuando el modelo predijo “Dominio 4G”. Recall (Sensibilidad) 1.00 El modelo identificó correctamente todos los meses donde realmente hubo Dominio 4G. F1 Score 0.8974 Media armónica entre Precisión y Recall (buen equilibrio de la clasificación). Área bajo la Curva ROC (AUC) 0.9978 El modelo tiene una buena capacidad para distinguir entre las dos clases.</p>
-<div id="12c1bf4e" class="cell" data-execution_count="24">
+<div id="62e7767e" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de la Matriz de Confusión</span></span>
@@ -1549,7 +1572,7 @@ F1 Score: 0.8974</code></pre>
 <p>Verdaderos Negativos (TN): 35 (Meses donde se predijo No&nbsp;Dominio&nbsp;4G y fue correcto).</p>
 <p>Falsos Positivos (FP): 0 (El modelo predijo Dominio 4G cuando en realidad fue 3G/menos).</p>
 <p>Falsos Negativos (FN): 8 (El modelo predijo 3G/menos cuando en realidad fue Dominio 4G).</p>
-<div id="d298e9c3" class="cell" data-execution_count="25">
+<div id="4fd86ee1" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualización de la Curva ROC</span></span>

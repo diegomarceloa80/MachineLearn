@@ -29,6 +29,11 @@ website:
         contents:
           - laboratorio.qmd
           - laboratorio2.qmd
+          - correccionlab2.qmd
+      - section: "Midterm"
+        contents:
+          - midterm.qmd
+          
  # navbar:
 #  left:
 #      - href: index.qmd
