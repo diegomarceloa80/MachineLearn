@@ -37,9 +37,10 @@ website:
           - laboratorio.qmd
           - laboratorio2.qmd
           - correccionlab2.qmd
-      - section: "Midterm"
+      - section: "Midterm y Proyecto"
         contents:
           - midterm.qmd
+          - proyecto.qmd
           
  # navbar:
 #  left:

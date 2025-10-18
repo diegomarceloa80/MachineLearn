@@ -312,6 +312,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Midterm Project</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./proyecto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Proyecto final</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -396,7 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="importar-librerías" class="level1">
 <h1>Importar librerías</h1>
-<div id="3f77d97e" class="cell" data-execution_count="1">
+<div id="b056911a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> re</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> nltk</span>
@@ -437,7 +443,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="cargar-dataset" class="level1">
 <h1>Cargar dataset</h1>
-<div id="14aea149" class="cell" data-execution_count="2">
+<div id="d5284597" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/tweets_totales_con_sentimiento_ml.csv"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Cargar el dataset</span></span>
@@ -460,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Explorar el dataset EDA</h1>
 <section id="mostrar-las-primeras-filas-5" class="level2">
 <h2 class="anchored" data-anchor-id="mostrar-las-primeras-filas-5">Mostrar las primeras filas (5)</h2>
-<div id="83dda6a6" class="cell" data-execution_count="3">
+<div id="c26f8bd7" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df.head(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
@@ -624,7 +630,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="información-del-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="información-del-dataset">Información del dataset</h2>
-<div id="51740fd1" class="cell" data-execution_count="4">
+<div id="8d5370b1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.info()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
@@ -665,7 +671,7 @@ memory usage: 975.0+ bytes</code></pre>
 </section>
 <section id="inspección-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="inspección-de-datos">Inspección de datos</h2>
-<div id="18051400" class="cell" data-execution_count="5">
+<div id="684eda6c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Inspección de Datos ---"</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Forma del dataset: </span><span class="sc">{</span>df<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Columnas disponibles: </span><span class="sc">{</span>df<span class="sc">.</span>columns<span class="sc">.</span>tolist()<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -708,13 +714,13 @@ dtype: int64</code></pre>
 </section>
 <section id="eliminar-features-irrelevantes" class="level2">
 <h2 class="anchored" data-anchor-id="eliminar-features-irrelevantes">Eliminar features irrelevantes</h2>
-<div id="2790419a" class="cell" data-execution_count="6">
+<div id="f29570e9" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'tweetId'</span>, <span class="st">'tweetUrl'</span>, <span class="st">'isReply'</span>, <span class="st">'replyTo'</span>, <span class="st">'createdAt'</span>, <span class="st">'authorId'</span>, <span class="st">'authorName'</span>, <span class="st">'authorUsername'</span>, <span class="st">'authorVerified'</span>, <span class="st">'authorFollowers'</span>, <span class="st">'authorProfilePic'</span>, <span class="st">'authorJoinDate'</span>, <span class="st">'source'</span>, <span class="st">'hashtags'</span>, <span class="st">'mentions'</span>, <span class="st">'conversationId'</span>, <span class="st">'inReplyToId'</span>, <span class="st">'Date'</span>, <span class="st">'time_response'</span>, <span class="st">'account_age_days'</span>, <span class="st">'mentions_count'</span>, <span class="st">'hashtags_count'</span>, <span class="st">'content_length'</span>, <span class="st">'has_profile_picture'</span>, <span class="st">'sentiment_polarity'</span>]) <span class="co"># eliminar columnas irrelevantes</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="analizar-contenido-de-las-columnas" class="level2">
 <h2 class="anchored" data-anchor-id="analizar-contenido-de-las-columnas">Analizar contenido de las columnas</h2>
-<div id="003f93a7" class="cell" data-execution_count="7">
+<div id="4bcab1af" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> column <span class="kw">in</span> df.columns:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    unique_values <span class="op">=</span> df[column].nunique()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Columna: </span><span class="sc">{</span>column<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -742,7 +748,7 @@ Valores únicos: ['@DanielNoboaOk @DiegoBorjaPC Lávate el hocico presidente de 
 <h2 class="anchored" data-anchor-id="limpieza-de-datos-de-la-columna-content">limpieza de datos de la columna ‘content’</h2>
 <section id="eliminar-urls-menciones-y-caracteres-especiales" class="level3">
 <h3 class="anchored" data-anchor-id="eliminar-urls-menciones-y-caracteres-especiales">Eliminar URLs, menciones y caracteres especiales</h3>
-<div id="1c8844e1" class="cell" data-execution_count="8">
+<div id="46352010" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> clean_text(text):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'http</span><span class="dv">\S</span><span class="op">+</span><span class="cf">|</span><span class="vs">www</span><span class="dv">\S</span><span class="op">+</span><span class="cf">|</span><span class="vs">https</span><span class="dv">\S</span><span class="op">+</span><span class="vs">'</span>, <span class="st">''</span>, text, flags<span class="op">=</span>re.MULTILINE) <span class="co"># eliminar URLs</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    text <span class="op">=</span> re.sub(<span class="vs">r'@</span><span class="dv">\w</span><span class="op">+</span><span class="vs">'</span>, <span class="st">''</span>, text) <span class="co"># eliminar menciones</span></span>
@@ -756,7 +762,7 @@ Valores únicos: ['@DanielNoboaOk @DiegoBorjaPC Lávate el hocico presidente de 
 </section>
 <section id="ver-resultados-de-la-limpieza" class="level3">
 <h3 class="anchored" data-anchor-id="ver-resultados-de-la-limpieza">ver resultados de la limpieza</h3>
-<div id="506f1f99" class="cell" data-execution_count="9">
+<div id="d90bd863" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'content'</span>].head(<span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>4622        lvate el hocico presidente de cartnhabla la ...
@@ -774,7 +780,7 @@ Name: content, dtype: object</code></pre>
 <h1>crear variable objetivo</h1>
 <section id="importar-pysentimiento" class="level3">
 <h3 class="anchored" data-anchor-id="importar-pysentimiento">Importar pysentimiento</h3>
-<div id="eada6c00" class="cell" data-execution_count="10">
+<div id="7cf28b18" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#analyzer = SentimentIntensityAnalyzer()</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>analyzer <span class="op">=</span> create_analyzer(task<span class="op">=</span><span class="st">"sentiment"</span>, lang<span class="op">=</span><span class="st">"es"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -784,7 +790,7 @@ Name: content, dtype: object</code></pre>
 </section>
 <section id="crear-función-para-clasificar-si-un-sentimiento-es-positivo-negativo-o-neutro-con-la-librería-pysentimiento" class="level3">
 <h3 class="anchored" data-anchor-id="crear-función-para-clasificar-si-un-sentimiento-es-positivo-negativo-o-neutro-con-la-librería-pysentimiento">crear función para clasificar si un sentimiento es positivo, negativo o neutro con la librería pysentimiento</h3>
-<div id="3cfa0d6b" class="cell" data-execution_count="11">
+<div id="f4edb7d1" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_sentiment(text):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Clasifica el sentimiento de un texto en Positivo, Negativo o Neutro.</span></span>
@@ -799,7 +805,7 @@ Name: content, dtype: object</code></pre>
 </section>
 <section id="aplicar-la-función-classify_sentiment-para-crear-la-variable-objetivo" class="level3">
 <h3 class="anchored" data-anchor-id="aplicar-la-función-classify_sentiment-para-crear-la-variable-objetivo">Aplicar la función classify_sentiment para crear la variable objetivo</h3>
-<div id="ee7762cc" class="cell" data-execution_count="12">
+<div id="a17bff43" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'sentiment'</span>] <span class="op">=</span> df[<span class="st">'content'</span>].<span class="bu">apply</span>(classify_sentiment) <span class="co"># Crear la variable objetivo basada en el contenido del tweet</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df[<span class="st">'sentiment'</span>].value_counts()) <span class="co"># Verificar la distribución de las clases</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -812,14 +818,14 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="selección-de-features" class="level3">
 <h3 class="anchored" data-anchor-id="selección-de-features">Selección de features</h3>
-<div id="9d7f1b10" class="cell" data-execution_count="13">
+<div id="919ef14b" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df[<span class="st">'content'</span>]  <span class="co"># Feature: contenido del tweet</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'sentiment'</span>]  <span class="co"># Target: sentimiento clasificado</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="preprocesamiento-manual-de-texto" class="level3">
 <h3 class="anchored" data-anchor-id="preprocesamiento-manual-de-texto">Preprocesamiento manual de texto</h3>
-<div id="d22220dd" class="cell" data-execution_count="14">
+<div id="ba32cb04" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>lemmatizer <span class="op">=</span> WordNetLemmatizer()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>stop_words <span class="op">=</span> <span class="bu">list</span>(stopwords.words(<span class="st">'spanish'</span>))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -835,26 +841,26 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="split-data" class="level3">
 <h3 class="anchored" data-anchor-id="split-data">split data</h3>
-<div id="13640d81" class="cell" data-execution_count="15">
+<div id="b5802c68" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="vectorización-de-texto-con-tfidf" class="level3">
 <h3 class="anchored" data-anchor-id="vectorización-de-texto-con-tfidf">Vectorización de texto con tfidf</h3>
-<div id="c003c0e0" class="cell" data-execution_count="16">
+<div id="dcf3b861" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>vectorizer <span class="op">=</span> TfidfVectorizer()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="modelo" class="level3">
 <h3 class="anchored" data-anchor-id="modelo">Modelo</h3>
-<div id="6de97a33" class="cell" data-execution_count="17">
+<div id="93b5dfed" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Entrenamiento del modelo</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> MultinomialNB()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="pipeline" class="level3">
 <h3 class="anchored" data-anchor-id="pipeline">pipeline</h3>
-<div id="b5fec7ad" class="cell" data-execution_count="18">
+<div id="ccbeeecf" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> Pipeline([</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'vectorizer'</span>, vectorizer),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    (<span class="st">'classifier'</span>, model)</span>
@@ -863,7 +869,7 @@ Name: count, dtype: int64</code></pre>
 </section>
 <section id="fit-del-modelo" class="level3">
 <h3 class="anchored" data-anchor-id="fit-del-modelo">Fit del modelo</h3>
-<div id="35a9a169" class="cell" data-execution_count="19">
+<div id="10a7173c" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pipeline.fit(X_train, y_train)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <style>#sk-container-id-1 {
@@ -1573,13 +1579,13 @@ document.querySelectorAll('.fa-regular.fa-copy').forEach(function(element) {
 </section>
 <section id="predicciones" class="level3">
 <h3 class="anchored" data-anchor-id="predicciones">Predicciones</h3>
-<div id="964d8b0d" class="cell" data-execution_count="20">
+<div id="1d3ad2c0" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> pipeline.predict(X_test)   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="reporte-de-clasificación" class="level3">
 <h3 class="anchored" data-anchor-id="reporte-de-clasificación">Reporte de clasificación</h3>
-<div id="cc90af57" class="cell" data-execution_count="21">
+<div id="d847019d" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>              precision    recall  f1-score   support
@@ -1595,7 +1601,7 @@ weighted avg       1.00      1.00      1.00         1
 </section>
 <section id="matriz-de-confusión" class="level3">
 <h3 class="anchored" data-anchor-id="matriz-de-confusión">Matriz de confusión</h3>
-<div id="e213ac69" class="cell" data-execution_count="22">
+<div id="353c5044" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>disp <span class="op">=</span> ConfusionMatrixDisplay(confusion_matrix<span class="op">=</span>cm) <span class="co"># Crear el display</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>disp.plot()</span>

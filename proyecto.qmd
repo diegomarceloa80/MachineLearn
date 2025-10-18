@@ -1,0 +1,350 @@
+---
+title: "Proyecto final"
+author: "Diego Altamirano"
+code-fold: false
+---
+- Objetivo: Aplicar técnicas de análisis de datos, preprocesamiento, clasificación, regresión y clustering en un conjunto de datos real para extraer información valiosa y construir modelos predictivos efectivos.
+1. Análisis Exploratorio de Datos (EDA):
+
+	•	Analizar el dataset entregado con foco en:
+
+		
+		
+		
+	
+
+		•	
+
+		•	Gráficos de barras o conteo para variables categóricas.
+
+		•	Nubes de palabras o frecuencias para texto.
+
+		•	Gráficos de dispersión si aplica.
+
+	•	Explicar de forma clara al menos 3 hallazgos clave del análisis.
+
+## Cargar librerías
+```{python}
+#| label: cargar librerías
+import pandas as pd
+import altair as alt
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
+from sklearn.metrics import classification_report
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.cluster import KMeans
+import re
+import unicodedata
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.compose import ColumnTransformer
+from sklearn.metrics import ConfusionMatrixDisplay
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.decomposition import TruncatedSVD
+from sklearn.preprocessing import normalize
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet') # necessary for lemmatization
+spanish_stopwords = stopwords.words('spanish')
+
+```
+## Cargar dataset
+```{python}
+#| label: cargar dataset
+url = "https://raw.githubusercontent.com/erickedu85/dataset/refs/heads/master/tweets/1500_tweets_con_toxicity.csv"
+
+try:
+    df = pd.read_csv(url)
+    print("Dataset cargado exitosamente.")
+except Exception as e:
+    print(f"Error al cargar el dataset: {e}")
+    exit()
+df
+```
+###  Tipo y cantidad de variables (numéricas, categóricas, texto).
+
+```{python}
+#| label: tipo_y_cantidad_de_variables
+df.info()
+```
+### Estadísticas descriptivas (mínimos, máximos, media, mediana, distribución).
+
+```{python}
+#| label: estadisticas_descriptivas
+df.describe()
+```
+### Distribución de la variable TOXICITY.
+
+```{python}
+#| label: distribucion_toxicity
+alt.Chart(df).mark_bar().encode(
+    x=alt.X("toxicity_score:Q", bin=True),
+    y=alt.Y("count():Q"),
+    tooltip=["toxicity_score:Q", "count():Q"]
+).properties(
+    title="Distribución de la variable TOXICITY"
+)
+```
+### Histogramas para variables numéricas.
+```{python}
+#| label: histogramas_variables_numericas
+# Histogramas
+df.hist(bins=30, figsize=(15, 10))
+plt.suptitle('Histogramas de variables numéricas')
+plt.show()
+```
+### Exploro mi columna de texto "content"
+```{python}
+#| label: exploracion_columna_texto
+text_df = df[['content']]
+
+for column in text_df.columns:
+    unique_values = text_df[column].nunique()
+    print(f"\nColumna: {column}")
+    print(f"Número de valores únicos: {unique_values}")
+    if unique_values <= 10:
+        print(f"Valores únicos: {text_df[column].unique()}")
+    else:
+        print(f"Primeros 10 valores únicos: {text_df[column].unique()[:10]}")
+
+```
+### Detección de valores nulos, duplicados o atípicos.
+
+```{python}
+#| label: deteccion_valores
+df.isnull().sum()
+```
+### eliminar valores nulos de variable objetivo
+```{python}
+#| label: eliminar_nulos
+df = df[df["toxicity_score"].notnull()]
+df.isnull().sum()
+```
+
+
+# 2. Preprocesamiento y codificación:
+
+## Limpieza del texto y metadatos.
+```{python}
+#| label: limpieza_texto
+def remove_accents(text):
+    """
+    Convierte vocales tildadas y otros caracteres acentuados
+    a su forma base sin acento.
+    """
+    if not isinstance(text, str):
+        return text
+    # Normaliza a forma decomposed y elimina marcas diacríticas (Mn)
+    return ''.join(ch for ch in unicodedata.normalize('NFD', text)
+                   if unicodedata.category(ch) != 'Mn')
+
+def clean_text(text):
+    text = re.sub(r'http\S+|www\S+|https\S+', '', text, flags=re.MULTILINE) # eliminar URLs
+    text = re.sub(r'@\w+', '', text) # eliminar menciones
+    text = re.sub(r'#\w+', '', text) # eliminar hashtags
+    text = re.sub(r'[^A-Za-z0-9\sáéíóúÁÉÍÓÚüÜñÑ]+', '', text) # eliminar caracteres especiales salvo letras con acento y ñ
+    text = text.lower() # convertir a minúsculas
+    text = remove_accents(text)  # reemplazar vocales tildadas por sin tilde
+    return text
+
+df['content'] = df['content'].apply(clean_text)
+
+```
+### Ver resultados de la limpieza
+```{python}
+#| label: ver_resultados_limpieza
+df['content'].head(10)
+```
+### clasificar la variable objetivo TOXICITY en categorías entre 0 y 1
+```{python}
+#| label: clasificar_toxicity
+def classify_toxicity(score):
+    if score < 0.3: return 'Bajo'
+    elif 0.3 <= score < 0.7: return 'Medio'
+    else: return 'Alto'
+df['toxicity_level'] = df['toxicity_score'].apply(classify_toxicity)
+```
+### Selección de features y target
+
+```{python}
+# Definir targets
+def classify_toxicity(score):
+    if score < 0.3: return 'Bajo'
+    elif 0.3 <= score < 0.7: return 'Medio'
+    else: return 'Alto'
+df['toxicity_level'] = df['toxicity_score'].apply(classify_toxicity)
+y_clf = df['toxicity_level']
+y_reg = df['toxicity_score']
+
+# Definir features (X)
+numeric_features = ['authorFollowers', 'account_age_days', 'mentions_count', 
+                    'hashtags_count', 'content_length', 'sentiment_polarity']
+categorical_features = ['isReply', 'authorVerified', 'has_profile_picture']
+text_feature = 'content'
+
+X = df[numeric_features + categorical_features + [text_feature]]
+
+# --- 4. Train-Test Split ---
+
+# Para Clasificación (con stratify)
+X_train_clf, X_test_clf, y_train_clf, y_test_clf = train_test_split(
+    X, y_clf, test_size=0.2, random_state=42, stratify=y_clf
+)
+
+# Para Regresión
+X_train_reg, X_test_reg, y_train_reg, y_test_reg = train_test_split(
+    X, y_reg, test_size=0.2, random_state=42
+)
+
+# --- 5. Preprocesador Común (ColumnTransformer) ---
+
+numeric_transformer = Pipeline(steps=[
+    ('scaler', StandardScaler())
+])
+
+categorical_transformer = Pipeline(steps=[
+    ('onehot', OneHotEncoder(handle_unknown='ignore'))
+])
+
+text_transformer = Pipeline(steps=[
+    ('tfidf', TfidfVectorizer(stop_words=spanish_stopwords, max_features=3000, ngram_range=(1, 2)))
+])
+
+# Unir todo con ColumnTransformer
+preprocessor = ColumnTransformer(
+    transformers=[
+        ('num', numeric_transformer, numeric_features),
+        ('cat', categorical_transformer, categorical_features),
+        ('text', text_transformer, text_feature)
+    ],
+    remainder='drop'
+)
+
+# --- 6. Modelo de Clasificación (Logistic Regression) ---
+
+print("\n--- INICIANDO CLASIFICACIÓN ---")
+
+clf_pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor),
+    ('classifier', LogisticRegression(
+        random_state=42, 
+        class_weight='balanced', # Manejo de desbalance
+        max_iter=1000
+    ))
+])
+
+# Entrenar
+clf_pipeline.fit(X_train_clf, y_train_clf)
+
+# Evaluar
+y_pred_clf = clf_pipeline.predict(X_test_clf)
+y_pred_proba_clf = clf_pipeline.predict_proba(X_test_clf)
+
+print("Resultados de Clasificación:")
+print(classification_report(y_test_clf, y_pred_clf))
+
+try:
+    roc_auc = roc_auc_score(y_test_clf, y_pred_proba_clf, multi_class='ovr', average='weighted')
+    print(f"ROC-AUC Score (Weighted): {roc_auc:.4f}")
+except ValueError as e:
+    print(f"No se pudo calcular ROC-AUC: {e}")
+
+# Matriz de Confusión
+fig, ax = plt.subplots(figsize=(8, 6))
+ConfusionMatrixDisplay.from_predictions(y_test_clf, y_pred_clf, ax=ax, 
+                                        normalize='true', cmap='Blues')
+ax.set_title("Matriz de Confusión (Clasificación)")
+plt.show()
+
+# --- 7. Modelo de Regresión (Random Forest) ---
+
+print("\n--- INICIANDO REGRESIÓN ---")
+
+reg_pipeline = Pipeline(steps=[
+    ('preprocessor', preprocessor), # Reutilizamos el preprocesador
+    ('regressor', RandomForestRegressor(n_estimators=100, random_state=42))
+])
+
+# Entrenar
+reg_pipeline.fit(X_train_reg, y_train_reg)
+
+# Evaluar
+y_pred_reg = reg_pipeline.predict(X_test_reg)
+
+print("Resultados de Regresión:")
+mae = mean_absolute_error(y_test_reg, y_pred_reg)
+mse = mean_squared_error(y_test_reg, y_pred_reg)   # sin el argumento 'squared'
+rmse = mse ** 0.5                                   # raíz cuadrada del MSE
+r2 = r2_score(y_test_reg, y_pred_reg)
+
+print(f"Mean Absolute Error (MAE): {mae:.4f}")
+print(f"Root Mean Squared Error (RMSE): {rmse:.4f}")
+print(f"R-squared (R²): {r2:.4f}")
+
+# Visualización
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x=y_test_reg, y=y_pred_reg, alpha=0.6)
+plt.plot([y_test_reg.min(), y_test_reg.max()], [y_test_reg.min(), y_test_reg.max()], '--r', linewidth=2)
+plt.title('Regresión: Valores Reales vs. Predichos')
+plt.xlabel('Toxicidad Real')
+plt.ylabel('Toxicidad Predicha')
+plt.show()
+
+# --- 8. Modelo de Clustering (K-Means) ---
+
+print("\n--- INICIANDO CLUSTERING ---")
+
+# Pipeline solo para texto, con reducción de dimensionalidad
+text_cluster_pipeline = Pipeline(steps=[
+    ('tfidf', TfidfVectorizer(stop_words=spanish_stopwords, max_features=3000, ngram_range=(1, 2))),
+    ('svd', TruncatedSVD(n_components=50, random_state=42)),
+    # ('normalizer', Normalizer(norm='l2')) # K-Means funciona mejor con datos normalizados
+])
+
+# Preparar datos (usando todo el df de 1347 filas)
+X_text_only = df[text_feature]
+X_clust = text_cluster_pipeline.fit_transform(X_text_only)
+X_clust = normalize(X_clust) # Normalizar post-SVD
+
+print(f"Datos transformados para clustering: {X_clust.shape}")
+
+# Método del Codo
+sse = []
+K = range(2, 11)
+for k in K:
+    kmeans_test = KMeans(n_clusters=k, random_state=42, n_init=10)
+    kmeans_test.fit(X_clust)
+    sse.append(kmeans_test.inertia_)
+
+plt.figure(figsize=(8, 5))
+plt.plot(K, sse, 'bx-')
+plt.xlabel('Número de clusters (k)')
+plt.ylabel('Inercia (SSE)')
+plt.title('Método del Codo para K-Means')
+plt.show()
+
+# Aplicar K-Means (suponiendo k=5 basado en el codo)
+k_optimal = 5
+kmeans = KMeans(n_clusters=k_optimal, random_state=42, n_init=10)
+df['cluster'] = kmeans.fit_predict(X_clust)
+
+# Análisis de Clusters vs. Toxicidad
+print("\nAnálisis de Clusters vs. Toxicidad:")
+print("Toxicidad promedio por cluster:")
+print(df.groupby('cluster')['toxicity_score'].mean().sort_values(ascending=False))
+
+print("\nDistribución de niveles de toxicidad por cluster (normalizado por fila):")
+print(pd.crosstab(df['cluster'], df['toxicity_level'], normalize='index'))
+```
