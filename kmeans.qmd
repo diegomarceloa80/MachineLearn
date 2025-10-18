@@ -1,0 +1,166 @@
+---
+title: Kmeans
+code-fold: false
+---
+"K-Means es un algoritmo de agrupamiento no supervisado que se utiliza para dividir un conjunto de datos en K grupos distintos basados en características similares. A continuación, se presenta una implementación básica de K-Means utilizando scikit-learn."
+# Importar librerías
+```{python}
+import pandas as pd
+from sklearn.cluster import KMeans
+import altair as alt
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import silhouette_score
+from sklearn.compose import ColumnTransformer
+```
+# Cargar dataset
+```{python}
+url = "https://raw.githubusercontent.com/erickedu85/dataset/master/age_income.csv"
+df = pd.read_csv(url)
+df
+```
+# visualización inicial de los datos
+```{python}
+#| label: visualización_inicial_de_los_datos
+alt.Chart(df).mark_circle(size=60).encode(
+    alt.X('age'),
+    alt.Y('annual_income($)'),
+    tooltip=['age', 'annual_income($)']
+).interactive()
+```
+#### - En caso de tener mas variaable debemos transformar los datos a numericos
+#### - utilizamos one hot encoder para variables categoricas
+#### - y estandarizamos los datos con StandardScaler
+# calcular el sse para diferentes valores de k
+```{python}
+sse = []
+k_range = range(2, 11)
+for k in k_range:
+    kmeans = KMeans(n_clusters=k, random_state=42)
+    kmeans.fit(df[['age', 'annual_income($)']])
+    sse.append(kmeans.inertia_)# valor de inercia (suma de distancias al cuadrado dentro del cluster)
+print("Valor de la inercia\n", sse)
+```
+## Vizualizar el SSE Vs k_range
+#### - Creación de un DataFrame para facilitar la visualización
+```{python}
+elbow_df = pd.DataFrame(
+    {'K': list(k_range), 'SSE': sse}
+    )
+elbow_df
+```
+## Graficar el codo con altair
+```{python}
+alt.Chart(elbow_df).mark_line(point=True).encode(
+    alt.X('K'),
+    alt.Y('SSE'),
+    tooltip=['K', 'SSE']
+).properties(
+    title='Método del Codo'
+).interactive()
+```
+
+# Clusterización con K=3
+```{python}
+k_clusters = 3
+clusters = KMeans(n_clusters=k_clusters, random_state=42)
+df['clusters'] = clusters.fit_predict(df[['age', 'annual_income($)']])
+df
+```
+## Visualización de los clusters con altair
+```{python}
+alt.Chart(df).mark_circle().encode(
+    alt.X('age'),
+    alt.Y('annual_income($)'),
+    alt.Color('clusters:N'),
+    tooltip=['age', 'annual_income($)', 'clusters:N']
+).properties(
+    title='Clusterización'
+).interactive()
+
+```
+# Pipeline + StandardScaler + KMeans
+## columns transformer
+```{python}
+num_cols = ['age', 'annual_income($)']
+preprocessor = ColumnTransformer(
+    [('standar', StandardScaler(), num_cols)]
+)
+```
+## pipeline
+```{python}
+pipeline = Pipeline([
+    ('scaler', preprocessor),
+    ('kmeans', KMeans(random_state=42))
+])
+```
+# Metodo del codo (elbow) con pipeline
+```{python}
+
+k_range = range(2, 11)
+sse_stanadar = []
+silhouette_scores = []
+for k in k_range:
+    pipeline.set_params(kmeans__n_clusters=k)
+    pipeline.fit(df[num_cols])
+    sse_stanadar.append(pipeline.named_steps['kmeans'].inertia_)
+    # calcular silhouette score
+    pred = pipeline.predict(df[num_cols])
+    score = silhouette_score(pipeline.named_steps['scaler'].transform(df[num_cols]), pred)
+    print("Score", score)
+    print("\n")
+    silhouette_scores.append(score)
+```
+## Vizualizar del metodo del codo y silhouette con altair
+```{python}
+sse_standar_df = pd.DataFrame(
+    {
+        'K':k_range,
+        'SSE Standard': sse_stanadar,
+    }
+    )
+silhouette_df = pd.DataFrame(
+    {
+        'K':k_range,
+        'Silhouette': silhouette_scores,
+    }
+    )
+viz_sse = alt.Chart(sse_standar_df).mark_line(point=True).encode(
+    alt.X('K'),
+    alt.Y('SSE Standard'),
+    tooltip=['K', 'SSE Standard']
+).properties(
+    title='Método del Codo con StandardScaler'
+).interactive() 
+
+viz_silhouette = alt.Chart(silhouette_df).mark_line(point=True, color='orange').encode(
+    alt.X('K'),
+    alt.Y('Silhouette'),
+    tooltip=['K', 'Silhouette']
+).properties(
+    title='Silhouette Score'
+).interactive()
+
+viz_sse | viz_silhouette
+```
+
+## Clusterización pipeline + StandardScaler()
+```{python}
+k_optimo = k_range[silhouette_scores.index(max(silhouette_scores))]
+print("K óptimo según silhouette:", k_optimo)
+pipeline.set_params(kmeans__n_clusters=k_optimo)
+df['clusters_standard'] = pipeline.fit_predict(df[num_cols])
+df
+```
+## vizuailización de los clusters con altair
+```{python}
+#| label: Visualiza-cluster-standar
+alt.Chart(df).mark_circle().encode(
+    alt.X('age'),
+    alt.Y('annual_income($)'),
+    alt.Color('clusters_standard:N'),
+    tooltip=['age', 'annual_income($)', 'clusters_standard:N']
+).properties(
+    title='Clusterización'
+).interactive()
+```

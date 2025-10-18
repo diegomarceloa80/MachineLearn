@@ -43,7 +43,8 @@ except Exception as e:
     exit()
 
 # Para pruebas rápidas, trabajar solo con una muestra pequeña
-df = df.sample(n=10000, random_state=42)
+#df = df.sample(n=10000, random_state=42)
+df = df.sample(n=5, random_state=42) # trabajar con una muestra pequeña para pruebas rápidas
 ```
 # Explorar el dataset EDA
 ## Mostrar las primeras filas (5)

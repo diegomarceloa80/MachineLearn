@@ -4006,12 +4006,49 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Laboratorios</span></a>
+ <span class="menu-text">GridSearchCV</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+ <span class="menu-text">knn.qmd</span>
+  </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unsupervised Learning</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./kmeans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Kmeans</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hac.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hierachical Agglomerative Clustering (HAC)</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Laboratorios</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./laboratorio.html" class="sidebar-item-text sidebar-link">
@@ -4034,13 +4071,13 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
  <span class="menu-text">Midterm</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./midterm.html" class="sidebar-item-text sidebar-link">
@@ -4111,7 +4148,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h1>Introduccion a Altair</h1>
 <section id="importar-el-dataset" class="level2">
 <h2 class="anchored" data-anchor-id="importar-el-dataset">Importar el dataset</h2>
-<div id="0bbfed50" class="cell" data-execution_count="1">
+<div id="d580b511" class="cell" data-execution_count="1">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> altair <span class="im">as</span> alt</span>
@@ -4140,7 +4177,7 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <h2 class="anchored" data-anchor-id="visualización-en-altair">Visualización en Altair</h2>
 <section id="visualización-scatterplot" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot">Visualización scatterplot</h3>
-<div id="a31554cd" class="cell" data-execution_count="2">
+<div id="29d091d3" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point().encode(</span>
@@ -4153,22 +4190,22 @@ var requirejs,require,define;(function(global,setTimeout){var req,s,head,baseEle
 <div class="cell-output cell-output-display" data-execution_count="2">
 
 <style>
-#altair-viz-5413fc1e04df40c2adc57a08790ba9bc.vega-embed {
+#altair-viz-e408516243444749a3df072ca89153b1.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-5413fc1e04df40c2adc57a08790ba9bc.vega-embed details,
-#altair-viz-5413fc1e04df40c2adc57a08790ba9bc.vega-embed details summary {
+#altair-viz-e408516243444749a3df072ca89153b1.vega-embed details,
+#altair-viz-e408516243444749a3df072ca89153b1.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-5413fc1e04df40c2adc57a08790ba9bc"></div>
+<div id="altair-viz-e408516243444749a3df072ca89153b1"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-5413fc1e04df40c2adc57a08790ba9bc") {
-      outputDiv = document.getElementById("altair-viz-5413fc1e04df40c2adc57a08790ba9bc");
+    if (outputDiv.id !== "altair-viz-e408516243444749a3df072ca89153b1") {
+      outputDiv = document.getElementById("altair-viz-e408516243444749a3df072ca89153b1");
     }
 
     const paths = {
@@ -4223,7 +4260,7 @@ position: relative;
 </section>
 <section id="visualización-scatterplot-con-color" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot-con-color">Visualización scatterplot con color</h3>
-<div id="a87d3d23" class="cell" data-execution_count="3">
+<div id="27451df3" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point(filled<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -4236,22 +4273,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <style>
-#altair-viz-66bc681a7f6f4fe3933e41882338c079.vega-embed {
+#altair-viz-7c7376d180314a43bb8c314b8b84a422.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-66bc681a7f6f4fe3933e41882338c079.vega-embed details,
-#altair-viz-66bc681a7f6f4fe3933e41882338c079.vega-embed details summary {
+#altair-viz-7c7376d180314a43bb8c314b8b84a422.vega-embed details,
+#altair-viz-7c7376d180314a43bb8c314b8b84a422.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-66bc681a7f6f4fe3933e41882338c079"></div>
+<div id="altair-viz-7c7376d180314a43bb8c314b8b84a422"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-66bc681a7f6f4fe3933e41882338c079") {
-      outputDiv = document.getElementById("altair-viz-66bc681a7f6f4fe3933e41882338c079");
+    if (outputDiv.id !== "altair-viz-7c7376d180314a43bb8c314b8b84a422") {
+      outputDiv = document.getElementById("altair-viz-7c7376d180314a43bb8c314b8b84a422");
     }
 
     const paths = {
@@ -4306,7 +4343,7 @@ position: relative;
 </section>
 <section id="visualización-scatterplot-con-color-1" class="level3">
 <h3 class="anchored" data-anchor-id="visualización-scatterplot-con-color-1">Visualización scatterplot con color</h3>
-<div id="7736e34f" class="cell" data-execution_count="4">
+<div id="ef298802" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_point(filled<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -4320,22 +4357,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <style>
-#altair-viz-f2e9895c1067475794e10e8d5f23e100.vega-embed {
+#altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-f2e9895c1067475794e10e8d5f23e100.vega-embed details,
-#altair-viz-f2e9895c1067475794e10e8d5f23e100.vega-embed details summary {
+#altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2.vega-embed details,
+#altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-f2e9895c1067475794e10e8d5f23e100"></div>
+<div id="altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-f2e9895c1067475794e10e8d5f23e100") {
-      outputDiv = document.getElementById("altair-viz-f2e9895c1067475794e10e8d5f23e100");
+    if (outputDiv.id !== "altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2") {
+      outputDiv = document.getElementById("altair-viz-8650f0f48ffd442cb5f46dd72dfd66b2");
     }
 
     const paths = {
@@ -4392,7 +4429,7 @@ position: relative;
 <h3 class="anchored" data-anchor-id="agregaciones">Agregaciones</h3>
 <p>Gráfico de barras</p>
 <p><code>count()</code> de cada una de los origines</p>
-<div id="3136cc00" class="cell" data-execution_count="5">
+<div id="70103d73" class="cell" data-execution_count="5">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_bar().encode(</span>
@@ -4403,22 +4440,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="5">
 
 <style>
-#altair-viz-dfc645e1b589497dafd0abf2de63c19d.vega-embed {
+#altair-viz-428437555c654b75bc5b1d3e0e28050b.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-dfc645e1b589497dafd0abf2de63c19d.vega-embed details,
-#altair-viz-dfc645e1b589497dafd0abf2de63c19d.vega-embed details summary {
+#altair-viz-428437555c654b75bc5b1d3e0e28050b.vega-embed details,
+#altair-viz-428437555c654b75bc5b1d3e0e28050b.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-dfc645e1b589497dafd0abf2de63c19d"></div>
+<div id="altair-viz-428437555c654b75bc5b1d3e0e28050b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-dfc645e1b589497dafd0abf2de63c19d") {
-      outputDiv = document.getElementById("altair-viz-dfc645e1b589497dafd0abf2de63c19d");
+    if (outputDiv.id !== "altair-viz-428437555c654b75bc5b1d3e0e28050b") {
+      outputDiv = document.getElementById("altair-viz-428437555c654b75bc5b1d3e0e28050b");
     }
 
     const paths = {
@@ -4471,7 +4508,7 @@ position: relative;
 </div>
 </div>
 <p><code>mean()</code> de cada una de los origines</p>
-<div id="600348cc" class="cell" data-execution_count="6">
+<div id="5e42363b" class="cell" data-execution_count="6">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_bar().encode(</span>
@@ -4486,22 +4523,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="6">
 
 <style>
-#altair-viz-d4b987ceed2841339c68c2d1f2e0b443.vega-embed {
+#altair-viz-f3e9254890914d209d30eac1642041e6.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-d4b987ceed2841339c68c2d1f2e0b443.vega-embed details,
-#altair-viz-d4b987ceed2841339c68c2d1f2e0b443.vega-embed details summary {
+#altair-viz-f3e9254890914d209d30eac1642041e6.vega-embed details,
+#altair-viz-f3e9254890914d209d30eac1642041e6.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-d4b987ceed2841339c68c2d1f2e0b443"></div>
+<div id="altair-viz-f3e9254890914d209d30eac1642041e6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-d4b987ceed2841339c68c2d1f2e0b443") {
-      outputDiv = document.getElementById("altair-viz-d4b987ceed2841339c68c2d1f2e0b443");
+    if (outputDiv.id !== "altair-viz-f3e9254890914d209d30eac1642041e6") {
+      outputDiv = document.getElementById("altair-viz-f3e9254890914d209d30eac1642041e6");
     }
 
     const paths = {
@@ -4554,7 +4591,7 @@ position: relative;
 </div>
 </div>
 <p>Gráfico lineal</p>
-<div id="fbd8afa7" class="cell" data-execution_count="7">
+<div id="ff0a65b7" class="cell" data-execution_count="7">
 <details class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>alt.Chart(cars).mark_line(point<span class="op">=</span><span class="va">True</span>).encode(</span>
@@ -4568,22 +4605,22 @@ position: relative;
 <div class="cell-output cell-output-display" data-execution_count="7">
 
 <style>
-#altair-viz-72087bf5150c4c83bbbd90bb04b25f19.vega-embed {
+#altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6.vega-embed {
 width: 100%;
 display: flex;
 }
-#altair-viz-72087bf5150c4c83bbbd90bb04b25f19.vega-embed details,
-#altair-viz-72087bf5150c4c83bbbd90bb04b25f19.vega-embed details summary {
+#altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6.vega-embed details,
+#altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6.vega-embed details summary {
 position: relative;
 }
 </style>
-<div id="altair-viz-72087bf5150c4c83bbbd90bb04b25f19"></div>
+<div id="altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-72087bf5150c4c83bbbd90bb04b25f19") {
-      outputDiv = document.getElementById("altair-viz-72087bf5150c4c83bbbd90bb04b25f19");
+    if (outputDiv.id !== "altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6") {
+      outputDiv = document.getElementById("altair-viz-fce7ae816b694b1da822ed2b5ec1d8c6");
     }
 
     const paths = {

@@ -25,6 +25,13 @@ website:
           - bagofwords.qmd
           - tfidf.qmd
           - text_classification.qmd
+      - section: "GridSearchCV"
+        contents:
+          - knn.qmd
+      - section: "Unsupervised Learning"
+        contents:
+          - kmeans.qmd
+          - hac.qmd
       - section: "Laboratorios"
         contents:
           - laboratorio.qmd
